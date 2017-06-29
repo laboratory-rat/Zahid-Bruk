@@ -1,0 +1,66 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/angular2.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "PageShop",
+        "7": [
+          {
+            "2": "COMMON_DIRECTIVES"
+          }
+        ]
+      }
+    ],
+    "6": "page_shop.dart",
+    "7": [
+      {
+        "1": "package:angular2/angular2.template.dart",
+        "4": "i0"
+      }
+    ]
+  },
+  "type": {
+    "PageShop": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "page-shop",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "PageShop",
+        "moduleUrl": "asset:zahid_bruk_web/lib/components/page_shop/page_shop.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 2,
+        "template": "<h1>Shop</h1>",
+        "templateUrl": "asset:zahid_bruk_web/lib/components/page_shop/page_shop.html",
+        "styles": [],
+        "styleUrls": [],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

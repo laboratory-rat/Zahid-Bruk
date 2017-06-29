@@ -205,6 +205,18 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0-alpha.1"
+  lab_rat_storage:
+    description:
+      name: lab_rat_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
+  lab_rat_wp_api:
+    description:
+      name: lab_rat_wp_api
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   logging:
     description:
       name: logging
