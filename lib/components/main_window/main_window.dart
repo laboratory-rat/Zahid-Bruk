@@ -1,6 +1,7 @@
 import '../page_about/page_about.dart';
 import '../page_home/page_home.dart';
 import '../page_shop/page_shop.dart';
+import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
 
@@ -17,5 +18,11 @@ import 'package:angular2/router.dart';
 ])
 class MainWindow 
 {
+    Element get drawerElement => querySelector('#drawer');
+    Element get drawerObfuscatorElement => querySelector('.mdl-layout__obfuscator');
 
+    void toggleDrawer(){
+        drawerElement.classes.toggle('is-visible');
+        drawerObfuscatorElement.classes.toggle('is-visible');
+    }
 }
