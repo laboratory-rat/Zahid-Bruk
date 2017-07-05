@@ -1,0 +1,83 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/angular2.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "LabRatCarousel",
+        "7": [
+          {
+            "2": "COMMON_DIRECTIVES"
+          }
+        ]
+      }
+    ],
+    "6": "lab_rat_carousel.dart"
+  },
+  "type": {
+    "LabRatCarousel": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "lab-rat-carousel",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "LabRatCarousel",
+        "moduleUrl": "asset:zahid_bruk_web/lib/components/ext/lab_rat_carousel/lab_rat_carousel.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
+      },
+      "changeDetection": 6,
+      "inputs": {
+        "objects": "objects",
+        "currentIndex": "currentIndex",
+        "showBullets": "showBullets",
+        "showArrows": "showArrows",
+        "width": "width",
+        "height": "height"
+      },
+      "inputTypes": {
+        "objects": " List",
+        "currentIndex": " int",
+        "showBullets": " bool",
+        "showArrows": " bool",
+        "width": " String",
+        "height": " String"
+      },
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 0,
+        "template": "<div class=\"lab-rat-carousel-body mdl-card mdl-shadow--2dp\" [ngStyle]=\"{'width': width, 'height': height}\"> \r\n    <ul>\r\n        <li *ngFor='let item of objects' [ngClass]='{current: currentObject == item}'  class=\"lab-rat-carousel-item\">\r\n            <img [src]='item.src' [alt]=\"item.title\">\r\n            <div class=\"text-holder mdl-color-text--grey-50\">\r\n                <h4>{{item.title}}</h4>\r\n                <span class='mdl-typography--caption'>{{item.caption}}</span>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n    <div class=\"arrows\">\r\n        <button class=\"mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon\" (click)=\"next()\">\r\n            <i class=\"material-icons\">keyboard_arrow_left</i>\r\n        </button>\r\n        <button class=\"mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon\" (click)='back()'>\r\n            <i class=\"material-icons\">keyboard_arrow_right</i>\r\n        </button>\r\n    </div>\r\n</div>",
+        "templateUrl": "asset:zahid_bruk_web/lib/components/ext/lab_rat_carousel/lab_rat_carousel.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:zahid_bruk_web/lib/components/ext/lab_rat_carousel/lab_rat_carousel.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    },
+    "LabRatCarouselObject": {
+      "class": "Identifier",
+      "name": "LabRatCarouselObject",
+      "moduleUrl": "asset:zahid_bruk_web/lib/components/ext/lab_rat_carousel/lab_rat_carousel.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

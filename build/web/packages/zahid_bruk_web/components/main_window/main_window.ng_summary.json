@@ -15,6 +15,10 @@
         "5": false
       },
       {
+        "1": "dart:html",
+        "5": false
+      },
+      {
         "1": "package:angular2/angular2.dart",
         "5": false
       },
@@ -72,7 +76,7 @@
       "lifecycleHooks": [],
       "template": {
         "encapsulation": 2,
-        "template": "<!--nav area-->\r\n<nav class=\"navbar navbar-default\">\r\n  <div class=\"container-fluid\">\r\n    <!-- Brand and toggle get grouped for better mobile display -->\r\n    <div class=\"navbar-header\">\r\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n        <span class=\"sr-only\">Toggle navigation</span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n      </button>\r\n      <a class=\"navbar-brand\" [routerLink]=\"['PageHome']\">Zahid bruk</a>\r\n    </div>\r\n\r\n    <!-- Collect the nav links, forms, and other content for toggling -->\r\n    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <li><a [routerLink]=\"['PageHome']\">Home</a></li>\r\n        <li><a [routerLink]=\"['PageShop']\">Shop</a></li>\r\n        <li><a [routerLink]=\"['PageAbout']\">About</a></li>\r\n        <!--<li class=\"dropdown\">\r\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\r\n          <ul class=\"dropdown-menu\">\r\n            <li><a href=\"#\">Action</a></li>\r\n            <li><a href=\"#\">Another action</a></li>\r\n            <li><a href=\"#\">Something else here</a></li>\r\n            <li role=\"separator\" class=\"divider\"></li>\r\n            <li><a href=\"#\">Separated link</a></li>\r\n          </ul>\r\n        </li>-->\r\n      </ul>\r\n    </div><!-- /.navbar-collapse -->\r\n  </div><!-- /.container-fluid -->\r\n</nav>\r\n<router-outlet></router-outlet>\r\n<!-- Routed views go here -->\r\n",
+        "template": "  <!-- Always shows a header, even in smaller screens. -->\r\n  <div class=\"mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button\">\r\n    <header class=\"mdl-layout__header\">\r\n      <div class=\"mdl-layout__header-row\">\r\n        <!-- Title -->\r\n        <span class=\"mdl-layout-title\">Title</span>\r\n        <!-- Add spacer, to align navigation to the right -->\r\n        <div class=\"mdl-layout-spacer\"></div>\r\n        <!-- Navigation. We hide it in small screens. -->\r\n        <nav class=\"mdl-navigation mdl-layout--large-screen-only\">\r\n          <a class=\"mdl-navigation__link\" [routerLink]='[\"PageHome\"]'>Home</a>\r\n          <a class=\"mdl-navigation__link\" [routerLink]='[\"PageShop\"]'>Shop</a>\r\n          <a class=\"mdl-navigation__link\" [routerLink]='[\"PageAbout\"]'>About</a>\r\n        </nav>\r\n      </div>\r\n    </header>\r\n    <div class=\"mdl-layout__drawer\" id='drawer'>\r\n      <span class=\"mdl-layout-title\">Title</span>\r\n      <nav class=\"mdl-navigation\">\r\n          <a class=\"mdl-navigation__link\" (click)='toggleDrawer()' [routerLink]='[\"PageHome\"]'>Home</a>\r\n          <a class=\"mdl-navigation__link\" (click)='toggleDrawer()' [routerLink]='[\"PageShop\"]'>Shop</a>\r\n          <a class=\"mdl-navigation__link\" (click)='toggleDrawer()' [routerLink]='[\"PageAbout\"]'>About</a>\r\n      </nav>\r\n    </div>\r\n    <main class=\"mdl-layout__content\">\r\n      <div class=\"page-content\">\r\n        <router-outlet></router-outlet>\r\n      </div>\r\n    </main>\r\n  </div>\r\n\r\n<!-- Routed views go here -->\r\n",
         "templateUrl": "asset:zahid_bruk_web/lib/components/main_window/main_window.html",
         "styles": [],
         "styleUrls": [],

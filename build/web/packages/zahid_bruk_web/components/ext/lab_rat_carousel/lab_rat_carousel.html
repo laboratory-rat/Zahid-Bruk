@@ -1,0 +1,19 @@
+<div class="lab-rat-carousel-body mdl-card mdl-shadow--2dp" [ngStyle]="{'width': width, 'height': height}"> 
+    <ul>
+        <li *ngFor='let item of objects' [ngClass]='{current: currentObject == item}'  class="lab-rat-carousel-item">
+            <img [src]='item.src' [alt]="item.title">
+            <div class="text-holder mdl-color-text--grey-50">
+                <h4>{{item.title}}</h4>
+                <span class='mdl-typography--caption'>{{item.caption}}</span>
+            </div>
+        </li>
+    </ul>
+    <div class="arrows">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" (click)="next()">
+            <i class="material-icons">keyboard_arrow_left</i>
+        </button>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" (click)='back()'>
+            <i class="material-icons">keyboard_arrow_right</i>
+        </button>
+    </div>
+</div>

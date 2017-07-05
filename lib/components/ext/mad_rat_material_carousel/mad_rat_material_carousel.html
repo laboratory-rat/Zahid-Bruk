@@ -1,0 +1,18 @@
+<div class="mrm-container" [style.width]='width' [style.height]='height'>
+    <ul class="mrm-carousel" >
+        <li *ngFor='let object of objects' [ngClass]='{"active": currentObject == object}' [style.visibility]='isHidden'>
+            <div class="main-card mdl-card mdl-shadow--2dp">
+                <!--<div class="image-holder" [ngStyle]="{'background-image': 'url(' + object.src + ')'}"></div>-->
+                <img [src]='object.src' [alt]='object.src'>
+                <div class="image-spacer"></div>
+            </div>
+            <div class="description-card mdl-card mdl-shadow--4dp">
+                {{object.caption}}
+            </div>
+        </li>
+    </ul>
+    <div class="arrows">
+        <button (click)='next()' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons">keyboard_arrow_left</i></button>
+        <button (click)='back()' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons">keyboard_arrow_right</i></button>
+    </div>
+</div>

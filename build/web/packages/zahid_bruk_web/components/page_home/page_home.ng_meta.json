@@ -3,23 +3,15 @@
     "1": "",
     "3": [
       {
-        "1": "../../domain/ShopItem.dart",
-        "5": false
-      },
-      {
         "1": "../../services/ShopService.dart",
         "5": false
       },
       {
-        "1": "dart:convert",
+        "1": "../ext/mad_rat_material_carousel/mad_rat_material_carousel.dart",
         "5": false
       },
       {
         "1": "package:angular2/angular2.dart",
-        "5": false
-      },
-      {
-        "1": "dart:html",
         "5": false
       }
     ],
@@ -38,6 +30,9 @@
         "7": [
           {
             "2": "COMMON_DIRECTIVES"
+          },
+          {
+            "2": "MadRatMaterialCarousel"
           }
         ]
       }
@@ -45,11 +40,11 @@
     "6": "page_home.dart",
     "7": [
       {
-        "1": "../../domain/ShopItem.template.dart",
+        "1": "../../services/ShopService.template.dart",
         "4": "i0"
       },
       {
-        "1": "../../services/ShopService.template.dart",
+        "1": "../ext/mad_rat_material_carousel/mad_rat_material_carousel.template.dart",
         "4": "i1"
       },
       {
@@ -106,7 +101,7 @@
       ],
       "template": {
         "encapsulation": 2,
-        "template": "<h1>Home</h1>\r\n<h3 *ngFor='let i of currentItems'>{{i.title}}</h3>",
+        "template": "<h1>Home</h1>\r\n<mad-rat-material-carousel \r\n    [objects]='carouselObjects' \r\n    [width]='carouselWidth' \r\n    [height]='carouselHeight'>\r\n</mad-rat-material-carousel>",
         "templateUrl": "asset:zahid_bruk_web/lib/components/page_home/page_home.html",
         "styles": [],
         "styleUrls": [],

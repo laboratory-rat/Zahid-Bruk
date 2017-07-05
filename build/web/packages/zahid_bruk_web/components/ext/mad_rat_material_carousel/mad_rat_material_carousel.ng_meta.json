@@ -1,0 +1,89 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/angular2.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "MadRatMaterialCarousel",
+        "7": [
+          {
+            "2": "COMMON_DIRECTIVES"
+          }
+        ]
+      }
+    ],
+    "6": "mad_rat_material_carousel.dart",
+    "7": [
+      {
+        "1": "package:angular2/angular2.template.dart",
+        "4": "i0"
+      }
+    ]
+  },
+  "type": {
+    "CarouselObject": {
+      "class": "Identifier",
+      "name": "CarouselObject",
+      "moduleUrl": "asset:zahid_bruk_web/lib/components/ext/mad_rat_material_carousel/mad_rat_material_carousel.dart",
+      "prefix": null,
+      "value": null
+    },
+    "MadRatMaterialCarousel": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "mad-rat-material-carousel",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "MadRatMaterialCarousel",
+        "moduleUrl": "asset:zahid_bruk_web/lib/components/ext/mad_rat_material_carousel/mad_rat_material_carousel.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
+      },
+      "changeDetection": 6,
+      "inputs": {
+        "objects": "objects",
+        "currentIndex": "currentIndex",
+        "showBullets": "showBullets",
+        "showArrows": "showArrows",
+        "width": "width",
+        "height": "height"
+      },
+      "inputTypes": {
+        "objects": " List",
+        "currentIndex": " int",
+        "showBullets": " bool",
+        "showArrows": " bool",
+        "width": " String",
+        "height": " String"
+      },
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [],
+      "template": {
+        "encapsulation": 0,
+        "template": "<ul class=\"mad-rat-material-carosel\">\r\n    <li *ngFor='let object of objects'>\r\n        <div class=\"main-card mdl-card mdl-shadow--2dp\">\r\n            <div class=\"image-holder\">\r\n                <img [src]=\"object.src\" [alt]=\"object.src\">\r\n            </div>\r\n        </div>\r\n        <div class=\"description-card\">\r\n            {{object.caption}}\r\n        </div>\r\n    </li>\r\n</ul>",
+        "templateUrl": "asset:zahid_bruk_web/lib/components/ext/mad_rat_material_carousel/mad_rat_material_carousel.html",
+        "styles": [],
+        "styleUrls": [
+          "asset:zahid_bruk_web/lib/components/ext/mad_rat_material_carousel/mad_rat_material_carousel.css"
+        ],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}
