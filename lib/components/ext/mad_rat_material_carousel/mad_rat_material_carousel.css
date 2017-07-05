@@ -49,6 +49,10 @@
     animation-timing-function: ease-out;
 }
 
+.mrm-carousel > li.new{
+    visibility: none;
+}
+
 .mrm-carousel > li > .main-card > img{
     flex: auto;
     display: block;
@@ -82,11 +86,14 @@
     animation-timing-function: ease-out;
 }
 
+.mrm-carousel > li.new > .description-card{
+    animation: none;
+}
+
 .mrm-container > .arrows{
-    position: absolute;
-    top: calc(50% - 24px);
-    left: 0;
-    width: 100%;
+    position: relative;
+    width: 48px;
+    height: 100%;
     z-index: 10;
 }
 

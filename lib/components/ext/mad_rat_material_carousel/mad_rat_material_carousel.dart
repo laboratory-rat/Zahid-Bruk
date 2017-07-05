@@ -26,18 +26,12 @@ class MadRatMaterialCarousel{
     @Input()
     String height = '40%';
 
-    bool isPrepared = false;
-    String get isHidden => isPrepared ? 'visible' : 'hidden';
-
     CarouselObject get currentObject => 
         currentIndex >= 0  || objects != null || currentIndex < objects.length 
             ? objects[currentIndex] 
             : null; 
 
     MadRatMaterialCarousel(){
-        new Future.delayed(const Duration(seconds : 1)).then((result){
-            isPrepared = true;
-        });
     }
 
     void next(){
@@ -45,6 +39,8 @@ class MadRatMaterialCarousel{
 
         if(currentIndex + 1 == objects.length) currentIndex = 0;
         else currentIndex += 1;
+
+        objects[currentIndex].isNew = false;
     }
 
     void back(){
@@ -52,6 +48,8 @@ class MadRatMaterialCarousel{
 
         if(currentIndex - 1 < 0) currentIndex = objects.length - 1;
         else currentIndex -= 1;
+
+        objects[currentIndex].isNew = false;
     }
 }
 
@@ -59,6 +57,7 @@ class CarouselObject{
     String src;
     String caption;
     String title;
+    bool isNew = true;
 
     CarouselObject({this.src, this.caption, this.title});
 }

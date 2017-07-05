@@ -1,5 +1,6 @@
 import '../../services/ShopService.dart';
 import '../ext/mad_rat_material_carousel/mad_rat_material_carousel.dart';
+import 'dart:async';
 import 'package:angular2/angular2.dart';
 
 @Component(
@@ -21,6 +22,9 @@ class PageHome implements OnInit{
 
     @override
     ngOnInit() async {
+
+        await new Future.delayed(const Duration(seconds : 3));
+
         carouselObjects = [
             new CarouselObject( src: 'http://placehold.it/350x350/f0f0f0', title: '789', caption: 'caption'),
             new CarouselObject( src: 'http://placehold.it/350x350/ff0000', title: '123', caption: 'caption'),
