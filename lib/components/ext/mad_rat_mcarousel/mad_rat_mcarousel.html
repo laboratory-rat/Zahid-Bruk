@@ -1,4 +1,4 @@
-<div class="mrmc-container">
+<div class="mrmc-container" (mouseenter)='mouseenter()' (mouseleave)='mouseleave()'>
     <div class='arrow'>
         <button class="mdl-button mdl-js-button mdl-js-riple-effect mdl-button--icon" (click)='back()'>
             <i class="material-icons">keyboard_arrow_left</i>
@@ -9,7 +9,7 @@
                 <div class="mdl-card mdl-shadow--2dp image-card">
                     <img [src]="object.src" [alt]="object.src">
                 </div>
-                <div class="mdl-card mdl-shadow--8dp text-card">
+                <div class="mdl-card mdl-shadow--8dp text-card mdl-color--deep-orange-500">
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">{{object.title}}</h2>
                     </div>
@@ -18,6 +18,10 @@
                     </div>
                 </div>
         </li>
+        <div class="loader" [class.active]='objects == null'>
+            <!-- MDL Spinner Component -->
+            <div class="mdl-spinner mdl-js-spinner is-active"></div>
+        </div>
     </ul>
     <div class="arrow">
         <button class="mdl-button mdl-js-button mdl-js-riple-effect mdl-button--icon" (click)='front()'>
