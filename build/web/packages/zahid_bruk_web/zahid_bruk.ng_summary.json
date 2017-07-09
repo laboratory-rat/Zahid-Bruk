@@ -4,6 +4,12 @@
     "4": [
       {
         "1": "components/main_window/main_window.dart"
+      },
+      {
+        "1": "configs/main_config.dart"
+      },
+      {
+        "1": "services/shop_service.dart"
       }
     ],
     "6": "zahid_bruk.dart"

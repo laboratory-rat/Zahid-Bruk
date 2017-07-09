@@ -3,6 +3,14 @@
     "1": "",
     "3": [
       {
+        "1": "../../configs/main_config.dart",
+        "5": false
+      },
+      {
+        "1": "../../services/shop_service.dart",
+        "5": false
+      },
+      {
         "1": "../page_about/page_about.dart",
         "5": false
       },
@@ -34,10 +42,13 @@
           {
             "1": "RouteConfig",
             "2": [
-              "const [const Route(name: 'PageHome', component: PageHome, path: '/', useAsDefault: true), const Route(name: 'PageShop', component: PageShop, path: '/shop'), const Route(name: 'PageAbout', component: PageAbout, path: '/about')]"
+              "const [const Route(name: 'PageHome', component: PageHome, path: '/', useAsDefault: true), const Route(name: 'PageShop', component: PageShop, path: '/shop'), const Route(name: 'PageShopId', component: PageShop, path: '/shop/product/:id'), const Route(name: 'PageShopCategory', component: PageShop, path: '/shop/category/:category'), const Route(name: 'PageAbout', component: PageAbout, path: '/about')]"
             ],
             "4": false
           }
+        ],
+        "6": [
+          "OnInit"
         ],
         "7": [
           {
@@ -73,10 +84,12 @@
       "hostListeners": {},
       "hostProperties": {},
       "hostAttributes": {},
-      "lifecycleHooks": [],
+      "lifecycleHooks": [
+        0
+      ],
       "template": {
         "encapsulation": 2,
-        "template": "  <!-- Always shows a header, even in smaller screens. -->\r\n  <div class=\"mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button\">\r\n    <header class=\"mdl-layout__header\">\r\n      <div class=\"mdl-layout__header-row\">\r\n        <!-- Title -->\r\n        <span class=\"mdl-layout-title\">Title</span>\r\n        <!-- Add spacer, to align navigation to the right -->\r\n        <div class=\"mdl-layout-spacer\"></div>\r\n        <!-- Navigation. We hide it in small screens. -->\r\n        <nav class=\"mdl-navigation mdl-layout--large-screen-only\">\r\n          <a class=\"mdl-navigation__link\" [routerLink]='[\"PageHome\"]'>Home</a>\r\n          <a class=\"mdl-navigation__link\" [routerLink]='[\"PageShop\"]'>Shop</a>\r\n          <a class=\"mdl-navigation__link\" [routerLink]='[\"PageAbout\"]'>About</a>\r\n        </nav>\r\n      </div>\r\n    </header>\r\n    <div class=\"mdl-layout__drawer\" id='drawer'>\r\n      <span class=\"mdl-layout-title\">Title</span>\r\n      <nav class=\"mdl-navigation\">\r\n          <a class=\"mdl-navigation__link\" (click)='toggleDrawer()' [routerLink]='[\"PageHome\"]'>Home</a>\r\n          <a class=\"mdl-navigation__link\" (click)='toggleDrawer()' [routerLink]='[\"PageShop\"]'>Shop</a>\r\n          <a class=\"mdl-navigation__link\" (click)='toggleDrawer()' [routerLink]='[\"PageAbout\"]'>About</a>\r\n      </nav>\r\n    </div>\r\n    <main class=\"mdl-layout__content\">\r\n      <div class=\"page-content\">\r\n        <router-outlet></router-outlet>\r\n      </div>\r\n    </main>\r\n  </div>\r\n\r\n<!-- Routed views go here -->\r\n",
+        "template": "  <!-- Always shows a header, even in smaller screens. -->\r\n  <div class=\"mdl-layout mdl-js-layout  mdl-layout--no-desktop-drawer-button\" >\r\n    <header class=\"mdl-layout__header mdl-layout__header--scroll mdl-color--grey-50\" >\r\n      <div class=\"mdl-layout__header-row mdl-shadow--2dp\">\r\n        <div class=\"mdl-container\">\r\n          <img src=\"content/img/logo.svg\" alt=\"logo\" class='logo-image' [routerLink]='[\"PageHome\"]'>\r\n\r\n          <!-- Navigation. We hide it in small screens. -->\r\n          <nav class=\"mdl-navigation mdl-layout--large-screen-only\">\r\n            <a class=\"mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect\" [routerLink]='[\"PageShop\"]'>ТОВАРИ</a>\r\n            <a class=\"mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect\" [routerLink]='[\"PageHome\"]'>ПРО НАС</a>\r\n            <a class=\"mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect\" [routerLink]='[\"PageShop\"]'>КОНТАКТИ</a>\r\n            <a class=\"mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect\" [routerLink]='[\"PageAbout\"]'>НОВИНИ</a>\r\n          </nav>\r\n\r\n          <div class=\"mdl-layout-spacer\"></div>\r\n          <div class=\"header-tel color-text--grey-900\">\r\n            +38050-883-71-61\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"mdl-layout__header-row header-second mdl-color--amber-600 mdl-shadow--2dp\" [ngClass]='secondHeaderState' id='second-menu'>\r\n        <div class=\"mdl-container\">\r\n          <ul>\r\n            <li [routerLink]='[\"PageShopCategory\", {category: \"paving\"}]' class=\"mdl-js-button mdl-js-ripple-effect\">\r\n              <img src=\"content/img/icons/paving_icon.svg\" alt=\"\">\r\n              БРУКІВКА\r\n            </li>\r\n            <li class=\"mdl-js-button mdl-js-ripple-effect\">\r\n              <img src=\"content/img/icons/tile_icon_24x24.svg\" alt=\"\" >\r\n              ТРОТУАРНА ПЛИТКА\r\n            </li>\r\n            <li class=\"mdl-js-button mdl-js-ripple-effect\">\r\n              <img src=\"content/img/icons/fence_icon.svg\" alt=\"\" >\r\n              БЕТОНІ ОГОРОЖІ\r\n            </li>\r\n            <li class=\"mdl-js-button mdl-js-ripple-effect\">\r\n              <img src=\"content/img/icons/concreet_icon.svg\" alt=\"\" >\r\n              З/Б ВИРОБИ\r\n            </li>\r\n            <li class=\"mdl-js-button mdl-js-ripple-effect\">\r\n              <img src=\"content/img/icons/our_services_icon.svg\" alt=\"\" >\r\n              НАШІ ПОСЛУГИ\r\n            </li>\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    </header>\r\n    <div class=\"mdl-layout__drawer\" id='drawer'>\r\n      <span class=\"mdl-layout-title\">Title</span>\r\n      <nav class=\"mdl-navigation\">\r\n          <a class=\"mdl-navigation__link mdl-typography--body-2\" (click)='toggleDrawer()' [routerLink]='[\"PageHome\"]'>ПРО НАС</a>\r\n          <a class=\"mdl-navigation__link mdl-typography--body-2\" (click)='toggleDrawer()' [routerLink]='[\"PageShop\"]'>КОНТАКТИ</a>\r\n          <a class=\"mdl-navigation__link mdl-typography--body-2\" (click)='toggleDrawer()' [routerLink]='[\"PageAbout\"]'>НОВИНИ</a>\r\n      </nav>\r\n    </div>\r\n    <main class=\"mdl-layout__content\">\r\n      <div class=\"page-content\"  >\r\n        <router-outlet></router-outlet>\r\n      </div>\r\n    </main>\r\n  </div>\r\n\r\n<!-- Routed views go here -->\r\n",
         "templateUrl": "asset:zahid_bruk_web/lib/components/main_window/main_window.html",
         "styles": [],
         "styleUrls": [],

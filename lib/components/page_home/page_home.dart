@@ -1,36 +1,53 @@
-import '../../services/ShopService.dart';
+import '../../services/shop_service.dart';
 import '../ext/mad_rat_mcarousel/mad_rat_mcarousel.dart';
 import 'dart:async';
 import 'package:angular2/angular2.dart';
+import 'package:lab_rat_storage/lab_rat_storage.dart';
+import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 
 @Component(
     selector: 'page-home',
     templateUrl: 'page_home.html',
     directives: const[COMMON_DIRECTIVES, MRMaterialCarousel],
     providers: const[ShopService],
+    styleUrls: const['page_home.css']
 )
 class PageHome implements OnInit{
-    static const String ITEMS_KEY = 'PH_SHOP_ITEMS';
-
     final ShopService _service;
+    final LabRatStorage _storage = new LabRatStorage(type: LabRatStorageType.Local, prefix: 'zb');    
+    
+    List<WCProduct> products;
     List<CarouselObject> carouselObjects;
-
-    String carouselWidth = '800px';
-    String carouselHeight = '400px';
 
     PageHome(this._service);
 
+
+
     @override
-    ngOnInit() async {
+    Future ngOnInit() async {
+        Map cMap = _storage.load('carousel');
+        if(cMap != null)
+        {
+            JsonPackage package = new JsonPackage<WCProduct>(new List<WCProduct>())..fromJson(cMap);
+            if(package.isExpired){
+                _storage.save('carousel', null);
+            }
+            else{
+                products = package.inner;
+            }
+        }
+        
+        if(products == null)
+        {
+            products = await _service.getProducts(1);
+            JsonPackage package = new JsonPackage(products, new DateTime.now(), new DateTime.now().add(new Duration(hours: 1)));
+            _storage.save('carousel', package);
+        }
 
-        await new Future.delayed(const Duration(seconds : 2));
+        carouselObjects = [];
 
-        carouselObjects = [
-            new CarouselObject( src: 'http://placehold.it/350x350/f0f0f0', title: '789', description: 'caption'),
-            new CarouselObject( src: 'http://placehold.it/350x350/ff0000', title: '123', description: 'caption'),
-            new CarouselObject( src: 'http://placehold.it/350x350/00ff00', title: '321', description: 'caption'),
-            new CarouselObject( src: 'http://placehold.it/350x350/0000ff', title: '456', description: 'caption'),
-            new CarouselObject( src: 'http://placehold.it/350x350/0f0f0f', title: '1654', description: 'caption')
-        ];
+        products.forEach((p){
+            carouselObjects.add(new CarouselObject(src: p.images.first.src, title: p.name, description: p.description));
+        });
     }
 }

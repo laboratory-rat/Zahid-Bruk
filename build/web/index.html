@@ -22,6 +22,15 @@
 
   <script src="main.dart.js"></script>
   
+  
+  <!--mdl dom updater-->
+  <script>
+    setInterval("upgradeMDL();", 100);
+    function upgradeMDL() {
+      if(window.componentHandler && window.componentHandler != undefined)
+          componentHandler.upgradeDom();
+    }
+  </script>
 </head>
 <body>
 

@@ -1,1 +1,161 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html, body{
+    font-family: 'Roboto', 'Helvatica' !important;
+    background-color: #eee;
+}
+
+main-window .page-content .mdl-grid:first-of-type{
+    padding-top: 16px;
+}
+
+main-window .mdl-layout__container{
+    position: relative;
+}
+
+main-window .mdl-layout__header{
+    height: 128px;
+    margin: 0px;
+    padding: 0px;
+    display: flex !important;
+}
+
+ main-window .mdl-layout__header .mdl-layout__header-row:first-child{
+    height: 80px;
+    margin: 0px;
+    padding: 0px;
+    z-index: 10;
+ }
+
+ main-window .mdl-layout__header .mdl-layout__header-row:first-child .mdl-container{
+    height: 80px;
+    align-content: center;
+    align-items: center;
+ }
+
+main-window .mdl-layout__header .mdl-layout__header-row:first-child .mdl-container nav{
+    height: 100%;
+}
+
+main-window .mdl-layout__header .mdl-layout__header-row:first-child .mdl-container nav a{
+    height: calc(100% - 8px);
+}
+
+
+
+main-window .logo-image{
+    height: 48px;
+    padding-left: 8px;
+    cursor: pointer;
+}
+
+main-window header nav a{
+    padding: 8px 24px 0px 24px !important;
+    color: rgba(0,0,0,54) !important;
+    
+}
+
+main-window header nav{
+    margin-left: 65px !important;
+}
+
+main-window .mdl-layout__drawer-button{
+    color: #1a2e35 !important;
+    margin: 16px !important;
+
+}
+
+@media screen and (max-width: 1000px) {
+    main-window .logo-image{
+        position: absolute;
+        left: calc(50% - 119px); 
+        top: 16px;
+        padding-left: 0px;
+    }
+}
+
+main-window .header-second{
+    height: 48px;
+    width: 100%;
+}
+
+main-window .header-second .mdl-container{
+    height: 100%;
+}
+
+main-window .header-second ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 8px;
+    
+}
+
+main-window .header-second ul > li{
+    display: inline-block;
+    border-right: 1px solid rgba(0,0,0,.24);
+    height: 48px;
+    padding: 0 24px 0 60px;
+    text-align: center;
+    line-height: 48px;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0,0,0,.87);
+    margin-right: -4px;
+}
+
+main-window .header-second ul > li:first-of-type{
+    border-left: 1px solid rgba(0,0,0,.24);
+}
+
+main-window .header-second ul > li > i{
+    position: absolute;
+    top: 12px;
+    left: 24px;
+}
+
+main-window .header-second ul > li > img{
+    position: absolute;
+    top: 12px;
+    left: 24px;
+    width: 24x;
+    height: 24px;
+}
+
+main-window .header-second ul > li > div{
+    display: inline-block;
+}
+
+main-window .header-second.fixed{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+
+.mdl-container{
+    max-width: 1264px;
+    width: calc(100% - 16px);
+    margin: 0 auto !important;
+    padding: 0 8px;
+    display: flex;
+}
+
+@media screen and (max-width: 500px) {
+    .mdl-container{
+        width: auto;
+    }
+
+}
+main-window .page-content{
+    min-height: 300vh;
+}
+
+a.mdl-js-button.mdl-js-ripple-effect{
+    position: relative;
+}
+
+li.mdl-js-button.mdl-js-ripple-effect{
+    position: relative;
+}

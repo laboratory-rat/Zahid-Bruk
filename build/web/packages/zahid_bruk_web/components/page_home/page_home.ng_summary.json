@@ -3,15 +3,27 @@
     "1": "",
     "3": [
       {
-        "1": "../../services/ShopService.dart",
+        "1": "../../services/shop_service.dart",
         "5": false
       },
       {
-        "1": "../ext/mad_rat_material_carousel/mad_rat_material_carousel.dart",
+        "1": "../ext/mad_rat_mcarousel/mad_rat_mcarousel.dart",
+        "5": false
+      },
+      {
+        "1": "dart:async",
         "5": false
       },
       {
         "1": "package:angular2/angular2.dart",
+        "5": false
+      },
+      {
+        "1": "package:lab_rat_storage/lab_rat_storage.dart",
+        "5": false
+      },
+      {
+        "1": "package:lab_rat_wp_api/lab_rat_wp_api.dart",
         "5": false
       }
     ],
@@ -32,7 +44,7 @@
             "2": "COMMON_DIRECTIVES"
           },
           {
-            "2": "MadRatMaterialCarousel"
+            "2": "MRMaterialCarousel"
           }
         ]
       }
@@ -86,11 +98,13 @@
         0
       ],
       "template": {
-        "encapsulation": 2,
-        "template": "<h1>Home</h1>\r\n<mad-rat-material-carousel \r\n    [objects]='carouselObjects' \r\n    [width]='carouselWidth' \r\n    [height]='carouselHeight'>\r\n</mad-rat-material-carousel>",
+        "encapsulation": 0,
+        "template": "<div class=\"mdl-grid mdl-container\">\r\n    <div class=\"mdl-cell mdl-cell--9-col-desktop mdl-cell--8-col-tablet mdl-cell--order-2-desktop mdl-cell--hide-phone\">\r\n        <mr-material-carousel [objects]='carouselObjects'></mr-material-carousel>\r\n    </div>\r\n    <div class=\"mdl-cell mdl-cell--top mdl-cell--3-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--6dp\r\n     mdl-cell--order-1-desktop\">\r\n        <ul class=\"card-menu\">\r\n            <li>\r\n                <i class=\"material-icons\">edit</i>\r\n                <span>Some link text</span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n</div>",
         "templateUrl": "asset:zahid_bruk_web/lib/components/page_home/page_home.html",
         "styles": [],
-        "styleUrls": [],
+        "styleUrls": [
+          "asset:zahid_bruk_web/lib/components/page_home/page_home.css"
+        ],
         "ngContentSelectors": []
       },
       "providers": [

@@ -19,11 +19,19 @@
         "5": false
       },
       {
+        "1": "package:lab_rat_storage/lab_rat_storage.dart",
+        "5": false
+      },
+      {
         "1": "package:zahid_bruk_web/zahid_bruk.dart",
         "5": false
       },
       {
         "1": "package:angular2/platform/browser_static.dart",
+        "5": false
+      },
+      {
+        "1": "package:lab_rat_wp_api/lab_rat_wp_api.dart",
         "5": false
       }
     ],
