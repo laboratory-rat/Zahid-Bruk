@@ -1,0 +1,126 @@
+div.mrmc-container{
+    width: 736px;
+    height: 450px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.mrmc-container .arrow{
+    width: 48px;
+    height: 450px;
+    position: relative;
+    z-index: 10;
+}
+
+.mrmc-container .arrow button{
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: calc(225px - 24px);
+    left: 0;
+}
+
+.mrmc-container .arrow button i{
+    font-size: 48px;
+    line-height: 48px;
+    transform: translate(-24px, -24px);
+}
+
+.mrmc-container ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    flex: 1;
+    position: relative;
+}
+
+.mrmc-container ul li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.mrmc-container li .image-card{
+    margin: 65px 0;
+    width: 100%;
+    height: calc(100% - 130px);
+    transform: translate(-900px);
+    opacity: 0;
+    transition: 1s;
+    animation-name: image-in;
+    animation-direction: reverse;
+}
+
+.mrmc-container li.active .image-card{
+    transform: translate(0px);
+    opacity: 1;
+    transition: 1.5s;
+    animation-name: image-in;
+    animation-timing-function: ease-out;
+}
+
+.mrmc-container li .image-card img{
+    width: 320px;
+    height: 320px;
+}
+
+.mrmc-container li .text-card{
+    width: 296px;
+    height: 448px;
+    position: absolute;
+    top: 1px;
+    right: 24px;
+    transform: translate(900px);
+    opacity: 0;
+    transition: 1.5s;
+    animation-name: text-in;
+    animation-direction: reverse;
+}
+
+.mrmc-container li.active .text-card{
+    transform: translate(0px);
+    opacity: 1;
+    transition: 1.5s;
+    animation-name: text-in;
+    animation-timing-function: ease-out;
+}
+
+.mrmc-container .loader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.mrmc-container .loader.active{
+    display: block;
+}
+
+.mrmc-container .loader .mdl-spinner{
+    width: 64px;
+    height: 64px;
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+}
+
+@keyframes text-in{
+    50%{
+        opacity: 0;
+        transform: translate(900px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+@keyframes image-in{
+    50%{
+        opacity: 0;
+        transform: translate(-900px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
