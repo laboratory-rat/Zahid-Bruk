@@ -1,0 +1,28 @@
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--middle">
+        Категорія:
+    </div>
+    <div class="mdl-cell mdl-cell--8-col">
+        <div class="mdl-textfield mdl-js-textfield material-select" id='dom-select-category'>
+            <input class="mdl-textfield__input" readonly [value]='currentCategoryName' type="text" id="select-category">
+            <label class="mdl-textfield__label" for="select-category">
+                Category
+            </label>
+            <i class="material-icons">keyboard_arrow_down</i>
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-category">
+                <li class="mdl-menu__item" *ngFor='let category of filter.categories' (click)='setCategory(category)'>{{category.name}}</li>
+            </ul>
+            <!-- <ul class="mdl-menu  mdl-js-menu mdl-js-ripple-effect"
+                for="select-category">
+                <li class="mdl-menu__item" *ngFor='let cat of filter.categories' (click)='setCategory(cat)'>{{cat.name}}</li>
+            </ul> -->
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col">
+        <button style='display: block; float: right;' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary" (click)='submit()'>Шукати</button>
+    </div>
+
+
+    <!-- menu -->
+
+</div>

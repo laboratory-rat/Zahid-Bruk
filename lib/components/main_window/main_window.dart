@@ -1,8 +1,7 @@
-import '../../configs/main_config.dart';
-import '../../services/shop_service.dart';
 import '../page_about/page_about.dart';
 import '../page_home/page_home.dart';
 import '../page_shop/page_shop.dart';
+import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
@@ -15,18 +14,15 @@ import 'package:angular2/router.dart';
 @RouteConfig(const[
     const Route(name: 'PageHome', component: PageHome, path: '/', useAsDefault: true,),
     const Route(name: 'PageShop', component: PageShop, path: '/shop'),
+    const Route(name: 'PageShopCategory', component: PageShop, path: '/shop/:category'),
     const Route(name: 'PageShopId', component: PageShop, path: '/shop/product/:id'),
-    const Route(name: 'PageShopCategory', component: PageShop, path: '/shop/category/:category'),
     const Route(name: 'PageAbout', component: PageAbout, path: '/about')
 ])
 class MainWindow implements OnInit
 {
     Element get drawerElement => querySelector('#drawer');
     Element get drawerObfuscatorElement => querySelector('.mdl-layout__obfuscator');
-
-    String get secondHeaderState => window.scrollY <= 80
-        ? ''
-        : 'fixed';
+    Element get secondNav => querySelector('#second-menu');
 
     void toggleDrawer(){
         drawerElement.classes.toggle('is-visible');
@@ -35,7 +31,18 @@ class MainWindow implements OnInit
 
     @override
     ngOnInit() {
+        new Timer.periodic(new Duration(milliseconds: 100), (Timer t) => checkFixed());
+    }
 
+    void checkFixed(){
+        if(window.scrollY >= 80 && !secondNav.classes.contains('fixed'))
+        {
+            secondNav.classes.add('fixed');
+        }
+        else if(window.scrollY < 80 && secondNav.classes.contains('fixed'))
+        {
+            secondNav.classes.remove('fixed');
+        }
     }
 
 

@@ -3,15 +3,15 @@ Map mainConfig = {
         'host': 'http://localhost:8080'
     },
     'server:':{
-        'host': 'http://localhost/zb/',
+        'host': 'https://localhost:443',
         'api': 'wp-json/wp/v2/'
     },
     'wp': {
-        'key': 'ck_596e28f0d65ee14037e33a0c9030a213722a3edd',
-        'secret': 'cs_8f57e0ab6dda22a3d4f0294a72b4319b7133c440',
-        'host': 'localhost/zb',
+        'key': 'ck_b6b0a4221bf0fb3dd9d55d83b3b48a7f81b569d7',
+        'secret': 'cs_803cf82ccea9399cab957fea43138a63c61a8076',
+        'host': 'localhost:443',
         'categories': {
-            'paving': 19
+            'paving': 15
         }
     }
 };

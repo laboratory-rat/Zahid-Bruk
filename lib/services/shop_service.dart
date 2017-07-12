@@ -18,6 +18,17 @@ class ShopService{
         }
     }
 
+    Future<List<WPCategory>> getAllCategories() async{
+        var response = await client.getWC('products/categories', null);
+
+        List<WPCategory> result = [];
+        JSON.decode(response).forEach((c){
+            result.add(new WPCategory()..fromJson(c));
+        });
+
+        return result;
+    }
+
     Future<WCProduct> getProductById(int id) async{
         return null;
     }

@@ -65,18 +65,27 @@ main-window .mdl-layout__drawer-button{
 
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 960px) {
     main-window .logo-image{
         position: absolute;
         left: calc(50% - 119px); 
         top: 16px;
         padding-left: 0px;
     }
+
+    main-window .header-second{
+        display: none !important;
+    }
+
+    main-window .mdl-layout__header{
+        height: 80px;
+    }
 }
 
 main-window .header-second{
     height: 48px;
     width: 100%;
+    padding: 0 !important;
 }
 
 main-window .header-second .mdl-container{
@@ -158,4 +167,35 @@ a.mdl-js-button.mdl-js-ripple-effect{
 
 li.mdl-js-button.mdl-js-ripple-effect{
     position: relative;
+}
+
+product-filter .filter-row{
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+product-filter .filter-row > div{
+    width: 100%;
+}
+
+product-filter .filter-row > div > span{
+    display:  inline-block;
+}
+
+product-filter .filter-row > div > button{
+    display:  inline-block;
+    float: right;
+}
+
+/* Material select */
+
+.material-select > i{
+    position: absolute;
+    top: 24px;
+    right: 0px;
+    z-index: -1;
+} 
+
+.material-select div.mdl-menu__container, .material-select div.mdl-menu__outline,  .material-select ul,  .material-select li{
+    width: 100% !important;
 }
