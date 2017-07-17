@@ -5,6 +5,55 @@ html, body{
     background-color: #eee;
 }
 
+/* Overflow */
+
+.overflow-visible {
+    overflow: visible;
+}
+
+/* main background */
+
+.main-background{
+    background-image: url('../img/main-background.png');
+    background-position: center 0px;
+    background-repeat: no-repeat;
+}
+
+/* appear page */
+
+.appear-page{
+    animation-duration: .3s;
+    animation-timing-function: ease-out;
+    animation-name: appear-page;
+    opacity: 1;
+}
+
+@keyframes appear-page{
+    0%{ opacity: 0;}
+    100%{opacity: 1;}
+}
+
+/* product area */
+
+.product-area{
+    animation-duration: .3s;
+    animation-timing-function: ease-out;
+    animation-name: appear-page;
+    opacity: 1;
+}
+
+.product-area.hidden{
+    animation: none;
+}
+
+.mdl-data-table td, .mdl-data-table th {
+    text-align: left;
+}
+
+td > p{
+    margin-bottom: 0px;
+}
+
 main-window .page-content .mdl-grid:first-of-type{
     padding-top: 16px;
 }
@@ -187,6 +236,14 @@ product-filter .filter-row > div > button{
     float: right;
 }
 
+product-filter .filter-label{
+    margin-bottom: 0px;
+}
+
+product-filter .filter-input{
+    margin-top: 0px;
+}
+
 /* Material select */
 
 .material-select > i{
@@ -198,4 +255,17 @@ product-filter .filter-row > div > button{
 
 .material-select div.mdl-menu__container, .material-select div.mdl-menu__outline,  .material-select ul,  .material-select li{
     width: 100% !important;
+}
+
+/* product card */
+
+.product-card{
+    /* height: 260px; */
+} 
+
+.top-loading{
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
 }

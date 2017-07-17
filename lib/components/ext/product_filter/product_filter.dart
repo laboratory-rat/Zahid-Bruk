@@ -18,6 +18,8 @@ class ProductFilter{
 
     String get currentCategoryName => filter.displayCategory;
 
+    bool salesOnly = false;
+
 
     void setCategory(WPCategory category){
         filter.currentCategory = category;
@@ -33,5 +35,12 @@ class FilterObject{
     String get displayCategory => currentCategory == null ? 'Усі' : currentCategory.name;
     WPCategory currentCategory = null;
     List<WPCategory> categories = [];
+
+    bool salesOnly = false;
+
+    setCurrentCategory(int cat)
+    {
+        currentCategory = categories.firstWhere((x) => x.id == cat);
+    }
 }
 

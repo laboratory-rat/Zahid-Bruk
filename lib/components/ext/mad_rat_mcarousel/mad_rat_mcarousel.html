@@ -7,7 +7,7 @@
     <ul>
         <li *ngFor='let object of objects'  [class.active]='object == current'>
                 <div class="mdl-card mdl-shadow--2dp image-card">
-                    <img [src]="object.src" [alt]="object.src">
+                    <img [src]="host + object.src" [alt]="object.src">
                 </div>
                 <div class="mdl-color--amber-600 mdl-color--grey-50 mdl-card mdl-shadow--8dp text-card ">
                     <div class="mdl-card__title">

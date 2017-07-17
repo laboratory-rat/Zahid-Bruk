@@ -1,12 +1,62 @@
-<div class="mdl-grid mdl-container">
-    <div class="mdl-cell mdl-cell--4-col mdl-card mdl-cell--top mdl-shadow--2dp">
+<div class="mdl-grid mdl-container appear-page">
+    <div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
+    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
         <product-filter class="product-filter" [filter]='filter' (filterSubmit)='search()'>Filter</product-filter>    
     </div>
-    <div class="mdl-cell mdl-cell--8-col mdl-card">
-        <ul *ngIf='currentProducts != null'>
-            <li *ngFor='let product of currentProducts'>
-                {{product.name}}
-            </li>
-        </ul>
+    <div class="mdl-cell mdl-cell--9-col" style='margin: 0px'  *ngIf='currentProducts != null'>
+        <div class="mdl-grid" style='margin: 0px; padding: 0px;'>
+            <div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" 
+                    [ngClass]='{"hidden": !listView}'
+                (click)='listView = false'>
+                    <i class="material-icons">view_list</i>
+                </button>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" 
+                    [ngClass]='{"hidden": listView}'
+                (click)='listView = true'>
+                    <i class="material-icons">view_module</i>
+                </button>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-card mdl-shadow--2dp product-card mdl-cell--top product-area" 
+                *ngFor='let product of currentProducts' [class.hidden]='listView'>
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">
+                        {{product.name}}
+                    </h2>
+                </div>
+                <div class="mdl-card__media" style='background-color: white;'> 
+                    <img [src]='host + product.images[0].src' [alt]='host + product.images[0].src' style='width: 100%; height: 100%'>
+                </div>
+                <div class="mdl-card__supporting-text" [innerHtml]='product.shortDescription'>
+
+                </div>
+                <div class="mdl-card__actions">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary">Детальніше</button>
+                </div>
+            </div>
+            <table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp product-area mdl-typography--text-left"
+                [class.hidden]='!listView'>
+                <thead>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Опис</th>
+                        <th>Ціна (m^2)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let product of currentProducts' >
+                        <td>{{product.name}}</td>
+                        <td [innerHtml]='product.shortDescription'></td>
+                        <td>{{product.price}}₴</td>
+                        <td style="text-align: right !important;">
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                <i class="material-icons">visibility</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

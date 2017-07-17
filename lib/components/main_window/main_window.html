@@ -14,7 +14,7 @@
           </nav>
 
           <div class="mdl-layout-spacer"></div>
-          <div class="header-tel color-text--grey-900">
+          <div class="header-tel color-text--grey-900 mdl-cell--hide-phone">
             +38050-883-71-61
           </div>
         </div>
@@ -22,11 +22,11 @@
       <div class="mdl-layout__header-row header-second mdl-color--amber-600 mdl-shadow--2dp"  id='second-menu'>
         <div class="mdl-container">
           <ul>
-            <li [routerLink]='["PageShopCategory", {category: "paving"}]' class="mdl-js-button mdl-js-ripple-effect">
+            <li [routerLink]='["PageShopCategory", {category: "15"}]' class="mdl-js-button mdl-js-ripple-effect">
               <img src="content/img/icons/paving_icon.svg" alt="">
               БРУКІВКА
             </li>
-            <li class="mdl-js-button mdl-js-ripple-effect">
+            <li [routerLink]='["PageShopCategory", {category: "20"}]' class="mdl-js-button mdl-js-ripple-effect">
               <img src="content/img/icons/tile_icon_24x24.svg" alt="" >
               ТРОТУАРНА ПЛИТКА
             </li>
@@ -49,13 +49,14 @@
     <div class="mdl-layout__drawer" id='drawer'>
       <span class="mdl-layout-title">Title</span>
       <nav class="mdl-navigation">
+          <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageShop"]'>ТОВАРИ</a>
           <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageHome"]'>ПРО НАС</a>
           <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageShop"]'>КОНТАКТИ</a>
           <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageAbout"]'>НОВИНИ</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
-      <div class="page-content"  >
+      <div class="page-content main-background"  >
         <router-outlet></router-outlet>
       </div>
     </main>

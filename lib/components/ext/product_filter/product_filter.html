@@ -1,8 +1,20 @@
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--4-col mdl-cell--middle">
+
+    <!-- Sales -->
+
+    <div class="mdl-cell mdl-cell--12-col">
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sales">
+            <input type="checkbox" [(ngModel)]='filter.salesOnly' id="checkbox-sales" class="mdl-checkbox__input">
+            <span class="mdl-checkbox__label">Тільки акційні товари</span>
+         </label>
+    </div>
+
+    <!-- Category -->
+
+    <div class="mdl-cell mdl-cell--12-col filter-label">
         Категорія:
     </div>
-    <div class="mdl-cell mdl-cell--8-col">
+    <div class="mdl-cell mdl-cell--12-col filter-input">
         <div class="mdl-textfield mdl-js-textfield material-select" id='dom-select-category'>
             <input class="mdl-textfield__input" readonly [value]='currentCategoryName' type="text" id="select-category">
             <label class="mdl-textfield__label" for="select-category">
@@ -18,8 +30,11 @@
             </ul> -->
         </div>
     </div>
+
+
+
     <div class="mdl-cell mdl-cell--12-col">
-        <button style='display: block; float: right;' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary" (click)='submit()'>Шукати</button>
+        <button style='display: block; margin: 0 auto;' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary" (click)='submit()'>Шукати</button>
     </div>
 
 

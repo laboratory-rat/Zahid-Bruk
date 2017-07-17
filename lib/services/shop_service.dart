@@ -8,15 +8,6 @@ import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 @Injectable()
 class ShopService{
     final WCApi client = new WCApi();
-    static Map categories = {};
-    static bool isInit = false;
-    ShopService(){
-        if(!isInit)
-        {
-            categories['paving'] = mainConfig['wp']['categories']['paving'];
-            isInit = true;
-        }
-    }
 
     Future<List<WPCategory>> getAllCategories() async{
         var response = await client.getWC('products/categories', null);
@@ -33,17 +24,11 @@ class ShopService{
         return null;
     }
 
-    Future<List<WCProduct>> getProductsByCategory(String category, [List<ApiParam> params]) async{
+    Future<List<WCProduct>> getProductsByCategory(int category, [List<ApiParam> params]) async{
         if(params == null)
             params = [];
         
-        int c;
-        if(categories.containsKey(category))
-            c = categories[category];
-        else 
-            c = 19;
-
-        params.add(new ApiParam(param: 'category', value: c.toString()));
+        params.add(new ApiParam(param: 'category', value: category.toString()));
         var response = await client.getWC('products', params);
 
         List<WCProduct> result = [];

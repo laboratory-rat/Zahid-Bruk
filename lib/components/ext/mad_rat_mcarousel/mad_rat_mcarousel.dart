@@ -14,6 +14,8 @@ class MRMaterialCarousel{
     @Input()
     int sleepTime = 5;
 
+    @Input()
+    String host = '';
 
     CarouselObject get current => objects == null || objects.length < index ? null : objects[index]; 
     int index = 0;

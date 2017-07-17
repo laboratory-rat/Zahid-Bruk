@@ -1,5 +1,6 @@
 import '../page_about/page_about.dart';
 import '../page_home/page_home.dart';
+import '../page_product/page_product.dart';
 import '../page_shop/page_shop.dart';
 import 'dart:async';
 import 'dart:html';
@@ -13,9 +14,12 @@ import 'package:angular2/router.dart';
 )
 @RouteConfig(const[
     const Route(name: 'PageHome', component: PageHome, path: '/', useAsDefault: true,),
+
     const Route(name: 'PageShop', component: PageShop, path: '/shop'),
     const Route(name: 'PageShopCategory', component: PageShop, path: '/shop/:category'),
-    const Route(name: 'PageShopId', component: PageShop, path: '/shop/product/:id'),
+
+    const Route(name: 'PageProduct', component: PageProduct, path: '/product/:productId'),
+
     const Route(name: 'PageAbout', component: PageAbout, path: '/about')
 ])
 class MainWindow implements OnInit

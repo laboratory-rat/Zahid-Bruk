@@ -1,6 +1,8 @@
+import '../../configs/main_config.dart';
 import '../../services/shop_service.dart';
 import '../ext/mad_rat_mcarousel/mad_rat_mcarousel.dart';
 import 'dart:async';
+import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:lab_rat_storage/lab_rat_storage.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
@@ -14,17 +16,22 @@ import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 )
 class PageHome implements OnInit{
     final ShopService _service;
-    final LabRatStorage _storage = new LabRatStorage(type: LabRatStorageType.Local, prefix: 'zb');    
+    final LabRatStorage _storage = new LabRatStorage(type: LabRatStorageType.Session, prefix: 'carousel');    
     
     List<WCProduct> products;
     List<CarouselObject> carouselObjects;
+    String host = '';
 
-    PageHome(this._service);
+    PageHome(this._service)
+    {
+        host = mainConfig['server']['host'];
+    }
 
 
 
     @override
     Future ngOnInit() async {
+
         Map cMap = _storage.load('carousel');
         if(cMap != null)
         {

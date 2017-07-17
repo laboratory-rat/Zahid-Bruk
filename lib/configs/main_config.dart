@@ -1,15 +1,15 @@
 Map mainConfig = {
     'site':{
-        'host': 'http://localhost:8080'
+        'host': 'http://zahid-bruk-dart.azurewebsites.net'
     },
-    'server:':{
-        'host': 'https://localhost:443',
+    'server':{
+        'host': 'https://admin-zahid-bruk.azurewebsites.net',
         'api': 'wp-json/wp/v2/'
     },
     'wp': {
-        'key': 'ck_b6b0a4221bf0fb3dd9d55d83b3b48a7f81b569d7',
-        'secret': 'cs_803cf82ccea9399cab957fea43138a63c61a8076',
-        'host': 'localhost:443',
+        'key': 'ck_1e8eda59cbf565fdf203b637b57ec372a9610a83',
+        'secret': 'cs_f53aac0ac00099043c48dbfbc7ffa93eeeab7f8b',
+        'host': 'admin-zahid-bruk.azurewebsites.net',
         'categories': {
             'paving': 15
         }
