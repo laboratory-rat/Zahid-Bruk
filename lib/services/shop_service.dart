@@ -51,4 +51,18 @@ class ShopService{
 
         return result;
     }
+
+    Future<List<WPTag>> getAllTags() async {
+        List<WPTag> result = new List<WPTag>();
+        var response = await client.getWC('products/tags');
+
+        if(response == null) return result;
+
+        JSON.decode(response).forEach((t){
+            result.add(new WPTag()..fromJson(t));
+        });
+
+        return result;
+    }
 }
+

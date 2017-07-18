@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
+import 'package:lab_rat_storage/lab_rat_storage.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 
 @Component(
@@ -16,6 +17,7 @@ import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 class PageShop implements OnInit{
     final RouteParams _routeParams;
     final ShopService _shop;
+    LabRatStorage _storage = new LabRatStorage(prefix: 'shop', type: LabRatStorageType.Session);
 
     int currentCategory;
 
@@ -46,6 +48,8 @@ class PageShop implements OnInit{
             currentCategory = -1;
         }
 
+        // Categories
+
         List<WPCategory> cats = new List<WPCategory>();
         WPCategory all = new WPCategory()..id = -1;
         all.name = 'Усі';
@@ -54,11 +58,29 @@ class PageShop implements OnInit{
 
         filter.categories = cats;
 
+        // Tags
+
+        List<WPTag> tags;
+        Map savedTags = _storage.load('tags');
+
+        if(savedTags != null){
+            JsonPackage package = new JsonPackage<WPTag>(new List<WPTag>())..fromJson(savedTags);
+            tags = package.inner;
+        }
+        else{
+            tags = await _shop.getAllTags();
+            JsonPackage pack = new JsonPackage<WPTag>(tags);
+            _storage.save('tags', pack);
+        }
+
+        filter.tags = tags;      
+
         await loadProductList();
     }
 
     Future loadProductList() async{
         isLoading = true;
+        List<ApiParam> params = new List<ApiParam>();
 
         if(currentCategory != null && currentCategory != -1){
             filter.setCurrentCategory(currentCategory);

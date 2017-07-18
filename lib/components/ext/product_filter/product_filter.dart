@@ -17,13 +17,34 @@ class ProductFilter{
     final filterSubmit = new EventEmitter();
 
     String get currentCategoryName => filter.displayCategory;
+    List<WPTag> get activeTags => filter.activeTags;
 
     bool salesOnly = false;
-
 
     void setCategory(WPCategory category){
         filter.currentCategory = category;
         querySelector('#dom-select-category').querySelector('.mdl-menu__container').classes.remove('is-visible');
+    }
+
+    List<WPTag> avaliableTags()
+    {
+        List<WPTag> result = [];
+        filter.tags.forEach((t) {
+            if(!filter.activeTags.contains(t))
+                result.add(t);
+        });
+
+        return result;
+    }
+
+    void addTag(WPTag tag)
+    {
+        filter.activeTags.add(tag);
+    }
+
+    void removeTag(WPTag tag)
+    {
+        filter.activeTags.remove(tag);
     }
 
     void submit(){
@@ -35,6 +56,8 @@ class FilterObject{
     String get displayCategory => currentCategory == null ? 'Усі' : currentCategory.name;
     WPCategory currentCategory = null;
     List<WPCategory> categories = [];
+    List<WPTag> tags = [];
+    List<WPTag> activeTags = [];
 
     bool salesOnly = false;
 

@@ -1,13 +1,22 @@
 <div class="mdl-grid">
 
-    <!-- Sales -->
-
-    <div class="mdl-cell mdl-cell--12-col">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sales">
-            <input type="checkbox" [(ngModel)]='filter.salesOnly' id="checkbox-sales" class="mdl-checkbox__input">
-            <span class="mdl-checkbox__label">Тільки акційні товари</span>
-         </label>
+    <!-- max / min price -->
+    <!-- <div class="mdl-cell mdl-cell--12-col filter-label">
+        Максимальна ціна:
     </div>
+
+    <div class="mdl-cell mdl-cell--12-col filter-input">
+        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="50" tabindex="0">
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col filter-label">
+        Мінімальна ціна:
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col filter-input">
+        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="50" tabindex="0">
+    </div> -->
+
 
     <!-- Category -->
 
@@ -31,7 +40,65 @@
         </div>
     </div>
 
+    <!-- Production -->
 
+    <div class="mdl-cell mdl-cell--12-col filter-label">
+        Спосіб виотовлення:
+    </div>
+    <div class="mdl-cell mdl-cell--12-col filter-input">
+        <div class="mdl-textfield mdl-js-textfield material-select" id='dom-select-production'>
+            <input class="mdl-textfield__input" readonly [value]='currentCategoryName' type="text" id="select-production">
+            <label class="mdl-textfield__label" for="select-production">
+                Category
+            </label>
+            <i class="material-icons">keyboard_arrow_down</i>
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-production">
+                <li class="mdl-menu__item" *ngFor='let category of filter.categories' (click)='setCategory(category)'>{{category.name}}</li>
+            </ul>
+            <!-- <ul class="mdl-menu  mdl-js-menu mdl-js-ripple-effect"
+                for="select-category">
+                <li class="mdl-menu__item" *ngFor='let cat of filter.categories' (click)='setCategory(cat)'>{{cat.name}}</li>
+            </ul> -->
+        </div>
+    </div>
+
+    <!-- Tags -->
+
+    <div class="mdl-cell mdl-cell--12-col filter-label">
+        Тегі:
+    </div>
+    <div class="mdl-cell mdl-cell--12-col filter-input">
+        <div>
+            <span class="mdl-chip mdl-chip--deletable" *ngFor='let at of activeTags'>
+                <span class="mdl-chip__text">{{at.name}}</span>
+            <button (click)='removeTag(at)' class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+            </span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield material-select" id='dom-select-tag' [class.hidden]='avaliableTags().length < 1'>
+
+            <input class="mdl-textfield__input" readonly placeholder="Виберіть тегі" type="text" id="select-tag">
+            <label class="mdl-textfield__label" for="select-tag">
+                Category
+            </label>
+            <i class="material-icons">keyboard_arrow_down</i>
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-tag">
+                <li class="mdl-menu__item" *ngFor='let tag of avaliableTags()' (click)='addTag(tag)'>{{tag.name}}</li>
+            </ul>
+            <!-- <ul class="mdl-menu  mdl-js-menu mdl-js-ripple-effect"
+                for="select-category">
+                <li class="mdl-menu__item" *ngFor='let cat of filter.categories' (click)='setCategory(cat)'>{{cat.name}}</li>
+            </ul> -->
+        </div>
+    </div>
+
+    <!-- Sales -->
+
+    <div class="mdl-cell mdl-cell--12-col">
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sales">
+            <input type="checkbox" [(ngModel)]='filter.salesOnly' id="checkbox-sales" class="mdl-checkbox__input">
+            <span class="mdl-checkbox__label">Тільки акційні товари</span>
+         </label>
+    </div>
 
     <div class="mdl-cell mdl-cell--12-col">
         <button style='display: block; margin: 0 auto;' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary" (click)='submit()'>Шукати</button>
