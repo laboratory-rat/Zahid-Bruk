@@ -46,6 +46,11 @@ html, body{
     animation: none;
 }
 
+.mdl-pull--right{
+    display: block;
+    float: right;
+}
+
 .mdl-data-table td, .mdl-data-table th {
     text-align: left;
 }
@@ -268,4 +273,26 @@ product-filter .filter-input{
     top: 0px;
     left: 0;
     width: 100%;
+}
+ 
+.product-list{
+    display: inline-block;
+    height: 160px;
+    min-height: 10px;
+}
+
+.product-list .product-image{
+    display: inline-block;
+    height: 128px;
+    width: 128px;
+    padding: 16px;
+}
+
+.product-list .product-description{
+    display: block;
+    float: right;
+    width: calc(100% - 192px);
+    height: 100%;
+    position: relative;
+    padding: 8px; 
 }

@@ -18,4 +18,58 @@
         </div>
     </div>
 
+
+</div>
+
+<div class="mdl-grid mdl-container appear-page home-products" style='margin-top: 16px !important;'>
+
+    <!-- Paving -->
+
+    <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+        Бруківка
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent mdl-color-text--white mdl-pull--right">
+            БІЛЬШЕ
+        </button>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
+        <div class="mdl-grid" style="padding: 8px 0px;">
+            <div *ngFor='let p of productsPaving'
+                class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card">
+                <div class="image">
+                    <img [src]="host + p.images[0].src" [alt]="host + p.images[0].src">
+                </div>
+                <div class="text">
+                    <div class="title">Бруківка<br>"{{p.name}}"</div>
+                    <div class="price mdl-color-text--accent">Від {{p.price}} грн/м^2</div>
+                    <div class='button'>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                            ДЕТАЛЬНШЕ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TP -->
+
+    <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+        Тротуарна плитка
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--green mdl-color-text--white mdl-pull--right">
+            БІЛЬШЕ
+        </button>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
+        <div class="mdl-grid" style="padding: 8px 0px;">
+            <div *ngFor='let p of productsTP' 
+                class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card">
+                <div class="image">
+                    <img [src]="host + p.images[0].src" [alt]="host + p.images[0].src">
+                </div>
+                <div class="text">
+                    <div class="mdl-typography--title">{{p.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

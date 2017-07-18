@@ -61,9 +61,8 @@ class PageShop implements OnInit{
         isLoading = true;
 
         if(currentCategory != null && currentCategory != -1){
-            currentProducts = await _shop.getProductsByCategory(currentCategory);
             filter.setCurrentCategory(currentCategory);
-            window.console.log(filter.categories);
+            currentProducts = await _shop.getProductsByCategory(currentCategory);
         }
         else {
             currentProducts = await _shop.getProducts(1);

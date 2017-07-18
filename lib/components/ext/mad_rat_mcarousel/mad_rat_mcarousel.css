@@ -60,8 +60,9 @@ div.mrmc-container{
 }
 
 .mrmc-container li .image-card img{
-    width: 320px;
-    height: 320px;
+    width: 288px;
+    height: 288px;
+    padding: 16px;
 }
 
 .mrmc-container li .text-card{

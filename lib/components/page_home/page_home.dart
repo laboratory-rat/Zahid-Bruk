@@ -22,12 +22,13 @@ class PageHome implements OnInit{
     List<CarouselObject> carouselObjects;
     String host = '';
 
+    List<WCProduct> productsPaving = new List<WCProduct>();
+    List<WCProduct> productsTP = new List<WCProduct>();
+
     PageHome(this._service)
     {
         host = mainConfig['server']['host'];
     }
-
-
 
     @override
     Future ngOnInit() async {
@@ -56,5 +57,10 @@ class PageHome implements OnInit{
         products.forEach((p){
             carouselObjects.add(new CarouselObject(src: p.images.first.src, title: p.name, description: p.description));
         });
+
+        // Load products
+
+        productsPaving = await _service.getProductsByCategory(15, [new ApiParam(param: 'per_page', value: '3')]);
+        productsTP = await _service.getProductsByCategory(20, [new ApiParam(param: 'per_page', value: '3')]);
     }
 }
