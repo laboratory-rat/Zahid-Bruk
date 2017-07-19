@@ -24,7 +24,7 @@
         Категорія:
     </div>
     <div class="mdl-cell mdl-cell--12-col filter-input">
-        <div class="mdl-textfield mdl-js-textfield material-select" id='dom-select-category'>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--fullwidth material-select" id='dom-select-category'>
             <input class="mdl-textfield__input" readonly [value]='currentCategoryName' type="text" id="select-category">
             <label class="mdl-textfield__label" for="select-category">
                 Category
@@ -42,7 +42,7 @@
 
     <!-- Production -->
 
-    <div class="mdl-cell mdl-cell--12-col filter-label">
+    <!-- <div class="mdl-cell mdl-cell--12-col filter-label">
         Спосіб виотовлення:
     </div>
     <div class="mdl-cell mdl-cell--12-col filter-input">
@@ -55,16 +55,13 @@
             <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-production">
                 <li class="mdl-menu__item" *ngFor='let category of filter.categories' (click)='setCategory(category)'>{{category.name}}</li>
             </ul>
-            <!-- <ul class="mdl-menu  mdl-js-menu mdl-js-ripple-effect"
-                for="select-category">
-                <li class="mdl-menu__item" *ngFor='let cat of filter.categories' (click)='setCategory(cat)'>{{cat.name}}</li>
-            </ul> -->
+
         </div>
-    </div>
+    </div> -->
 
     <!-- Tags -->
 
-    <div class="mdl-cell mdl-cell--12-col filter-label">
+    <!-- <div class="mdl-cell mdl-cell--12-col filter-label">
         Тегі:
     </div>
     <div class="mdl-cell mdl-cell--12-col filter-input">
@@ -84,12 +81,8 @@
             <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-tag">
                 <li class="mdl-menu__item" *ngFor='let tag of avaliableTags()' (click)='addTag(tag)'>{{tag.name}}</li>
             </ul>
-            <!-- <ul class="mdl-menu  mdl-js-menu mdl-js-ripple-effect"
-                for="select-category">
-                <li class="mdl-menu__item" *ngFor='let cat of filter.categories' (click)='setCategory(cat)'>{{cat.name}}</li>
-            </ul> -->
         </div>
-    </div>
+    </div> -->
 
     <!-- Sales -->
 

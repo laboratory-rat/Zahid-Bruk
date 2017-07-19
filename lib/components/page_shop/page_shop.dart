@@ -11,8 +11,8 @@ import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 @Component(
     selector: 'page-shop',
     templateUrl: 'page_shop.html',
-    directives: const[COMMON_DIRECTIVES, ProductFilter],
-    providers: const[ShopService, ROUTER_PROVIDERS]
+    directives: const[COMMON_DIRECTIVES, ProductFilter, ROUTER_DIRECTIVES],
+    providers: const[ShopService]
 )
 class PageShop implements OnInit{
     final RouteParams _routeParams;

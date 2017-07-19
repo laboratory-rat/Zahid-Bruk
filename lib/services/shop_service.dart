@@ -1,6 +1,7 @@
 import '../configs/main_config.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 
@@ -21,7 +22,21 @@ class ShopService{
     }
 
     Future<WCProduct> getProductById(int id) async{
-        return null;
+        var response = await client.getWC('products/$id');
+        if(response == null) return null;
+        return new WCProduct()..fromJsonString(response);
+    }
+
+    Future<List<WCProduct>> getProductVriables(int id) async{
+        var response = await client.getWC('products/$id/variations');
+        if(response == null) return null;
+
+        List<WCProduct> result = [];
+        JSON.decode(response).forEach((r){
+            result.add(new WCProduct()..fromJson(r));
+        });
+        
+        return result;
     }
 
     Future<List<WCProduct>> getProductsByCategory(int category, [List<ApiParam> params]) async{
@@ -29,6 +44,8 @@ class ShopService{
             params = [];
         
         params.add(new ApiParam(param: 'category', value: category.toString()));
+        params.add(new ApiParam(param: 'status', value: 'publish'));
+
         var response = await client.getWC('products', params);
 
         List<WCProduct> result = [];
@@ -40,7 +57,10 @@ class ShopService{
     }
 
     Future<List<WCProduct>> getProducts(int page, [int perPage = 20]) async{
-        var response = await client.getWC('products', [new ApiParam(param: 'page', value: page.toString())]);
+        var response = await client.getWC('products', [
+            new ApiParam(param: 'page', value: page.toString()),
+            new ApiParam(param: 'status', value: 'publish')
+            ]);
 
         if(response == null) return null;
 
