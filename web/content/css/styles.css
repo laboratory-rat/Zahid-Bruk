@@ -219,6 +219,50 @@ main-window .header-second.fixed {
     top: 0px;
 }
 
+main-window .header-tel {
+    padding: 0px 24px;
+    line-height: 16px;
+    font-size: 16px;
+}
+
+main-window .header-tel-ico {
+    display: none;
+    margin-top: 6px;
+}
+
+main-window .header-search {
+    max-width: 256px;
+}
+
+@media screen and (max-width: 1200px) {
+    main-window .header-tel-ico {
+        display: block;
+    }
+    main-window .header-tel {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    main-window .header-search {
+        display: none;
+    }
+    main-window .header-tel-ico {
+        display: none;
+    }
+}
+
+main-window .header-search input,
+main-window .header-search label {
+    width: calc(100% - 32px);
+}
+
+main-window .header-search button {
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+
 .mdl-container {
     max-width: 1264px;
     width: calc(100% - 16px);
@@ -235,6 +279,13 @@ main-window .header-second.fixed {
 
 main-window .page-content {
     min-height: 300vh;
+}
+
+.call-fab {
+    position: fixed;
+    right: 16px;
+    bottom: 24px;
+    z-index: 1000;
 }
 
 a.mdl-js-button.mdl-js-ripple-effect {

@@ -14,9 +14,24 @@
                 </nav>
 
                 <div class="mdl-layout-spacer"></div>
+                <div class="mdl-textfield mdl-js-textfield header-search mdl-cell--hide-phone">
+                    <input class="mdl-textfield__input" type="text" id="input-search">
+                    <label class="mdl-textfield__label" for="input-search">Пошук</label>
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons">search</i>
+                    </button>
+                </div>
                 <div class="header-tel color-text--grey-900 mdl-cell--hide-phone">
                     +38050-883-71-61
                 </div>
+                <button id="header-tel-ico" class="mdl-button mdl-js-button mdl-button--icon header-tel-ico">
+                    <i class="material-icons">phone</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="header-tel-ico">
+                    <li class="mdl-menu__item">+38-050-883-71-61</li>
+                </ul>
+
             </div>
         </div>
         <div class="mdl-layout__header-row header-second mdl-color--amber-600 mdl-shadow--2dp" id='second-menu'>
@@ -56,4 +71,8 @@
     </main>
 </div>
 
-<!-- Routed views go here -->
+
+<!-- Colored FAB button with ripple -->
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--6dp call-fab">
+  <i class="material-icons">phone</i>
+</button>

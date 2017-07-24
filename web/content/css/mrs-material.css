@@ -1,0 +1,99 @@
+@keyframes mrs-frames--appear-fade {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes mrs-frames--appear-scale {
+  0% {
+    transform: scale(0, 0); }
+  100% {
+    transform: scale(1, 1); } }
+@keyframes mrs-frames--appear-fade-slide-top {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 120px); }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px); } }
+@keyframes mrs-frames--appear-fade-slide-left {
+  0% {
+    opacity: 0;
+    transform: translate(120px, 0px); }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px); } }
+.mrs-anim__duration-long, .mrs-a__slide-top, .mrs-a__slide-left, .mrs-anim_scale {
+  animation-duration: 0.375s;
+  -o-animation-duration: 0.375s;
+  -webkit-animation-duration: 0.375s;
+  -moz-animation-duration: 0.375s; }
+
+.mrs-anim__duration-short {
+  animation-duration: 0.225s;
+  -o-animation-duration: 0.225s;
+  -webkit-animation-duration: 0.225s;
+  -moz-animation-duration: 0.225s; }
+
+.mrs-anim__function-standart, .mrs-a__slide-top, .mrs-a__slide-left, .mrs-anim_scale {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -o-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -moz-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+
+.mrs-anim__function-deceleration {
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  -o-animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  -webkit-animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  -moz-animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+
+.mrs-anim__function-acceleration {
+  animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  -o-animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  -moz-animation-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+
+.mrs-anim__function-sharp {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  -o-animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  -moz-animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+
+.mrs-anim__appear-fade {
+  animation-name: mrs-frames--appear-fade;
+  -o-animation-name: mrs-frames--appear-fade;
+  -webkit-animation-name: mrs-frames--appear-fade;
+  -moz-animation-name: mrs-frames--appear-fade; }
+
+.mrs-anim__appear-scale, .mrs-anim_scale {
+  animation-name: mrs-frames--appear-scale;
+  -o-animation-name: mrs-frames--appear-scale;
+  -webkit-animation-name: mrs-frames--appear-scale;
+  -moz-animation-name: mrs-frames--appear-scale; }
+
+.mrs-anim__appear-slide-top, .mrs-a__slide-top {
+  animation-name: mrs-frames--appear-fade-slide-top;
+  -o-animation-name: mrs-frames--appear-fade-slide-top;
+  -webkit-animation-name: mrs-frames--appear-fade-slide-top;
+  -moz-animation-name: mrs-frames--appear-fade-slide-top; }
+
+.mrs-anim__appear-slide-left, .mrs-a__slide-left {
+  animation-name: mrs-frames--appear-fade-slide-left;
+  -o-animation-name: mrs-frames--appear-fade-slide-left;
+  -webkit-animation-name: mrs-frames--appear-fade-slide-left;
+  -moz-animation-name: mrs-frames--appear-fade-slide-left; }
+
+.mrs-anim__left-fade {
+  animation-name: mrs-frames--appear-fade;
+  -o-animation-name: mrs-frames--appear-fade;
+  -webkit-animation-name: mrs-frames--appear-fade;
+  -moz-animation-name: mrs-frames--appear-fade;
+  animation-direction: reverse; }
+
+.mrs-anim__left-scale {
+  animation-name: mrs-frames--appear-scale;
+  -o-animation-name: mrs-frames--appear-scale;
+  -webkit-animation-name: mrs-frames--appear-scale;
+  -moz-animation-name: mrs-frames--appear-scale;
+  animation-direction: reverse; }
+
+/*# sourceMappingURL=mrs-material.css.map */
