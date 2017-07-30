@@ -374,3 +374,35 @@ product-filter .filter-input {
     position: relative;
     padding: 8px;
 }
+
+
+/* slider modification */
+
+.mrmc-container .image-card {
+    background-image: url('../img/slider_down_card_back.png');
+}
+
+.mrmc-container .text-card {
+    background-image: url('../img/slider_up_card_back.png');
+    background-position: center -4px;
+    background-repeat: no-repeat;
+    background-size: inherit;
+}
+
+.mrmc-container .text-card .mdl-card__title {
+    height: 80px;
+}
+
+.mrmc-container .text-card .mdl-card__title>h2 {
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 32px;
+}
+
+.mrmc-container .text-card .mdl-card__supporting-text {
+    padding-top: 56px;
+}
+
+
+/* end slider modification */
