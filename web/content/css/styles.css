@@ -391,6 +391,10 @@ product-filter .filter-input {
 
 .mrmc-container .text-card .mdl-card__title {
     height: 80px;
+    padding: 24px;
+    font-size: 24px;
+    line-height: 24px;
+    text-transform: uppercase;
 }
 
 .mrmc-container .text-card .mdl-card__title>h2 {
@@ -400,9 +404,47 @@ product-filter .filter-input {
     height: 32px;
 }
 
-.mrmc-container .text-card .mdl-card__supporting-text {
-    padding-top: 56px;
+
+/* end slider modification */
+
+del>.woocommerce-Price-amount.amount,
+ins>.woocommerce-Price-amount.amount {
+    display: block;
+    font-size: 20px;
+}
+
+.price ins {
+    text-decoration: none;
+}
+
+.price del {
+    color: red;
+    text-decoration: line-through;
+}
+
+del>.woocommerce-Price-amount.amount {
+    color: rgba(0, 0, 0, .57);
+    font-size: 16px;
 }
 
 
-/* end slider modification */
+/* home */
+
+#home-lead-form {
+    min-height: 150px;
+    margin-top: 48px;
+    margin-bottom: 48px;
+}
+
+#home-lead-form>div {
+    margin: 24px auto 0 auto;
+}
+
+#home-lead-form>div>div {
+    padding-right: 8px;
+}
+
+#home-lead-form>div>button {
+    padding-left: 8px;
+    margin-top: -12px;
+}

@@ -72,7 +72,8 @@ class CarouselObject{
     String src;
     String title;
     String description;
+    num price;
 
-    CarouselObject({this.title, this.src, this.description});
+    CarouselObject({this.title, this.src, this.description, this.price});
     CarouselObject.empty();
 }

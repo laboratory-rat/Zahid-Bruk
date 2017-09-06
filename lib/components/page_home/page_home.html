@@ -23,47 +23,46 @@
 
     <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
         Бруківка
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent mdl-color-text--white mdl-pull--right">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
             БІЛЬШЕ
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <div class="mdl-grid" style="padding: 8px 0px;">
-            <div *ngFor='let p of productsPaving' class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card mrs-a__slide-top">
-                <div class="image">
-                    <img [src]="host + p.images[0].src" [alt]="host + p.images[0].src">
-                </div>
-                <div class="text">
-                    <div class="title">Бруківка<br>"{{p.name}}"</div>
-                    <div class="price mdl-color-text--accent">Від {{p.price}} грн/м^2</div>
-                    <div class='button'>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                            ДЕТАЛЬНШЕ
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <product-cards [list]='productsPaving' [maxItems]='3' (event)='selectProduct($event)'></product-cards>
     </div>
 
     <!-- TP -->
 
     <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
         Тротуарна плитка
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-color--green mdl-color-text--white mdl-pull--right">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
             БІЛЬШЕ
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <div class="mdl-grid" style="padding: 8px 0px;">
-            <div *ngFor='let p of productsTP' class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card">
-                <div class="image">
-                    <img [src]="host + p.images[0].src" [alt]="host + p.images[0].src">
-                </div>
-                <div class="text">
-                    <div class="mdl-typography--title">{{p.name}}</div>
-                </div>
-            </div>
+        <product-cards [list]='productsTP' [maxItems]='3' ></product-cards>
+    </div>
+
+    <!-- Lead form -->
+    <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop mdl-card mdl-shadow--2dp" id='home-lead-form'>
+        <h5 class='mdl-typography--text-center mdl-color-text--black'>Отримуйте найсвіжщі новини про знижки</h5>
+        <div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" id="home-lead-email">
+                <label class="mdl-textfield__label" for="home-lead-email">Email</label>
+              </div>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">повідомляти мене про новини</button>
         </div>
+    </div>
+
+    <!-- best proppositions -->
+    <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+        Кращі пропозиції
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
+            БІЛЬШЕ
+        </button>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
+        <product-cards [list]='productsPaving' [prefix]='""' [maxItems]='4' [vertical]='true' ></product-cards>
     </div>
 </div>

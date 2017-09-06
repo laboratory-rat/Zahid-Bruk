@@ -36,9 +36,9 @@ div.mdl-card>ul.card-menu>li>span {
 
 .home-products .product-card .image {
     display: inline-block;
-    width: 160px;
+    width: calc(50% - 24px);
     height: 160px;
-    padding: 16px;
+    padding: 16px 8px 16px 16px;
 }
 
 .home-products .product-card .image>img {
@@ -49,10 +49,10 @@ div.mdl-card>ul.card-menu>li>span {
 .home-products .product-card .text {
     display: block;
     float: right;
-    width: calc(100% - 240px);
-    padding: 24px;
+    width: calc(50% - 24px);
+    padding: 16px 16px 16px 8px;
     position: relative;
-    height: calc(100% - 48px);
+    height: calc(100% - 32px);
 }
 
 .home-products .product-card .text .price {
@@ -69,9 +69,9 @@ div.mdl-card>ul.card-menu>li>span {
 
 .home-products .product-card .text .title {
     font-weight: 600;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .home-products .product-card .text .price {
-    text-align: center;
+    /* text-align: center; */
 }

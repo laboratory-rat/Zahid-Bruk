@@ -1,0 +1,29 @@
+<div *ngIf='!vertical' class="mdl-grid product-cards-grid" style="padding: 8px 0px;" >
+    <div *ngFor='let p of list' class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card mrs-a__slide-top" (click)='emit(p)'>
+        <div class="image">
+            <img [src]="p.images[0].src" [alt]="p.images[0].src">
+        </div>
+        <div class="text">
+            <div class="title">{{p.name}}</div>
+            <div *ngIf='prefix != ""' class="subtitle">{{prefix}}</div>
+            <div class='additional mdl-color-text--accent' *ngIf='p.on_sale'>Ціну знижено!</div>
+            <div class="additional mdl-color-text--accent" *ngIf='!p.on_sale && p.featured'>Рекомендуємо!</div>
+
+            <div class="price mdl-color-text--primary" [class.sale]='p.on_sale' [innerHtml]='p.price_html'>
+                <!-- Від {{p.price}} грн/м^2 -->
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf='vertical === true' class="mdl-grid product-cards-grid vertical" style='padding: 8px 0px;'>
+    <div *ngFor='let p of list' class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--2dp">
+        <div class="image">
+            <img [src]='p.images[0].src' [alt]='p.name'>
+        </div>
+        <div class="text">
+            <div class="subtitle">{{prefix}}</div>
+            <div class="title">{{p.name}}</div>
+            <div class="price mdl-color-text--primary" [innerHtml]='p.price_html'></div>
+        </div>
+    </div>
+</div>

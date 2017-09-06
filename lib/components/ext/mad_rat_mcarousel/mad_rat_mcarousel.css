@@ -86,6 +86,34 @@ div.mrmc-container{
     animation-timing-function: ease-out;
 }
 
+.mrmc-container li .text-card .price{
+    margin-top: 24px;
+    padding: 24px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.mrmc-container li .text-card .price > span{
+    font-size: 28px;
+}
+
+.mrmc-container li .text-card .more{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 24px;
+    width: calc(100% - 48px);
+}
+
+.mrmc-container li .text-card .mdl-card__supporting-text{
+    height: calc(100% - 280px);
+}
+
+.mrmc-container li .text-card .more > button{
+    display: block;
+    margin: 0 auto;
+}
+
 .mrmc-container .loader{
     position: absolute;
     width: 100%;
