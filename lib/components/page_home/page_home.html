@@ -5,11 +5,15 @@
     <div class="mdl-cell mdl-cell--top mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone 
      mdl-cell--order-1-desktop mdl-card" style='background-color: rgba(0,0,0,0);'>
         <div style='color: rgba(0,0,0,.87)' class="mdl-typography--headline mdl-typography--text-center">
-            Бруківка, тротуарна плитка. <br> Бордюри, водостоки <br> Допишу потом
+            Бруківка, тротуарна плитка.
+            <br> Бордюри, водостоки
+            <br> Допишу потом
         </div>
         <div style='padding-top: 24px;'>
             <p>
-                Ut ipsum voluptate qui nostrud amet enim.<br> Consequat magna ea qui consequat do proident dolor laboris. <br> Laboris irure mollit anim esse amet ullamco minim ad qui reprehenderit dolore id.
+                Ut ipsum voluptate qui nostrud amet enim.
+                <br> Consequat magna ea qui consequat do proident dolor laboris.
+                <br> Laboris irure mollit anim esse amet ullamco minim ad qui reprehenderit dolore id.
             </p>
         </div>
     </div>
@@ -40,18 +44,18 @@
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <product-cards [list]='productsTP' [maxItems]='3' ></product-cards>
+        <product-cards [list]='productsTP' [maxItems]='3'></product-cards>
     </div>
 
     <!-- Lead form -->
-    <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop mdl-card mdl-shadow--2dp" id='home-lead-form'>
-        <h5 class='mdl-typography--text-center mdl-color-text--black'>Отримуйте найсвіжщі новини про знижки</h5>
-        <div>
+    <div class="mdl-cell mdl-cell--hide-phone mdl-cell--6-col mdl-cell--3-offset-desktop mdl-card mdl-shadow--2dp" id='home-lead-form'>
+        <div class='mdl-typography--text-center mdl-color-text--black title'>Отримуйте найсвіжщі новини про знижки</div>
+        <div class='form'>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="email" id="home-lead-email">
                 <label class="mdl-textfield__label" for="home-lead-email">Email</label>
-              </div>
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">повідомляти мене про новини</button>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">повідомляти мене про новини</button>
         </div>
     </div>
 
@@ -63,6 +67,104 @@
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <product-cards [list]='productsPaving' [prefix]='""' [maxItems]='4' [vertical]='true' ></product-cards>
+        <product-cards [list]='verticalProducts' [prefix]='""' [maxItems]='6' [vertical]='true'></product-cards>
+    </div>
+
+    <!-- News -->
+    <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+        Новини
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
+            БІЛЬШЕ
+        </button>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
+        <div class="mdl-grid news" style="padding: 8px 0px;">
+            <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
+
+                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <div class="text">
+                    <div class="title">
+                        Title
+                    </div>
+                    <div class="info">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reprehenderit nihil tenetur odit nisi illum iste at
+                        aut eos vero, temporibus earum eum aperiam eius, labore, commodi recusandae aspernatur voluptas!
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
+
+                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <div class="text">
+                    <div class="title">
+                        Title
+                    </div>
+                    <div class="info">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reprehenderit nihil tenetur odit nisi illum iste at
+                        aut eos vero, temporibus earum eum aperiam eius, labore, commodi recusandae aspernatur voluptas!
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
+
+                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <div class="text">
+                    <div class="title">
+                        Title
+                    </div>
+                    <div class="info">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reprehenderit nihil tenetur odit nisi illum iste at
+                        aut eos vero, temporibus earum eum aperiam eius, labore, commodi recusandae aspernatur voluptas!
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
+
+                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <div class="text">
+                    <div class="title">
+                        Title
+                    </div>
+                    <div class="info">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reprehenderit nihil tenetur odit nisi illum iste at
+                        aut eos vero, temporibus earum eum aperiam eius, labore, commodi recusandae aspernatur voluptas!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- second lead form -->
+    <div style='margin-top: 16px; margin-bottom: 16px;' class="mdl-cell mdl-cell--hide-phone mdl-cell--6-col mdl-cell--3-offset-desktop mdl-card mdl-shadow--2dp" id='home-second-lead-form'>
+        <div class='mdl-typography--text-center mdl-color-text--black title'>Платна кансультація</div>
+        <div class='mdl-grid'>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="home-second-lead-name">
+                    <label class="mdl-textfield__label" for="home-second-lead-name">Ім'я</label>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="email" id="home-second-lead-email">
+                    <label class="mdl-textfield__label" for="home-second-lead-email">Email</label>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="tel" id="home-second-lead-tel">
+                    <label class="mdl-textfield__label" for="home-second-lead-tel">Номер телефону</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <textarea class="mdl-textfield__input" id="home-second-lead-text"></textarea>
+                    <label class="mdl-textfield__label" for="home-second-lead-text">Повідомлення</label>
+                </div>
+            </div>
+        </div>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">повідомляти мене про новини</button>
     </div>
 </div>

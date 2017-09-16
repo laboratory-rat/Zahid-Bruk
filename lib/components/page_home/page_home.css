@@ -75,3 +75,35 @@ div.mdl-card>ul.card-menu>li>span {
 .home-products .product-card .text .price {
     /* text-align: center; */
 }
+
+/* news */
+.news .mdl-card{
+    display: inline-block;
+    min-height: 160px;
+    cursor: pointer;
+    
+}
+
+.news .mdl-card img{
+    width: 192px;
+    height: 192px;
+    display: inline-block;
+}
+
+.news .mdl-card .text{
+    display: inline-block;
+    width: calc(100% - 224px);
+    overflow: hidden;
+    float: right;
+    height: 160px;
+    padding: 16px;
+}
+
+.news .text .title{
+    font-size: 24px;
+} 
+
+.news .text .info{
+    height: calc(100% - 20px);
+    overflow: hidden;
+}

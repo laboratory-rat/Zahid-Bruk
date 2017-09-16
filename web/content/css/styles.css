@@ -431,20 +431,72 @@ del>.woocommerce-Price-amount.amount {
 /* home */
 
 #home-lead-form {
-    min-height: 150px;
-    margin-top: 48px;
-    margin-bottom: 48px;
+    height: 125px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    display: block;
+    min-height: 0px;
 }
 
-#home-lead-form>div {
+#home-lead-form>div.title{
+    font-size: 20px;
+    padding-top: 12px;
+    font-weight: 400;
+
+}
+
+#home-lead-form>div.form {
     margin: 24px auto 0 auto;
+    display: inline-block;
+    margin: 24px 16px 0 16px;
 }
 
-#home-lead-form>div>div {
-    padding-right: 8px;
+#home-lead-form>div.form>div {
+    padding-right: 24px;
+    display: inline-block;
 }
 
-#home-lead-form>div>button {
-    padding-left: 8px;
-    margin-top: -12px;
+#home-lead-form>div.form>button{
+    padding-left: 24px;
+    display: inline-block;
+    margin-top: -10px;
+}
+
+#home-second-lead-form textarea{
+    height: 152px;
+    resize: none;
+    border: 1px solid rgba(0,0,0,.12);
+}
+
+#home-second-lead-form .title{
+    font-size: 24px;
+    padding-top: 16px;
+}
+
+#home-second-lead-form .mdl-cell{
+    margin-bottom: 0px;
+}
+
+#home-second-lead-form button{
+    max-height: 200px;
+    display: block;
+    margin: 0px auto 16px auto;
+}
+
+.product-cards-grid.vertical del{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.product-cards-grid.vertical ins, .product-cards-grid.vertical .product-card .text .price>span{
+    padding-top: 8px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.product-cards-grid.vertical .product-card .text .price>span{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
