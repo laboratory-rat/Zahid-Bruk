@@ -104,6 +104,7 @@ div.mdl-card>ul.card-menu>li>span {
 } 
 
 .news .text .info{
-    height: calc(100% - 20px);
+    height: calc(100% - 28px);
     overflow: hidden;
+    padding-top: 8px;
 }

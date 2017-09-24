@@ -278,7 +278,7 @@ main-window .header-search button {
 }
 
 main-window .page-content {
-    min-height: 300vh;
+    min-height: 100vh;
 }
 
 .call-fab {
@@ -481,6 +481,20 @@ del>.woocommerce-Price-amount.amount {
     max-height: 200px;
     display: block;
     margin: 0px auto 16px auto;
+}
+
+#home-second-lead-form .pad:after{
+    width: calc(100% - 16px);
+}
+
+#home-second-lead-form .pad{
+    padding: 8px;
+    padding-top: 4px;
+}
+
+#home-second-lead-form textarea{
+    padding: 8px;
+    width: calc(100% - 16px);
 }
 
 .product-cards-grid.vertical del{

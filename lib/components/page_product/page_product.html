@@ -1,4 +1,36 @@
-{{currentProduct?.name}}
-<div *ngFor='let v of variations'>
-    {{v.name}}
+<div class="mdl-grid mdl-container">
+    <div class="mdl-cell mdl-cell--12-col breadcrumbs">
+        <span>Товари</span>
+        <span>></span>
+        <span>Бруківка</span>
+        <span>></span>
+        <span>{{currentProduct?.name}}</span>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--order-4-tablet mdl-cell--4-col-phone mdl-cell--order-4-phone mdl-card mdl-shadow--2dp">
+        Relative
+    </div>
+    <div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--12-col-phone mdl-card mdl-shadow--2dp product">
+        <div class="gallery" *ngIf='currentProduct != null'>
+            <div class="image-mini">
+                <div *ngFor='let i of currentProduct?.images' [style.background-image]='"url(" + i.src + ")"'></div>
+            </div>
+            <div class="image" [style.background-image]='"url(" + currentProduct?.images[0].src + ")"'>
+            </div>
+        </div>
+        <div class="data">
+            <div class="title">
+                <h5 class='mdl-typography--headline'>{{currentProduct?.name}}</h5>
+                <span class='mdl-color-text--accent mdl-typography--text-center' *ngIf='currentProduct?.on_sale == true'>Акційна пропозиція</span>
+            </div>
+            <div class='size'>
+                <i class="material-icons">zoom_out_map</i>
+                <span>
+                    {{getSize()}}
+                </span>
+            </div>
+            <calc class='calc' [price]='currentProduct?.price'></calc>
+
+        </div>
+
+    </div>
 </div>

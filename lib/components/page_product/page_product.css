@@ -1,0 +1,77 @@
+.product{
+    display: flex;
+    flex-direction: row;
+}
+
+.gallery{
+    flex: 3;
+    padding: 16px;
+}
+
+.gallery .image{
+    background-size: contain;
+    background-repeat: none;
+    width: calc(100% - 132px);
+    background-position: center center;
+    height: 256px;
+    display: inline-block;
+}
+
+.gallery .image-mini{
+    min-height: 128px;
+    width: 128px;
+    display: inline-block;
+    float: left;
+}
+
+.gallery .image-mini > div{
+    background-size: contain;
+    background-position: center center;
+    width: 100%;
+    height: 58px;
+    background-repeat: no-repeat;
+}
+
+.data{
+    padding: 16px;
+    flex: 4;
+}
+
+.data .title{
+    display: flex;
+    flex-direction: row;
+}
+
+.data .title h5, .data .title span{
+    display: inline-block;
+    flex: 1;
+}
+
+.data .title span{
+    border-left: 1px solid rgba(0,0,0,.17);
+    /* padding-left: 24px; */
+    line-height: 32px;
+    height: 32px;
+    margin-top: 24px;
+}
+
+.data .size{
+    margin-top: 8px;
+    display: table;
+}
+
+.data .size > i{
+    display: table-cell;
+    color: rgba(0,0,0,.54) !important;
+}
+
+.data .size > span{
+    height: 26px;
+    vertical-align: middle;
+    padding-left: 16px;
+    display: table-cell;
+}
+
+.data .calc{
+    margin-top: 16px;
+}
