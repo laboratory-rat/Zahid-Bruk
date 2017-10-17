@@ -96,4 +96,19 @@
   -moz-animation-name: mrs-frames--appear-scale;
   animation-direction: reverse; }
 
+.mrs-a__fade{
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -o-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -moz-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+  animation-name: mrs-frames--appear-fade;
+  -o-animation-name: mrs-frames--appear-fade;
+  -webkit-animation-name: mrs-frames--appear-fade;
+  -moz-animation-name: mrs-frames--appear-fade;
+  animation-duration: 0.375s;
+  -o-animation-duration: 0.375s;
+  -webkit-animation-duration: 0.375s;
+  -moz-animation-duration: 0.375s; 
+}
+
 /*# sourceMappingURL=mrs-material.css.map */

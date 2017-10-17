@@ -5,8 +5,8 @@ import '../ext/product_cards/product_cards.dart';
 import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
-import 'package:lab_rat_storage/lab_rat_storage.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
+import 'package:lr_storage/lr_storage.dart';
 
 @Component(
     selector: 'page-home',
@@ -16,8 +16,7 @@ import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
     styleUrls: const ['page_home.css'])
 class PageHome implements OnInit {
   final ShopService _service;
-  final LabRatStorage _storage =
-      new LabRatStorage(type: LabRatStorageType.Session, prefix: 'carousel');
+  final LRStorage _storage = new LRStorage(type: LRStorageType.Session, prefix: 'carousel');
 
   List<WCProduct> products;
   List<CarouselObject> carouselObjects;
@@ -35,49 +34,33 @@ class PageHome implements OnInit {
   Future ngOnInit() async {
     Map cMap = _storage.load('carousel');
     if (cMap != null) {
-      JsonPackage package = new JsonPackage<WCProduct>(new List<WCProduct>())
-        ..fromJson(cMap);
-      if (package.isExpired) {
-        _storage.save('carousel', null);
-      } else {
-        products = package.inner;
-      }
+      JsonPackage package = new JsonPackage<WCProduct>(new List<WCProduct>())..fromJson(cMap);
+      products = package.inner;
     }
 
     if (products == null) {
       products = await _service.getProducts(1);
-      JsonPackage package = new JsonPackage(products, new DateTime.now(),
-          new DateTime.now().add(new Duration(hours: 1)));
+      JsonPackage package = new JsonPackage(products, new DateTime.now(), new DateTime.now().add(new Duration(hours: 1)));
       _storage.save('carousel', package);
     }
 
-    carouselObjects = [];
-
-    products.forEach((p) {
-      carouselObjects.add(new CarouselObject(
-          src: p.images.first.src,
-          title: p.name,
-          description: p.short_description,
-          price: p.price));
-    });
+    carouselObjects = products
+        .map((x) => new CarouselObject(src: x.images.first.src, description: x.description, price: x.price, title: x.name))
+        .toList();
 
     // Load products
 
     var savedPavings = _storage.load('pavings');
     if (savedPavings == null) {
-      productsPaving = await _service.getProductsByCategory(
-          15, [new ApiParam(param: 'per_page', value: '3')]);
+      productsPaving = await _service.getProductsByCategory(15, [new ApiParam(param: 'per_page', value: '3')]);
       _storage.save('pavings', productsPaving);
     } else {
-      savedPavings
-          .forEach((x) => productsPaving.add(new WCProduct()..fromJson(x)));
-      window.console.log(savedPavings[0]);
+      savedPavings.forEach((x) => productsPaving.add(new WCProduct()..fromJson(x)));
     }
 
     var savedTp = _storage.load('tp');
     if (savedTp == null) {
-      productsTP = await _service.getProductsByCategory(
-          23, [new ApiParam(param: 'per_page', value: '3')]);
+      productsTP = await _service.getProductsByCategory(23, [new ApiParam(param: 'per_page', value: '3')]);
       _storage.save('tp', productsTP);
     } else {
       savedTp.forEach((x) => productsTP.add(new WCProduct()..fromJson(x)));

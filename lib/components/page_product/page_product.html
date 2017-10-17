@@ -1,4 +1,5 @@
 <div class="mdl-grid mdl-container">
+    <div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
     <div class="mdl-cell mdl-cell--12-col breadcrumbs">
         <span>Товари</span>
         <span>></span>
@@ -6,31 +7,69 @@
         <span>></span>
         <span>{{currentProduct?.name}}</span>
     </div>
-    <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--order-4-tablet mdl-cell--4-col-phone mdl-cell--order-4-phone mdl-card mdl-shadow--2dp">
-        Relative
+    <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-card mdl-shadow--2dp mrs-a__fade" style='padding: 0px;' [class.hidden]='currentProduct == null'>
+        <div class="mdl-cell mdl-cell--1-col" style='margin: 0;' id='product-variations'>
+            <ul>
+                <li *ngFor='let i of gallery'>
+                    <img [src]="i.src" alt="" srcset="" (click)='currentImage = i'>
+                </li>
+            </ul>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col" style='margin: 0;'>
+            <div class="gallery" *ngIf='currentProduct != null'>
+                <div class="image" [style.background-image]='"url(" + currentImage?.src + ")"'>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--7-col" style='margin: 0;'>
+            <div class="data">
+                <div class="title">
+                    <h5 class='mdl-typography--headline'>{{name}}</h5>
+                    <span class='mdl-color-text--accent mdl-typography--text-center' *ngIf='onSale == true'>Акційна пропозиція</span>
+                </div>
+                <div class='size'>
+                    <div>Характеристики:</div>
+                    <i class="material-icons">zoom_out_map</i>
+                    <span>
+                        {{getSize()}}
+                    </span>
+                </div>
+                <ul class='mrs-a__fade colors' [class.hidden]='variations.length === 0'>
+                    <li class="color" *ngFor='let color of variations' (click)='changeColor(color)' [class]='getColor(color)'></li>
+                </ul>
+                <calc class='calc' [price]='currentPrice'></calc>
+                <ul class="options">
+                    <li>
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-delivery">
+                            <input type="checkbox" id="checkbox-1" [(ngModel)]='options.delivery' id='checkbox-delivery' class="mdl-checkbox__input" >
+                            <span class="mdl-checkbox__label">Достовка</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sidewalk">
+                            <input type="checkbox" [(ngModel)]='options.sidewalk' id="checkbox-sidewalk" class="mdl-checkbox__input" >
+                            <span class="mdl-checkbox__label">Укадка для тротуару</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-car">
+                            <input type="checkbox" [(ngModel)]='options.car' id="checkbox-car" class="mdl-checkbox__input" >
+                            <span class="mdl-checkbox__label">Укладка для автомобіля</span>
+                        </label>
+                    </li>
+                </ul>
+                <div class="block-order">
+                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect pull-right">Консультація</button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect pull-right">Замовити</button>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--12-col-phone mdl-card mdl-shadow--2dp product">
-        <div class="gallery" *ngIf='currentProduct != null'>
-            <div class="image-mini">
-                <div *ngFor='let i of currentProduct?.images' [style.background-image]='"url(" + i.src + ")"'></div>
-            </div>
-            <div class="image" [style.background-image]='"url(" + currentProduct?.images[0].src + ")"'>
-            </div>
+    <div class="mdl-cell mdl-cell--4-col" id='relative' [class.hidden]='toSeeProducts.length == 0'>
+        <div class="mdl-typography--headline mrs-a__fade" style='padding: 0 8px;'>
+            Цікаві пропозиції
         </div>
-        <div class="data">
-            <div class="title">
-                <h5 class='mdl-typography--headline'>{{currentProduct?.name}}</h5>
-                <span class='mdl-color-text--accent mdl-typography--text-center' *ngIf='currentProduct?.on_sale == true'>Акційна пропозиція</span>
-            </div>
-            <div class='size'>
-                <i class="material-icons">zoom_out_map</i>
-                <span>
-                    {{getSize()}}
-                </span>
-            </div>
-            <calc class='calc' [price]='currentProduct?.price'></calc>
-
-        </div>
-
+        <product-cards [list]='toSeeProducts' (event)='changeProduct($event)' [prefix]='""' [maxItems]='6' [vertical]='false' [isFullWidth]='true'></product-cards>
     </div>
 </div>

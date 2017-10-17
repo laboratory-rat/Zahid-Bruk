@@ -1,30 +1,30 @@
-.product{
+.product {
     display: flex;
     flex-direction: row;
 }
 
-.gallery{
+.gallery {
     flex: 3;
-    padding: 16px;
 }
 
-.gallery .image{
+.gallery .image {
     background-size: contain;
-    background-repeat: none;
+    background-repeat: no-repeat;
     width: calc(100% - 132px);
     background-position: center center;
-    height: 256px;
+    height: 360px;
+    width: 100%;
     display: inline-block;
 }
 
-.gallery .image-mini{
+.gallery .image-mini {
     min-height: 128px;
     width: 128px;
     display: inline-block;
     float: left;
 }
 
-.gallery .image-mini > div{
+.gallery .image-mini>div {
     background-size: contain;
     background-position: center center;
     width: 100%;
@@ -32,46 +32,170 @@
     background-repeat: no-repeat;
 }
 
-.data{
+.data {
     padding: 16px;
-    flex: 4;
+    padding-left: 32px;
+    width: 100%;
 }
 
-.data .title{
+.data .title {
     display: flex;
     flex-direction: row;
 }
 
-.data .title h5, .data .title span{
+.data .title h5 {}
+
+.data .title h5,
+.data .title span {
     display: inline-block;
     flex: 1;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
-.data .title span{
-    border-left: 1px solid rgba(0,0,0,.17);
+.data .title span {
+    border-left: 1px solid rgba(0, 0, 0, .17);
     /* padding-left: 24px; */
     line-height: 32px;
     height: 32px;
     margin-top: 24px;
 }
 
-.data .size{
-    margin-top: 8px;
+.data .size {
+    margin-top: 20px;
     display: table;
 }
 
-.data .size > i{
+.data .size>i {
     display: table-cell;
-    color: rgba(0,0,0,.54) !important;
+    color: rgba(0, 0, 0, .54) !important;
 }
 
-.data .size > span{
+.data .size>div {
+    display: table-caption;
+    color: rgba(0, 0, 0, .54);
+    padding-bottom: 8px;
+}
+
+.data .size>span {
     height: 26px;
     vertical-align: middle;
     padding-left: 16px;
     display: table-cell;
 }
 
-.data .calc{
+.data .calc {
     margin-top: 16px;
+}
+
+#product-variations ul,
+#product-variations ul li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#product-variations ul li {
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+#product-variations ul li:first-child {
+    padding-top: 32px;
+}
+
+#product-variations img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+}
+
+#relative>.mdl-card {
+    margin-bottom: 16px;
+}
+
+.product-cards-grid .mdl-cell {
+    height: 168px !important;
+}
+
+.colors,
+.colors li {
+    list-style: none;
+}
+
+.colors {
+    margin: 0;
+    padding: 0;
+    margin-top: 8px;
+    min-height: 32px;
+}
+
+.colors li {
+    display: inline-block;
+    border-radius: 2px;
+    width: 28px;
+    height: 14px;
+    overflow: hidden;
+    margin: 0 8px 0 0;
+    cursor: pointer;
+}
+
+li.Білий {
+    color: #eee;
+    background: #eee;
+}
+
+li.Червоний {
+    color: #F44336;
+    background: #F44336;
+}
+
+li.Гірчичний {
+    color: #FFD600;
+    background: #FFD600;
+}
+
+li.Зелений {
+    color: #4CAF50;
+    background: #4CAF50;
+}
+
+li.Коричневий {
+    color: #795548;
+    background: #795548;
+}
+
+li.Сірий {
+    color: #9E9E9E;
+    background: #9E9E9E;
+}
+
+li.Чорний {
+    color: #000000;
+    background: #000000;
+}
+
+ul.options{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.options>li{
+    margin-bottom: 8px;
+}
+
+ul.options>li:last-child{
+    margin-bottom: 0;
+}
+
+.block-order{
+    padding: 8px 0;
+    height: 36px;
+    text-align:right;    
+}
+
+.block-order > button:first-child{
+    padding-right: 8px;
 }

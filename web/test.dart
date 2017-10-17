@@ -16,12 +16,5 @@ Future main() async {
 
   WCApi.Configure(host, key, secret);
 
-  bootstrap(MainWindow, [
-    ROUTER_PROVIDERS,
-    provide(APP_BASE_HREF, useValue: ''),
-    provide(LocationStrategy, useClass: HashLocationStrategy),
-
-    // services
-    ShopService
-  ]);
+  bootstrap(TestWindow);
 }

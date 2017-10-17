@@ -27,18 +27,13 @@ class ShopService {
   }
 
   Future<List<WCProduct>> getProductVariations(int id) async {
-    List<WCProduct> result = [];
     var response = await client.getWC('products/$id/variations');
-    if (response == null) return result;
+    if (response == null) return new List<WCProduct>();
 
-    JSON
-        .decode(response)
-        .forEach((x) => result.add(new WCProduct()..fromJson(x)));
-    return result;
+    return JSON.decode(response).map((x) => new WCProduct()..fromJson(x)).toList();
   }
 
-  Future<List<WCProduct>> getProductsByCategory(int category,
-      [List<ApiParam> params]) async {
+  Future<List<WCProduct>> getProductsByCategory(int category, [List<ApiParam> params]) async {
     if (params == null) params = [];
 
     params.add(new ApiParam(param: 'category', value: category.toString()));
@@ -55,10 +50,8 @@ class ShopService {
   }
 
   Future<List<WCProduct>> getProducts(int page, [int perPage = 20]) async {
-    var response = await client.getWC('products', [
-      new ApiParam(param: 'page', value: page.toString()),
-      new ApiParam(param: 'status', value: 'publish')
-    ]);
+    var response = await client
+        .getWC('products', [new ApiParam(param: 'page', value: page.toString()), new ApiParam(param: 'status', value: 'publish')]);
 
     if (response == null) return null;
 
@@ -75,13 +68,12 @@ class ShopService {
     for (int i = 0; i < ids.length; i++) {
       value += ids[i];
 
-      if (i + 1 < ids.length) value += ', ';
+      if (i + 1 < ids.length) value += ',';
     }
 
     value += ']';
 
-    var response = await client
-        .getWC('products', [new ApiParam(param: 'include', value: value)]);
+    var response = await client.getWC('products', [new ApiParam(param: 'include', value: value)]);
 
     if (response == null) return new List<WCProduct>();
     return JSON.decode(response).map((x) => new WCProduct()..fromJson(x));

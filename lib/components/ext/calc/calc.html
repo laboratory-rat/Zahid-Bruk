@@ -1,6 +1,14 @@
 <div *ngIf='price != 0'>
-    <div class="mdl-typography--title mdl-color-text--primary price">{{price}} <small>грн</small> / м<sup>2</sup></div>
-    <div>
-        
+    <div class="mdl-typography--title mdl-color-text--primary price">Від {{totalPrice}}
+        <small>грн</small>
+    </div>
+    <div class='calc-input'>
+        <button class="mdl-button mdl-js-button mdl-button--icon" (click)='min()'>
+            <i class="material-icons mdl-color-text--primary">remove</i>
+        </button>
+        <input type="number" class='no-spinners' min='1' max='10000' [(ngModel)]='counter'>
+        <button class="mdl-button mdl-js-button mdl-button--icon" (click)='add()'>
+            <i class="material-icons mdl-color-text--primary">add</i>
+        </button>
     </div>
 </div>

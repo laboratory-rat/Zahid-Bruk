@@ -1,0 +1,39 @@
+.price{
+  font-size: 30px;
+}
+
+.calc-input{
+  padding: 16px 0;
+}
+
+.calc-input button:first-child, .calc-input button:first-child i{
+  border-radius: 5px 0 0 5px;
+}
+
+.calc-input button:last-child, .calc-input button:last-child i{
+  border-radius: 0 5px 5px 0px;
+}
+
+.calc-input button, .calc-input input{
+  border: 2px solid #eee !important;
+  outline: none !important;
+}
+
+.calc-input input{
+  height: 28px;
+  padding: 0 8px;
+  margin: 0 -6px;
+  border-left: 0px;
+  border-right: 0px;
+  outline-offset: 0px;
+}
+
+.no-spinners {
+  -moz-appearance: textfield;
+}
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

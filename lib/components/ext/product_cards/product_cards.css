@@ -29,16 +29,15 @@
 
 .product-cards-grid.horizontal .product-card .image>img {
     width: 100%;
-    height: 100%;
 }
 
 .product-cards-grid.horizontal .product-card .text {
     display: block;
     float: right;
     width: calc(50% - 24px);
-    padding: 32px 16px 32px 8px;
+    padding: 32px 16px 16px 8px;
     position: relative;
-    height: calc(100% - 64px);
+    height: calc(100% - 48px);
 }
 
 .product-cards-grid.horizontal .product-card .text .title {
@@ -61,7 +60,7 @@
 
 .product-cards-grid.horizontal .product-card .price {
     position: absolute;
-    bottom: 32px;
+    bottom: 16px;
     left: 8px;
     font-size: 20px;
 }
