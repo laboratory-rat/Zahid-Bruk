@@ -7,21 +7,21 @@
         <span>></span>
         <span>{{currentProduct?.name}}</span>
     </div>
-    <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-card mdl-shadow--2dp mrs-a__fade" style='padding: 0px;' [class.hidden]='currentProduct == null'>
-        <div class="mdl-cell mdl-cell--1-col" style='margin: 0;' id='product-variations'>
+    <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-grid--no-spacing mdl-card mdl-shadow--2dp mrs-a__fade" style='padding: 0px;' [class.hidden]='currentProduct == null'>
+        <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone" style='margin: 0;' id='product-variations'>
             <ul>
                 <li *ngFor='let i of gallery'>
                     <img [src]="i.src" alt="" srcset="" (click)='currentImage = i'>
                 </li>
             </ul>
         </div>
-        <div class="mdl-cell mdl-cell--4-col" style='margin: 0;'>
+        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone" style='margin: 0;'>
             <div class="gallery" *ngIf='currentProduct != null'>
                 <div class="image" [style.background-image]='"url(" + currentImage?.src + ")"'>
                 </div>
             </div>
         </div>
-        <div class="mdl-cell mdl-cell--7-col" style='margin: 0;'>
+        <div class="mdl-cell mdl-cell--7-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone" style='margin: 0;'>
             <div class="data">
                 <div class="title">
                     <h5 class='mdl-typography--headline'>{{name}}</h5>
@@ -42,13 +42,13 @@
                     <li>
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-delivery">
                             <input type="checkbox" id="checkbox-1" [(ngModel)]='options.delivery' id='checkbox-delivery' class="mdl-checkbox__input" >
-                            <span class="mdl-checkbox__label">Достовка</span>
+                            <span class="mdl-checkbox__label">Доставка</span>
                         </label>
                     </li>
                     <li>
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sidewalk">
                             <input type="checkbox" [(ngModel)]='options.sidewalk' id="checkbox-sidewalk" class="mdl-checkbox__input" >
-                            <span class="mdl-checkbox__label">Укадка для тротуару</span>
+                            <span class="mdl-checkbox__label">Укладка для тротуару</span>
                         </label>
                     </li>
                     <li>
@@ -65,6 +65,24 @@
             </div>
         </div>
 
+
+        <!-- product data area -->
+        <div class="mdl-cell mdl-cell--12-col data-information">
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <div class="mdl-tabs__tab-bar ">
+                    <a href="#panel-info" class="mdl-tabs__tab is-active">Опис</a>
+                    <a href="#panel-extra" class="mdl-tabs__tab">Детально</a>
+                </div>
+              
+                <div class="mdl-tabs__panel is-active" [innerHtml]='shortDescription' id="panel-info">
+
+                </div>
+                <div class="mdl-tabs__panel" id="panel-extra" [innerHtml]='description'>
+
+                </div>
+
+              </div>
+        </div>
     </div>
     <div class="mdl-cell mdl-cell--4-col" id='relative' [class.hidden]='toSeeProducts.length == 0'>
         <div class="mdl-typography--headline mrs-a__fade" style='padding: 0 8px;'>

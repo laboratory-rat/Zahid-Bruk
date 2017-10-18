@@ -10,11 +10,18 @@
 .gallery .image {
     background-size: contain;
     background-repeat: no-repeat;
-    width: calc(100% - 132px);
     background-position: center center;
     height: 360px;
-    width: 100%;
+    margin: 8px;
+    width: calc(100% - 16px);
     display: inline-block;
+}
+
+@media (min-width: 760px) {
+    .gallery .image {
+        margin: 0px;
+        width: 100%;
+    }
 }
 
 .gallery .image-mini {
@@ -34,16 +41,18 @@
 
 .data {
     padding: 16px;
-    padding-left: 32px;
-    width: 100%;
+}
+
+@media (min-width: 760px) {
+    .data {
+        padding-left: 32px;
+    }
 }
 
 .data .title {
     display: flex;
     flex-direction: row;
 }
-
-.data .title h5 {}
 
 .data .title h5,
 .data .title span {
@@ -55,7 +64,6 @@
 
 .data .title span {
     border-left: 1px solid rgba(0, 0, 0, .17);
-    /* padding-left: 24px; */
     line-height: 32px;
     height: 32px;
     margin-top: 24px;
@@ -135,10 +143,16 @@
     display: inline-block;
     border-radius: 2px;
     width: 28px;
-    height: 14px;
+    height: 21px;
     overflow: hidden;
     margin: 0 8px 0 0;
     cursor: pointer;
+}
+
+@media (min-width: 760px){
+    .colors li{
+        height: 14px;
+    }
 }
 
 li.Білий {
@@ -176,26 +190,45 @@ li.Чорний {
     background: #000000;
 }
 
-ul.options{
+ul.options {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-ul.options>li{
+ul.options>li {
     margin-bottom: 8px;
 }
 
-ul.options>li:last-child{
+ul.options>li:last-child {
     margin-bottom: 0;
 }
 
-.block-order{
-    padding: 8px 0;
+.block-order {
+    padding: 16px 0 8px 0;
     height: 36px;
-    text-align:right;    
+    text-align: right;
 }
 
-.block-order > button:first-child{
-    padding-right: 8px;
+@media (min-width: 760px){
+    .block-order{
+        padding: 8px 0;
+    }
+}
+
+.block-order>button:first-child {
+    margin-right: 8px;
+}
+
+.data-information .mdl-tabs__tab-bar {
+    justify-content: flex-start;
+}
+
+.data-information .mdl-tabs__tab-bar>a {
+    flex: 1;
+}
+
+.data-information .mdl-tabs__panel {
+    padding: 16px;
+    padding-top: 24px;
 }
