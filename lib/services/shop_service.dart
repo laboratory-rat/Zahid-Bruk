@@ -49,6 +49,13 @@ class ShopService {
     return result;
   }
 
+  Future<List<WCProduct>> getProductsCustom(List<ApiParam> params) async {
+    if (params == null || params.length < 1) return new List<WCProduct>();
+
+    var response = await client.getWC('products', params);
+    return JSON.decode(response).map((x) => new WCProduct()..fromJson(x)).toList();
+  }
+
   Future<List<WCProduct>> getProducts(int page, [int perPage = 20]) async {
     var response = await client
         .getWC('products', [new ApiParam(param: 'page', value: page.toString()), new ApiParam(param: 'status', value: 'publish')]);
@@ -64,14 +71,14 @@ class ShopService {
   }
 
   Future<List<WCProduct>> getProductsBatch(List<String> ids) async {
-    var value = '[';
+    var value = '(0,';
     for (int i = 0; i < ids.length; i++) {
       value += ids[i];
 
       if (i + 1 < ids.length) value += ',';
     }
 
-    value += ']';
+    value += ')';
 
     var response = await client.getWC('products', [new ApiParam(param: 'include', value: value)]);
 

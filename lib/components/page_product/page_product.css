@@ -225,7 +225,7 @@ ul.options>li:last-child {
 }
 
 .data-information .mdl-tabs__tab-bar>a {
-    flex: 1;
+    /* flex: 1; */
 }
 
 .data-information .mdl-tabs__panel {

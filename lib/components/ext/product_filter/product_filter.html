@@ -1,21 +1,97 @@
 <div class="mdl-grid">
 
-    <!-- max / min price -->
-    <!-- <div class="mdl-cell mdl-cell--12-col filter-label">
-        Максимальна ціна:
+    <div class="mdl-cell mdl-cell--12-col filter-title">
+        Фільтри
     </div>
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="filter-subtitle">
+            Категорія
+        </div>
+        <ul class="filter-list">
+            <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-all">
+                    <input type="radio" id="radio-all" class="mdl-radio__button" name="category" checked />
+                    <span class="mdl-radio__label">Усі</span>
+                </label>
+            </li>
+            <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-paving">
+                    <input type="radio" id="radio-paving" class="mdl-radio__button" name="category" />
+                    <span class="mdl-radio__label">Бруківка</span>
+                </label>
+            </li>
+            <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-tile">
+                    <input type="radio" id="radio-tile" class="mdl-radio__button" name="category" />
+                    <span class="mdl-radio__label">Плитка</span>
+                </label>
+            </li>
+            <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-concrete">
+                    <input type="radio" id="radio-concrete" class="mdl-radio__button" name="category" />
+                    <span class="mdl-radio__label">Бетонні вироби</span>
+                </label>
+            </li>
+            <li>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-iron">
+                    <input type="radio" id="radio-iron" class="mdl-radio__button" name="category" />
+                    <span class="mdl-radio__label">Залізобетон</span>
+                </label>
+            </li>
 
-    <div class="mdl-cell mdl-cell--12-col filter-input">
-        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="50" tabindex="0">
+        </ul>
+        <hr>
+        <div class="filter-subtitle">
+            Ціна грн/М
+            <sup>2</sup>
+        </div>
+        <ul class="filter-list">
+            <li>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">0 - 50</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">0 - 50</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">0 - 50</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">0 - 50</span>
+                </label>
+            </li>
+
+        </ul>
+        <hr>
+        <div class="filter-subtitle">
+            Параметри
+        </div>
+        <ul class="filter-list">
+            <li>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">Акційні товари</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">Знижена ціна</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">Рекомендовані товари</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-price">
+                    <input type="checkbox" id="checkbox-price" class="mdl-checkbox__input" checked />
+                    <span class="mdl-checkbox__label">Товари тижня</span>
+                </label>
+            </li>
+
+        </ul>
     </div>
-
-    <div class="mdl-cell mdl-cell--12-col filter-label">
-        Мінімальна ціна:
-    </div>
-
-    <div class="mdl-cell mdl-cell--12-col filter-input">
-        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="50" tabindex="0">
-    </div> -->
 
 
     <!-- Category -->
@@ -40,61 +116,18 @@
         </div>
     </div>
 
-    <!-- Production -->
-
-    <!-- <div class="mdl-cell mdl-cell--12-col filter-label">
-        Спосіб виотовлення:
-    </div>
-    <div class="mdl-cell mdl-cell--12-col filter-input">
-        <div class="mdl-textfield mdl-js-textfield material-select" id='dom-select-production'>
-            <input class="mdl-textfield__input" readonly [value]='currentCategoryName' type="text" id="select-production">
-            <label class="mdl-textfield__label" for="select-production">
-                Category
-            </label>
-            <i class="material-icons">keyboard_arrow_down</i>
-            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-production">
-                <li class="mdl-menu__item" *ngFor='let category of filter.categories' (click)='setCategory(category)'>{{category.name}}</li>
-            </ul>
-
-        </div>
-    </div> -->
-
-    <!-- Tags -->
-
-    <!-- <div class="mdl-cell mdl-cell--12-col filter-label">
-        Тегі:
-    </div>
-    <div class="mdl-cell mdl-cell--12-col filter-input">
-        <div>
-            <span class="mdl-chip mdl-chip--deletable" *ngFor='let at of activeTags'>
-                <span class="mdl-chip__text">{{at.name}}</span>
-            <button (click)='removeTag(at)' class="mdl-chip__action"><i class="material-icons">cancel</i></button>
-            </span>
-        </div>
-        <div class="mdl-textfield mdl-js-textfield material-select" id='dom-select-tag' [class.hidden]='avaliableTags().length < 1'>
-
-            <input class="mdl-textfield__input" readonly placeholder="Виберіть тегі" type="text" id="select-tag">
-            <label class="mdl-textfield__label" for="select-tag">
-                Category
-            </label>
-            <i class="material-icons">keyboard_arrow_down</i>
-            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select-tag">
-                <li class="mdl-menu__item" *ngFor='let tag of avaliableTags()' (click)='addTag(tag)'>{{tag.name}}</li>
-            </ul>
-        </div>
-    </div> -->
-
-    <!-- Sales -->
+    
 
     <div class="mdl-cell mdl-cell--12-col">
         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sales">
             <input type="checkbox" [(ngModel)]='filter.salesOnly' id="checkbox-sales" class="mdl-checkbox__input">
             <span class="mdl-checkbox__label">Тільки акційні товари</span>
-         </label>
+        </label>
     </div>
 
     <div class="mdl-cell mdl-cell--12-col">
-        <button style='display: block; margin: 0 auto;' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary" (click)='submit()'>Шукати</button>
+        <button style='display: block; margin: 0 auto;' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary"
+            (click)='submit()'>Шукати</button>
     </div>
 
 

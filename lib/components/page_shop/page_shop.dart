@@ -1,6 +1,7 @@
 import '../../configs/main_config.dart';
 import '../../services/shop_service.dart';
 import '../ext/product_filter/product_filter.dart';
+import '../ext/product_filter_bar/product_filter_bar.dart';
 import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
@@ -11,14 +12,19 @@ import 'package:lr_storage/lr_storage.dart';
 @Component(
     selector: 'page-shop',
     templateUrl: 'page_shop.html',
-    directives: const [COMMON_DIRECTIVES, ProductFilter, ROUTER_DIRECTIVES],
-    providers: const [ShopService])
+    directives: const [COMMON_DIRECTIVES, ProductFilter, ROUTER_DIRECTIVES, ProductFilterBar],
+    providers: const [ShopService],
+    styleUrls: const ['page_shop.css'])
 class PageShop implements OnInit {
   final RouteParams _routeParams;
   final ShopService _shop;
-  LRStorage _storage = new LRStorage(prefix: 'shop', type: LRStorageType.Session);
+
+  final LRStorage _productStorage = new LRStorage(prefix: 'product', type: LRStorageType.Session);
+  final LRStorage _storage = new LRStorage(prefix: 'shop', type: LRStorageType.Session);
 
   int currentCategory;
+  int currentPage = 1;
+  int currentPerPage = 20;
 
   WCProduct currentProduct;
   List<WCProduct> currentProducts;
@@ -38,21 +44,37 @@ class PageShop implements OnInit {
 
     try {
       currentCategory = int.parse(_routeParams.get('category'));
-      print(currentCategory);
     } catch (ex) {
-      print(ex);
       currentCategory = -1;
     }
 
+    try {
+      currentPage = int.parse(_routeParams.get('page'));
+    } catch (ex) {
+      currentPage = 1;
+    }
+
+    try {
+      currentPerPage = int.parse(_routeParams.get('per_page'));
+    } catch (ex) {
+      currentPerPage = 20;
+    }
     // Categories
 
-    List<WPCategory> cats = new List<WPCategory>();
-    WPCategory all = new WPCategory()..id = -1;
-    all.name = 'Усі';
-    cats.add(all);
-    cats.addAll(await _shop.getAllCategories());
+    var categorsMap = null;
+    List<WPCategory> categors = new List<WPCategory>();
+    if ((categorsMap = _storage.load<List<WPCategory>>('categories')) != null) {
+      categorsMap.forEach((x) => categors.add(new WPCategory()..fromJson(x)));
+    } else {
+      categors.add(new WPCategory()
+        ..id = -1
+        ..name = 'Усі');
 
-    filter.categories = cats;
+      categors.addAll(await _shop.getAllCategories());
+      _storage.save('categories', categors);
+    }
+
+    filter.categories = categors;
 
     // Tags
 
@@ -77,12 +99,26 @@ class PageShop implements OnInit {
     isLoading = true;
     List<ApiParam> params = new List<ApiParam>();
 
+    params.add(new ApiParam(param: 'page', value: currentPage.toString()));
+    params.add(new ApiParam(param: 'per_page', value: currentPerPage.toString()));
+    params.add(new ApiParam(param: 'status', value: 'publish'));
+
     if (currentCategory != null && currentCategory != -1) {
       filter.setCurrentCategory(currentCategory);
-      currentProducts = await _shop.getProductsByCategory(currentCategory);
-    } else {
-      currentProducts = await _shop.getProducts(1);
+      params.add(new ApiParam(param: 'category', value: currentCategory.toString()));
     }
+
+    String searchId = params.map((x) => x.param + '=' + x.value).join('&');
+
+    var productListMap = null;
+    if ((productListMap = _storage.load(searchId)) != null) {
+      currentProducts = productListMap.map((x) => new WCProduct()..fromJson(x)).toList();
+    } else {
+      currentProducts = await _shop.getProductsCustom(params);
+      _storage.save(searchId, currentProducts);
+    }
+
+    currentProducts.forEach((x) => _productStorage.save(x.id.toString(), x));
 
     isLoading = false;
   }

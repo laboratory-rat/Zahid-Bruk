@@ -1,3 +1,4 @@
+import '../../domain/ProductPackage.dart';
 import '../../services/shop_service.dart';
 import '../ext/calc/calc.dart';
 import '../ext/scroll_animation/scroll_animation.dart';
@@ -22,8 +23,7 @@ class PageProduct implements OnInit {
   final RouteParams _routeParams;
   final Router _router;
 
-  final LRStorage _storage =
-      new LRStorage(prefix: 'product', type: LRStorageType.Session);
+  final LRStorage _storage = new LRStorage(prefix: 'product', type: LRStorageType.Session);
 
   PageProduct(this._shopService, this._routeParams, this._router);
 
@@ -55,47 +55,77 @@ class PageProduct implements OnInit {
 
     LRScrollAnimation.scroll('.breadcrumbs', duration: 275, offset: 60);
 
-    ProductPackage saved = null;
-    var savedMap = null;
+    // second realization
 
-    if ((savedMap =
-            _storage.load<ProductPackage>(currentProductId.toString())) !=
-        null) {
-      saved = new ProductPackage()..fromJson(savedMap);
+    // load main product
 
-      currentProduct = saved.product;
-      gallery = currentProduct.images;
-      name = currentProduct.name;
-      onSale = currentProduct.on_sale;
-
-      description = currentProduct.description;
-      shortDescription = currentProduct.short_description;
-
-      basePrice = currentPrice = currentProduct.price;
-
-      currentImage = currentProduct.image;
-
-      variations = saved.variations;
-      toSeeProducts = saved.toSee;
+    var savedProductMap = null;
+    if ((savedProductMap = _storage.load<WCProduct>(currentProductId.toString())) != null) {
+      currentProduct = new WCProduct()..fromJson(savedProductMap);
     } else {
-      saved = await ProductPackage.download(_shopService, currentProductId);
-      if (saved == null) _router.navigate(['PageHome']);
+      currentProduct = await _shopService.getProductById(currentProductId);
+      _storage.save(currentProductId.toString(), currentProduct);
+    }
 
-      currentProduct = saved.product;
-      currentProduct.images = currentProduct.images.toList();
-      gallery = currentProduct.images;
-      name = currentProduct.name;
-      onSale = currentProduct.on_sale;
-      basePrice = currentPrice = currentProduct.price;
-      currentImage = currentProduct.image;
+    window.console.log(currentProduct);
 
-      description = currentProduct.description;
-      shortDescription = currentProduct.short_description;
+    // set all parameters
 
-      variations = saved.variations;
-      toSeeProducts = saved.toSee;
+    gallery = currentProduct.images;
+    name = currentProduct.name;
+    onSale = currentProduct.on_sale;
 
-      _storage.save(currentProductId.toString(), saved);
+    description = currentProduct.description;
+    shortDescription = currentProduct.short_description;
+
+    basePrice = currentPrice = currentProduct.price;
+
+    currentImage = currentProduct.image;
+
+    List<String> variationsToLoad = [];
+    currentProduct.variations.forEach((x) {
+      var variationMap = null;
+      if ((variationMap = _storage.load(x)) != null) {
+        variations.add(new WCProduct()..fromJson(variationMap));
+      } else {
+        variationsToLoad.add(x.toString());
+      }
+    });
+
+    List<String> toSeeToLoad = [];
+
+    currentProduct.related_ids.forEach((x) {
+      var relativeMap = _storage.load(x.toString());
+      window.console.log(relativeMap);
+
+      if (relativeMap == null) {
+        toSeeToLoad.add(x.toString());
+      } else {
+        toSeeProducts.add(new WCProduct()..fromJson(relativeMap));
+      }
+    });
+
+    if (variationsToLoad.length > 0) {
+      var loadedVariations = await _shopService.getProductVariations(currentProductId);
+
+      loadedVariations.forEach((x) {
+        x.images = [x.image];
+        _storage.save(x.id.toString(), x);
+      });
+
+      variations.addAll(loadedVariations);
+    }
+
+    if (toSeeToLoad.length > 0) {
+      var loadedRelative = await _shopService.getProductsBatch(toSeeToLoad);
+
+      window.console.log(loadedRelative);
+
+      loadedRelative.forEach((x) {
+        _storage.save(x.id.toString(), x);
+      });
+
+      toSeeProducts.addAll(loadedRelative);
     }
 
     isLoading = false;
@@ -104,12 +134,7 @@ class PageProduct implements OnInit {
   String getSize() {
     if (currentProduct == null || currentProduct.dimensions == null) return '';
 
-    return 'Д ' +
-        currentProduct.dimensions.length +
-        ' x Ш ' +
-        currentProduct.dimensions.width +
-        ' x В ' +
-        currentProduct.dimensions.height;
+    return 'Д ' + currentProduct.dimensions.length + ' x Ш ' + currentProduct.dimensions.width + ' x В ' + currentProduct.dimensions.height;
   }
 
   String getColor(WCProduct p) {

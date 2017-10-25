@@ -4,15 +4,7 @@
         <product-filter class="product-filter" [filter]='filter' (filterSubmit)='search()'>Filter</product-filter>
     </div>
     <div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid" *ngIf='currentProducts != null'>
-        <div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [ngClass]='{"hidden": !listView}' (click)='listView = false'>
-                    <i class="material-icons">view_list</i>
-                </button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [ngClass]='{"hidden": listView}' (click)='listView = true'>
-                    <i class="material-icons">view_module</i>
-                </button>
-        </div>
-
+        <product-filter-bar class='mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp product-filter-bar' (compactViewChange)='listView = $event' [isCompactView]='listView'></product-filter-bar>
         <!-- Card view -->
 
         <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card mdl-cell--top product-area" *ngFor='let product of currentProducts' [class.hidden]='listView'>
