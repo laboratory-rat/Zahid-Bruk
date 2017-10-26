@@ -1,6 +1,16 @@
+:host {
+  min-height: 48px;
+  height: 48px;
+  overflow: visible !important;
+  z-index: 1000 !important;
+}
 
-.holder{
+.holder {
   padding: 8px;
   height: 32px;
   overflow: visible;
+}
+
+.view-buttons{
+  display: inline-block;
 }

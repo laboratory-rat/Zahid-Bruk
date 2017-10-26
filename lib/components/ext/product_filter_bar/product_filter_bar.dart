@@ -27,5 +27,9 @@ class ProductFilterBar extends OnInit {
 class FilterBarOptions {
   bool isListView = false;
   String currentOrderBy = '';
-  List<String> orderByList = ['За популярністю', 'Від дешевих до дорожчіх'];
+  List<ISelectMaterialElement> orderByList = [
+    new SelectMaterialElement('popularity', 'За популярністю'),
+    new SelectMaterialElement('fromHight', 'Від дорогих'),
+    new SelectMaterialElement('fromChip', 'Від дешевих')
+  ];
 }

@@ -1,5 +1,5 @@
 <div class="holder">
-  <div class="view-buttons hidden">
+  <div class="view-buttons">
     <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [disabled]='options.isListView' (click)='toggleCompactView()'>
       <i class="material-icons">view_list</i>
     </button>
@@ -7,5 +7,5 @@
       <i class="material-icons">view_module</i>
     </button>
   </div>
-  <select-material [elements]='options.orderByList'></select-material>
+  <select-material [elements]='options.orderByList' [defaultSelecter]='options.orderByList[0]'></select-material>
 </div>

@@ -7,23 +7,22 @@ import 'package:angular2/angular2.dart';
     directives: const [COMMON_DIRECTIVES])
 class SelectMaterial {
   @Input()
-  List<dynamic> elements = null;
-
-  @Output()
-  dynamic selected = null;
+  set elements(List<ISelectMaterialElement> list) => {
 
   @Input()
-  String label = '';
+  ISelectMaterialElement defaultSelected = null;
 
-  String getLabel([dynamic element = null]) {
-    if (element == null) element = selected;
+  @Input()
+  String placeholder = 'Фільтр';
 
-    if (element == null) return '';
-    if (label == '') return element;
-    return element[label];
-  }
+  @Output()
+  ISelectMaterialElement selected = null;
 
-  void selectElement(dynamic element) {
+  List<ISelectMaterialElement>_elements = null;
+
+  SelectMaterial() {}
+
+  void selectElement(ISelectMaterialElement element) {
     var index = elements.indexOf(element);
     if (index > -1) {
       elements.removeAt(index);
@@ -35,4 +34,20 @@ class SelectMaterial {
 
     selected = element;
   }
+}
+
+class SelectMaterialElement extends ISelectMaterialElement {
+  String id;
+  String label;
+
+  SelectMaterialElement(this.id, this.label);
+
+  @override
+  String getLabel() {
+    return label;
+  }
+}
+
+abstract class ISelectMaterialElement {
+  String getLabel();
 }

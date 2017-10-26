@@ -1,12 +1,33 @@
+:host {
+    display: inline-block;
+    height: 32px;
+    top: 0;
+    vertical-align: top;
+    min-height: 48px;
+    height: 48px;
+}
+
+.select-material {
+    padding: 0;
+    height: 32px;
+}
+
+label {
+    top: 6px;
+}
+
+label::after {
+    bottom: 3px !important;
+}
+
 i {
     position: absolute;
-    top: 24px;
+    top: 8px;
     right: 0px;
     z-index: -1;
 }
 
-
-
-input{
+input {
     cursor: pointer;
+    padding-top: 6px;
 }
