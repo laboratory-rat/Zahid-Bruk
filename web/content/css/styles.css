@@ -325,19 +325,6 @@ product-filter .filter-input {
 
 /* Material select */
 
-.material-select>i {
-    position: absolute;
-    top: 24px;
-    right: 0px;
-    z-index: -1;
-}
-
-.material-select div.mdl-menu__container,
-.material-select div.mdl-menu__outline,
-.material-select ul,
-.material-select li {
-    width: 100% !important;
-}
 
 
 /* product card */

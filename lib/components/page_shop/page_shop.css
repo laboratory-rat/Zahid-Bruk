@@ -2,3 +2,8 @@
   min-height: 48px;
   height: 48px;
 }
+
+product-filter-bar{
+  overflow: visible !important;
+  z-index: 1000 !important;
+}

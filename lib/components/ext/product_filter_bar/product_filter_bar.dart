@@ -1,3 +1,4 @@
+import '../select_material/select_material.dart';
 import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
@@ -6,7 +7,7 @@ import 'package:angular2/angular2.dart';
     selector: 'product-filter-bar',
     templateUrl: 'product_filter_bar.html',
     styleUrls: const ['product_filter_bar.css'],
-    directives: const [COMMON_DIRECTIVES])
+    directives: const [COMMON_DIRECTIVES, SelectMaterial])
 class ProductFilterBar extends OnInit {
   @Input()
   FilterBarOptions options = new FilterBarOptions();
@@ -26,4 +27,5 @@ class ProductFilterBar extends OnInit {
 class FilterBarOptions {
   bool isListView = false;
   String currentOrderBy = '';
+  List<String> orderByList = ['За популярністю', 'Від дешевих до дорожчіх'];
 }

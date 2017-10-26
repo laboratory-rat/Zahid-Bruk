@@ -1,0 +1,10 @@
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--fullwidth" >
+    <input class="mdl-textfield__input" readonly [value]='getLabel()' type="text" id='input'>
+    <label class="mdl-textfield__label" for='input'>
+        Category
+    </label>
+    <i class="material-icons">keyboard_arrow_down</i>
+    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="input">
+        <li class="mdl-menu__item" *ngIf='elements != null' *ngFor='let element of elements' (click)='selectElement(element)'>{{getLabel(element)}}</li>
+    </ul>
+</div>
