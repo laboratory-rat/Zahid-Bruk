@@ -32,10 +32,10 @@ class PageShop implements OnInit {
   PageShop(this._shop, this._routeParams);
 
   FilterObject filter = new FilterObject();
+  FilterBarOptions barOptions = new FilterBarOptions();
 
   String host;
 
-  bool listView = false;
   bool isLoading = true;
 
   @override
