@@ -1,10 +1,10 @@
-<div class="mdl-textfield mdl-js-textfield select-material" >
-    <input class="mdl-textfield__input" readonly [value]='selected?.getLabel() ?? ""' type="text" id='input'>
+<div class="mdl-textfield mdl-js-textfield select-material">
+    <input class="mdl-textfield__input" readonly [value]='current?.getLabel()' type="text" id='input'>
     <label class="mdl-textfield__label" for='input'>
-        {{selected == null ? "Фільтр" : ""}}
+        {{current == null ? label : ""}}
     </label>
     <i class="material-icons">keyboard_arrow_down</i>
-    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="input">
-        <li class="mdl-menu__item"  *ngFor='let element of elements' (click)='selectElement(element)'>{{element?.getLabel()}}</li>
+    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" style='width: 100%;' for="input">
+        <li class="mdl-menu__item" style='width: 100%;' *ngFor='let element of elements' (click)='select(element)'>{{element?.getLabel()}}</li>
     </ul>
 </div>

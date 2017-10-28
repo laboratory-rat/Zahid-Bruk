@@ -1,0 +1,13 @@
+button.mdl-button--primary{
+	padding: 0 8px;
+	margin: 0 4px;
+	min-width: 32px;
+}
+
+:host{
+	display: inline-block !important;
+}
+.material-paginator{
+	display: inline-block !important;
+	float: right;
+}

@@ -5,12 +5,19 @@
   z-index: 1000 !important;
 }
 
+
 .holder {
   padding: 8px;
   height: 32px;
   overflow: visible;
+  display: flex;
+}
+
+.holder>*{
+	display: flex;
+	flex: 2;
 }
 
 .view-buttons{
-  display: inline-block;
+	flex: 1 !important;
 }

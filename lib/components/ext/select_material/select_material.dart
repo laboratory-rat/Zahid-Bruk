@@ -1,4 +1,10 @@
+import 'dart:html';
+
 import 'package:angular2/angular2.dart';
+
+abstract class ISelectMaterialElement {
+  String getLabel();
+}
 
 @Component(
     selector: 'select-material',
@@ -7,32 +13,28 @@ import 'package:angular2/angular2.dart';
     directives: const [COMMON_DIRECTIVES])
 class SelectMaterial {
   @Input()
-  set elements(List<ISelectMaterialElement> list) => {
+  String label = 'label';
 
   @Input()
-  ISelectMaterialElement defaultSelected = null;
-
-  @Input()
-  String placeholder = 'Фільтр';
+  List<ISelectMaterialElement> elements;
 
   @Output()
-  ISelectMaterialElement selected = null;
+  ISelectMaterialElement current;
 
-  List<ISelectMaterialElement>_elements = null;
+  @Input()
+  set defaultElement(ISelectMaterialElement e) => current == null ? select(e) : null;
 
-  SelectMaterial() {}
+  void select(ISelectMaterialElement e) {
+    var index = elements.indexOf(e);
 
-  void selectElement(ISelectMaterialElement element) {
-    var index = elements.indexOf(element);
-    if (index > -1) {
-      elements.removeAt(index);
+    if (index < 0) return;
 
-      if (selected != null) elements.add(selected);
-
-      selected = element;
+    if (current != null) {
+      elements.add(current);
     }
 
-    selected = element;
+    current = e;
+    elements.removeAt(index);
   }
 }
 
@@ -46,8 +48,4 @@ class SelectMaterialElement extends ISelectMaterialElement {
   String getLabel() {
     return label;
   }
-}
-
-abstract class ISelectMaterialElement {
-  String getLabel();
 }
