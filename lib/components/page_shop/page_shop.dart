@@ -1,5 +1,6 @@
 import '../../configs/main_config.dart';
 import '../../services/shop_service.dart';
+import '../ext/product_cards/product_cards.dart';
 import '../ext/product_filter/product_filter.dart';
 import '../ext/product_filter_bar/product_filter_bar.dart';
 import 'dart:async';
@@ -12,7 +13,7 @@ import 'package:lr_storage/lr_storage.dart';
 @Component(
     selector: 'page-shop',
     templateUrl: 'page_shop.html',
-    directives: const [COMMON_DIRECTIVES, ProductFilter, ROUTER_DIRECTIVES, ProductFilterBar],
+    directives: const [COMMON_DIRECTIVES, ProductFilter, ROUTER_DIRECTIVES, ProductFilterBar, ProductCards],
     providers: const [ShopService],
     styleUrls: const ['page_shop.css'])
 class PageShop implements OnInit {
@@ -127,5 +128,11 @@ class PageShop implements OnInit {
     currentCategory = filter.currentCategory.id;
 
     await loadProductList();
+  }
+
+  void onBarChange(FilterBarOptions options)
+  {
+	  window.console.log(options);
+	  
   }
 }

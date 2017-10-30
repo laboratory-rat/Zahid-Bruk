@@ -5,6 +5,6 @@
     </label>
     <i class="material-icons">keyboard_arrow_down</i>
     <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" style='width: 100%;' for="input">
-        <li class="mdl-menu__item" style='width: 100%;' *ngFor='let element of elements' (click)='select(element)'>{{element?.getLabel()}}</li>
+        <li class="mdl-menu__item" style='width: 100%;'  *ngFor='let element of elements' (click)='select(element)' [hidden]='element == current'>{{element?.getLabel()}}</li>
     </ul>
 </div>

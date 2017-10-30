@@ -1,39 +1,13 @@
 <div class="mdl-grid mdl-container appear-page">
-    <div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
-    <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
-        <product-filter class="product-filter" [filter]='filter' (filterSubmit)='search()'>Filter</product-filter>
-    </div>
-    <div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top" *ngIf='currentProducts != null'>
-        <product-filter-bar class='mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp product-filter-bar' [options]='barOptions'></product-filter-bar>
-        <!-- Card view -->
-
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card mdl-cell--top product-area" *ngFor='let product of currentProducts' [class.hidden]='barOptions.isListView'>
-            <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">
-                    {{product.name}}
-                </h2>
-            </div>
-            <div class="mdl-card__media" style='background-color: white; padding: 16px;'>
-                <img [src]='product.images[0].src' [alt]='product.images[0].src' style='width: 100%; height: 100%'>
-            </div>
-            <div class="mdl-card__supporting-text">
-
-            </div>
-            <div class="mdl-card__actions">
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mrs-center" [routerLink]='["PageProduct", { productId: product.id.toString()}]'>Детальніше</button>
-            </div>
-        </div>
-
-        <!-- List view -->
-
-        <div [class.hidden]='!barOptions.isListView' class="mdl-cell appear-page mdl-cell--12-col mdl-card mdl-shadow--2dp product-list" *ngFor='let product of currentProducts'>
-            <div class="product-image">
-                <img [src]='product.images[0].src' [alt]='product.images[0].src' style='width: 100%; height: 100%'>
-            </div>
-            <div class="product-description">
-                <div class="mdl-typography--title">{{product.name}}</div>
-                <div>{{product.price}}</div>
-            </div>
-        </div>
-    </div>
+	<div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
+		<product-filter class="product-filter" [filter]='filter' (filterSubmit)='search()'>Filter</product-filter>
+	</div>
+	<div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top">
+		<product-filter-bar (onFilterChange)='onBarChange($event)' class='mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp product-filter-bar' [options]='barOptions'></product-filter-bar>
+		<!-- Card view -->
+		<div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
+			<product-cards [list]='currentProducts ?? []' [colsHorizontal]='6' [colsVertical]='4' [animationStyle]='"mrs-a__fade"' [prefix]='""' [maxItems]='6' [vertical]='!barOptions.isListView'></product-cards>
+		</div>
+	</div>
 </div>

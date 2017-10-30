@@ -23,6 +23,15 @@ class ProductCards implements OnInit {
   @Input()
   String prefix = 'Бруківка';
 
+  @Input()
+  int colsVertical = 2;
+
+  @Input()
+  int colsHorizontal = 4;
+
+  @Input()
+  String animationStyle = 'mrs-a__slide-top';
+
   final _event = new StreamController<WCProduct>();
   @Output()
   Stream<WCProduct> get event => _event.stream;

@@ -13,9 +13,11 @@ class ProductFilterBar extends OnInit {
   @Input()
   FilterBarOptions options = new FilterBarOptions();
 
-  void toggleCompactView() {
-    options.isListView = !options.isListView;
-  }
+  StreamController<FilterBarOptions> _onFilterChange = new StreamController<FilterBarOptions>();
+  @Output()
+  Stream get onFilterChange => _onFilterChange.stream;
+
+
 
   @override
   ngOnInit() {
@@ -23,11 +25,26 @@ class ProductFilterBar extends OnInit {
       print(e.currentTarget);
     });
   }
+
+  void toggleCompactView() {
+    options.isListView = !options.isListView;
+	_onFilterChange.add(options);
+  }
+
+  void selectorChange(ISelectMaterialElement element) {
+	  options.currentOrderBy = element;
+    _onFilterChange.add(options);
+  }
+
+  void paginatorChange(int page){
+	  options.currentPage = page;
+	  _onFilterChange.add(options);
+  }
 }
 
 class FilterBarOptions {
   bool isListView = false;
-  String currentOrderBy = '';
+  ISelectMaterialElement currentOrderBy = null;
   List<ISelectMaterialElement> orderByList = [
     new SelectMaterialElement('popularity', 'За популярністю'),
     new SelectMaterialElement('fromHight', 'Від дорогих'),
@@ -36,5 +53,4 @@ class FilterBarOptions {
 
   int totalPages = 1;
   int currentPage = 1;
-
 }

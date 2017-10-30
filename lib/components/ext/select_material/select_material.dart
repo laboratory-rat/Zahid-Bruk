@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'package:angular2/angular2.dart';
@@ -18,23 +19,23 @@ class SelectMaterial {
   @Input()
   List<ISelectMaterialElement> elements;
 
-  @Output()
-  ISelectMaterialElement current;
-
   @Input()
-  set defaultElement(ISelectMaterialElement e) => current == null ? select(e) : null;
+  ISelectMaterialElement current = null;
 
-  void select(ISelectMaterialElement e) {
-    var index = elements.indexOf(e);
+  StreamController<ISelectMaterialElement> _onSelect = new StreamController<ISelectMaterialElement>();
+  @Output()
+  Stream get onSelect => _onSelect.stream;
 
-    if (index < 0) return;
+  void select(ISelectMaterialElement e, [bool isSilent = false]) {
+    current = e;
 
-    if (current != null) {
-      elements.add(current);
+    if (elements == null) {
+      elements = [e];
+    } else if (!elements.any((x) => x.getLabel() == e.getLabel())) {
+      elements.add(e);
     }
 
-    current = e;
-    elements.removeAt(index);
+    if (!isSilent) _onSelect.add(current);
   }
 }
 

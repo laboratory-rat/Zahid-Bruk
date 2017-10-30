@@ -7,6 +7,6 @@
       <i class="material-icons">view_module</i>
     </button>
   </div>
-  <select-material [elements]='options.orderByList' [label]='"Select"' [defaultElement]='options.orderByList[0]'></select-material>
-  <material-paginator [count]='10' [currentPage]='2'></material-paginator>
+  <select-material (onSelect)='selectorChange($event)' [elements]='options.orderByList' [current]='options.currentOrderBy' [label]='"Select"'></select-material>
+  <material-paginator (onChange)='paginatorChange($event)' [count]='10' [currentPage]='2'></material-paginator>
 </div>

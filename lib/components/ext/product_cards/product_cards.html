@@ -1,5 +1,5 @@
 <div *ngIf='!vertical' class="mdl-grid product-cards-grid horizontal" style="padding: 8px 0px;" >
-    <div *ngFor='let p of list'  class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card mrs-a__slide-top"  [class.mdl-cell--12-col]='isFullWidth' (click)='emit(p)'>
+    <div *ngFor='let p of list'  class="mdl-cell mdl-cell--{{colsHorizontal}}-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp product-card" [ngClass]='animationStyle'  [class.mdl-cell--12-col]='isFullWidth' (click)='emit(p)'>
         <div class="image">
             <img [src]="p.images[0].src" [alt]="p.images[0].src">
         </div>
@@ -15,8 +15,8 @@
         </div>
     </div>
 </div>
-<div *ngIf='vertical === true' class="mdl-grid product-cards-grid vertical" style='padding: 8px 0px;'>
-    <div *ngFor='let p of list' (click)='emit(p)' class="mdl-cell mdl-cell--2-col mdl-card mdl-shadow--2dp product-card mrs-a__slide-top" [class.mdl-cell--12-col]='isFullWidth'>
+<div *ngIf='vertical' class="mdl-grid product-cards-grid vertical" style='padding: 8px 0px;'>
+    <div *ngFor='let p of list' (click)='emit(p)' class="mdl-cell mdl-cell--{{colsVertical}}-col mdl-card mdl-shadow--2dp product-card" [ngClass]='animationStyle' [class.mdl-cell--12-col]='isFullWidth'>
         <div class="image">
             <img [src]='p.images[0].src' [alt]='p.name'>
         </div>
