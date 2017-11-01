@@ -1,8 +1,10 @@
 import '../../configs/main_config.dart';
 import '../../services/shop_service.dart';
+import '../ext/material_paginator/material_paginator.dart';
 import '../ext/product_cards/product_cards.dart';
 import '../ext/product_filter/product_filter.dart';
 import '../ext/product_filter_bar/product_filter_bar.dart';
+import '../ext/select_material/select_material.dart';
 import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
@@ -13,35 +15,43 @@ import 'package:lr_storage/lr_storage.dart';
 @Component(
     selector: 'page-shop',
     templateUrl: 'page_shop.html',
-    directives: const [COMMON_DIRECTIVES, ProductFilter, ROUTER_DIRECTIVES, ProductFilterBar, ProductCards],
+    directives: const [COMMON_DIRECTIVES, ProductFilter, SelectMaterial, MaterialPaginator, ProductCards],
     providers: const [ShopService],
     styleUrls: const ['page_shop.css'])
 class PageShop implements OnInit {
   final RouteParams _routeParams;
   final ShopService _shop;
+  final Router _router;
 
   final LRStorage _productStorage = new LRStorage(prefix: 'product', type: LRStorageType.Session);
   final LRStorage _storage = new LRStorage(prefix: 'shop', type: LRStorageType.Session);
 
   int currentCategory;
+
+  WCProduct currentProduct;
+  List<WCProduct> allLoadedProducts = [];
+  List<WCProduct> currentProducts = [];
+
+  PageShop(this._shop, this._routeParams, this._router);
+
+  FilterObject filter = new FilterObject();
+
+  List<SelectMaterialElement> listOrderBy = [
+    new SelectMaterialElement('date', 'Від нових'),
+    new SelectMaterialElement('title', 'Title'),
+  ];
+  SelectMaterialElement currentOrderBy;
+  int totalPages = 1;
   int currentPage = 1;
   int currentPerPage = 20;
 
-  WCProduct currentProduct;
-  List<WCProduct> currentProducts;
-
-  PageShop(this._shop, this._routeParams);
-
-  FilterObject filter = new FilterObject();
-  FilterBarOptions barOptions = new FilterBarOptions();
-
-  String host;
+  bool isListView = false;
 
   bool isLoading = true;
 
   @override
   Future ngOnInit() async {
-    host = mainConfig['server']['host'];
+    currentOrderBy = listOrderBy[0];
 
     try {
       currentCategory = int.parse(_routeParams.get('category'));
@@ -100,9 +110,9 @@ class PageShop implements OnInit {
     isLoading = true;
     List<ApiParam> params = new List<ApiParam>();
 
-    params.add(new ApiParam(param: 'page', value: currentPage.toString()));
-    params.add(new ApiParam(param: 'per_page', value: currentPerPage.toString()));
     params.add(new ApiParam(param: 'status', value: 'publish'));
+    params.add(new ApiParam(param: 'orderby', value: currentOrderBy.id));
+    params.add(new ApiParam(param: 'order', value: 'desc'));
 
     if (currentCategory != null && currentCategory != -1) {
       filter.setCurrentCategory(currentCategory);
@@ -113,13 +123,21 @@ class PageShop implements OnInit {
 
     var productListMap = null;
     if ((productListMap = _storage.load(searchId)) != null) {
-      currentProducts = productListMap.map((x) => new WCProduct()..fromJson(x)).toList();
+      allLoadedProducts = productListMap.map((x) => new WCProduct()..fromJson(x)).toList();
     } else {
-      currentProducts = await _shop.getProductsCustom(params);
-      _storage.save(searchId, currentProducts);
+      allLoadedProducts = await _shop.getProductsCustom(params);
+      _storage.save(searchId, allLoadedProducts);
     }
 
-    currentProducts.forEach((x) => _productStorage.save(x.id.toString(), x));
+    if (allLoadedProducts.length > 20) {
+      currentProducts = allLoadedProducts.sublist(0, 20);
+      totalPages = (allLoadedProducts.length / 20).ceil();
+    } else {
+      totalPages = 1;
+      currentProducts = allLoadedProducts;
+    }
+
+    allLoadedProducts.forEach((x) => _productStorage.save(x.id.toString(), x));
 
     isLoading = false;
   }
@@ -130,9 +148,22 @@ class PageShop implements OnInit {
     await loadProductList();
   }
 
-  void onBarChange(FilterBarOptions options)
-  {
-	  window.console.log(options);
-	  
+  void onFilterChange($event) {
+    currentOrderBy = $event;
+    loadProductList();
+  }
+
+  void onPaginatorChange($event) {
+    window.console.log($event);
+  }
+
+  void onBarChange(FilterBarOptions options) {
+    window.console.log(options);
+  }
+
+  void selectProduct(WCProduct product){
+    if(product == null) return;
+
+    _router.navigate(['PageProduct', {'productId': product.id.toString()}]);
   }
 }

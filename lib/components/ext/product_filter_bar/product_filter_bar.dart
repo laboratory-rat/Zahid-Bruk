@@ -17,28 +17,27 @@ class ProductFilterBar extends OnInit {
   @Output()
   Stream get onFilterChange => _onFilterChange.stream;
 
-
-
   @override
   ngOnInit() {
     window.onResize.listen((e) {
       print(e.currentTarget);
+      window.console.log(123);
     });
   }
 
   void toggleCompactView() {
     options.isListView = !options.isListView;
-	_onFilterChange.add(options);
-  }
-
-  void selectorChange(ISelectMaterialElement element) {
-	  options.currentOrderBy = element;
     _onFilterChange.add(options);
   }
 
-  void paginatorChange(int page){
-	  options.currentPage = page;
-	  _onFilterChange.add(options);
+  void selectorChange(ISelectMaterialElement element) {
+    options.currentOrderBy = element;
+    _onFilterChange.add(options);
+  }
+
+  void paginatorChange(int page) {
+    options.currentPage = page;
+    _onFilterChange.add(options);
   }
 }
 
@@ -46,9 +45,9 @@ class FilterBarOptions {
   bool isListView = false;
   ISelectMaterialElement currentOrderBy = null;
   List<ISelectMaterialElement> orderByList = [
-    new SelectMaterialElement('popularity', 'За популярністю'),
-    new SelectMaterialElement('fromHight', 'Від дорогих'),
-    new SelectMaterialElement('fromChip', 'Від дешевих')
+    new SelectMaterialElement('default', 'За популярністю'),
+    new SelectMaterialElement('max_price', 'Від дорогих'),
+    new SelectMaterialElement('min_price', 'Від дешевих')
   ];
 
   int totalPages = 1;

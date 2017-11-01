@@ -1,0 +1,22 @@
+.filter-bar-host {
+    min-height: 48px !important;
+    height: 48px !important;
+    overflow: visible !important;
+    z-index: 1000 !important;
+    display: block;
+    width: 100%;
+  }
+  
+  
+  .filter-bar-holder {
+    padding: 8px;
+    height: 32px;
+    overflow: visible;
+    display: flex;
+  }
+  
+  .filter-bar-holder>*{
+      display: flex;
+      flex: 1;
+  }
+  

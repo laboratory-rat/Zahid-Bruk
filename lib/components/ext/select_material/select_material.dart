@@ -5,6 +5,7 @@ import 'package:angular2/angular2.dart';
 
 abstract class ISelectMaterialElement {
   String getLabel();
+  String getId();
 }
 
 @Component(
@@ -48,5 +49,10 @@ class SelectMaterialElement extends ISelectMaterialElement {
   @override
   String getLabel() {
     return label;
+  }
+
+  @override
+  String getId(){
+	  return id;
   }
 }

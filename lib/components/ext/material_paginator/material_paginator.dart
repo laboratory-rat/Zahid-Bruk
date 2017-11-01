@@ -10,8 +10,10 @@ class MaterialPaginator {
   @Input()
   int count = 1;
 
-  bool _defaultPageChecked = false;
+  @Input()
+  int perPage = 20;
 
+  bool _defaultPageChecked = false;
   @Input()
   set defaultPage(int page) {
     if (_defaultPageChecked) return;

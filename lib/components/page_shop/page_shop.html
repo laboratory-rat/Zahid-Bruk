@@ -4,10 +4,26 @@
 		<product-filter class="product-filter" [filter]='filter' (filterSubmit)='search()'>Filter</product-filter>
 	</div>
 	<div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top">
-		<product-filter-bar (onFilterChange)='onBarChange($event)' class='mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp product-filter-bar' [options]='barOptions'></product-filter-bar>
+		<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp filter-bar-host">
+
+			<div class=" filter-bar-holder">
+				<div class="view-buttons">
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [disabled]='isListView' (click)='isListView = !isListView'>
+						<i class="material-icons">view_list</i>
+					</button>
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [disabled]='!isListView' (click)='isListView = !isListView'>
+						<i class="material-icons">view_module</i>
+					</button>
+				</div>
+				<select-material (onSelect)='onFilterChange($event)' [elements]='listOrderBy' [current]='currentOrderBy' [label]='"Select"'></select-material>
+				<material-paginator [class.hidden]='totalPages == 1' (onChange)='onPaginatorChange($event)' [count]='totalPages' [currentPage]='currentPage'></material-paginator>
+			</div>
+		</div>
+
 		<!-- Card view -->
 		<div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-			<product-cards [list]='currentProducts ?? []' [colsHorizontal]='6' [colsVertical]='4' [animationStyle]='"mrs-a__fade"' [prefix]='""' [maxItems]='6' [vertical]='!barOptions.isListView'></product-cards>
+			<product-cards [list]='currentProducts ?? []' [colsHorizontal]='6' [colsVertical]='4' [animationStyle]='"mrs-a__fade"' [prefix]='""'
+			 [maxItems]='6' (event)='selectProduct($event)' [vertical]='!isListView'></product-cards>
 		</div>
 	</div>
 </div>
