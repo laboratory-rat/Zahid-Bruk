@@ -72,15 +72,24 @@
 .product-cards-grid.vertical .product-card {
 	height: auto;
 	background-repeat: no-repeat;
-	background-image: url('content/img/card_back_yellow.png');
+	background-image: url('content/img/card_back_yellow_rotated.png');
+	background-size: contain;
 }
 
 .product-cards-grid.vertical .product-card .image {
 	padding: 16px;
 	display: block;
-	background-image: url('/content/img/slider_up_card_back.png');
-	width: auto;
+	background-image: url('/content/img/white_back.png');
+	width: auto;	
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 0 0;
 	height: auto;
+	transition: all .5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.product-cards-grid.vertical .product-card:hover .image{
+	background-position-x: -300px;
 }
 
 .product-cards-grid.vertical .image>img {

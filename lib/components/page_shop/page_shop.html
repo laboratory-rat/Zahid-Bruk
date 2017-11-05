@@ -1,7 +1,7 @@
 <div class="mdl-grid mdl-container appear-page">
 	<div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
-	<div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
-		<product-filter class="product-filter" [filter]='filter' (filterSubmit)='search()'>Filter</product-filter>
+	<div class="mdl-cell mdl-cell--12-col mdl-cell--3-col-desktop mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
+		<product-filter class="product-filter" [filter]='filter' (onChange)='search()'>Filter</product-filter>
 	</div>
 	<div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top">
 		<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp filter-bar-host">
@@ -22,7 +22,7 @@
 
 		<!-- Card view -->
 		<div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-			<product-cards [list]='currentProducts ?? []' [colsHorizontal]='6' [colsVertical]='4' [animationStyle]='"mrs-a__fade"' [prefix]='""'
+			<product-cards [list]='currentProducts ?? []' [colsHorizontal]='6' [colsVertical]='4' [animationStyle]='"mrs-a__slide-top--long"' [prefix]='""'
 			 [maxItems]='6' (event)='selectProduct($event)' [vertical]='!isListView'></product-cards>
 		</div>
 	</div>

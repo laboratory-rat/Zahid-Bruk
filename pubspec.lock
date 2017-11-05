@@ -216,7 +216,7 @@ packages:
       name: lab_rat_wp_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.21"
+    version: "1.1.23"
   logging:
     description:
       name: logging
@@ -228,7 +228,7 @@ packages:
       name: lr_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.21"
   matcher:
     description:
       name: matcher
@@ -246,7 +246,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.3"
+    version: "0.9.4"
   node_preamble:
     description:
       name: node_preamble
@@ -312,7 +312,7 @@ packages:
       name: shelf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.7.1"
   shelf_packages_handler:
     description:
       name: shelf_packages_handler
@@ -360,7 +360,7 @@ packages:
       name: stack_trace
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.2"
+    version: "1.9.0"
   stream_channel:
     description:
       name: stream_channel
@@ -384,7 +384,7 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.26"
+    version: "0.12.27"
   typed_data:
     description:
       name: typed_data

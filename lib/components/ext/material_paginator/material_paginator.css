@@ -8,6 +8,6 @@ button.mdl-button--primary{
 	display: inline-block ;
 }
 .material-paginator{
-	display: inline-block !important;
-	float: right;
+	position: absolute;
+	right: 0;
 }

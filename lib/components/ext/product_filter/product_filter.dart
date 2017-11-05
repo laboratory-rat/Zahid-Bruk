@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:angular2/angular2.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 import 'dart:html';
@@ -6,49 +7,77 @@ import 'dart:html';
     selector: 'product-filter',
     templateUrl: 'product_filter.html',
     styleUrls: const['product_filter.css'],
-    directives: const[COMMON_DIRECTIVES]
+    directives: const[COMMON_DIRECTIVES, CORE_DIRECTIVES]
 )
 class ProductFilter{
 
     @Input()
     FilterObject filter = new FilterObject();
 
+    final StreamController _onChange = new StreamController();
     @Output()
-    final filterSubmit = new EventEmitter();
+    Stream get onChange => _onChange.stream;
 
-    String get currentCategoryName => filter.displayCategory;
-    List<WPTag> get activeTags => filter.activeTags;
+    bool price110Checked = false;
+    bool price110240Checked = false;
+    bool price240500Checked = false;
+    bool price5001200Checked = false;
 
-    bool salesOnly = false;
-
-    void setCategory(WPCategory category){
-        filter.currentCategory = category;
-        querySelector('#dom-select-category').querySelector('.mdl-menu__container').classes.remove('is-visible');
+    void selectCategory(WPCategory c){
+        filter.currentCategory = c;
+        submit();
     }
 
-    List<WPTag> avaliableTags()
-    {
-        List<WPTag> result = [];
-        filter.tags.forEach((t) {
-            if(!filter.activeTags.contains(t))
-                result.add(t);
-        });
+    void selectTag(WPTag tag){
+        if(filter.selectedTags.any((x) => x.id == tag.id)){
+            filter.selectedTags.removeWhere((x) => x.id == tag.id);
+        } else{
+            filter.selectedTags.add(tag);
+        }
 
-        return result;
+        submit();
     }
 
-    void addTag(WPTag tag)
-    {
-        filter.activeTags.add(tag);
-    }
+    void onPriceChenge(){
+        if(price110Checked){
+            filter.minPrice = 0;
+            filter.maxPrice = 110;
+        }
 
-    void removeTag(WPTag tag)
-    {
-        filter.activeTags.remove(tag);
+        if(price110240Checked){
+            if(!price110Checked){
+                filter.minPrice = 110;
+            }
+
+            filter.maxPrice = 240;
+        }
+
+        if(price240500Checked){
+            if(!price110Checked && !price110240Checked){
+                filter.minPrice = 240;
+            }
+
+            filter.maxPrice = 500;
+        }
+
+        if(price5001200Checked){
+            if(!price110Checked && !price110240Checked && !price240500Checked){
+                filter.minPrice = 500;
+            }
+
+            filter.maxPrice = 1200;
+        }
+
+        if(!price110Checked && !price110240Checked && !price240500Checked && !price5001200Checked){
+            filter.maxPrice = -1;
+            filter.minPrice = -1;
+        }
+
+        submit();
     }
 
     void submit(){
-        filterSubmit.add('submit');
+        _onChange.add(null);
     }
 }
 
@@ -56,10 +85,17 @@ class FilterObject{
     String get displayCategory => currentCategory == null ? 'Усі' : currentCategory.name;
     WPCategory currentCategory = null;
     List<WPCategory> categories = [];
-    List<WPTag> tags = [];
-    List<WPTag> activeTags = [];
 
-    bool salesOnly = false;
+    String query = '';
+
+    List<WPTag> tags = [];
+    List<WPTag> selectedTags = [];
+
+    int maxPrice = -1;
+    int minPrice = -1;
+
+    bool popular = false;
+    bool sales = false;
 
     setCurrentCategory(int cat)
     {

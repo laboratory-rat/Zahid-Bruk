@@ -37,8 +37,9 @@ class PageShop implements OnInit {
   FilterObject filter = new FilterObject();
 
   List<SelectMaterialElement> listOrderBy = [
-    new SelectMaterialElement('date', 'Від нових'),
-    new SelectMaterialElement('title', 'Title'),
+    new SelectMaterialElement('popular', 'Від популярних'),
+    new SelectMaterialElement('price_max', 'Від дешевших'),
+    new SelectMaterialElement('price_min', 'Від дорожчих'),
   ];
   SelectMaterialElement currentOrderBy;
   int totalPages = 1;
@@ -51,6 +52,24 @@ class PageShop implements OnInit {
 
   @override
   Future ngOnInit() async {
+    isLoading = true;
+
+    parseUrl();
+
+    await Future.wait([
+      loadCategories(),
+      loadTags(),
+      loadProductList()
+    ]);
+
+    // await loadCategories();
+    // await loadTags();
+    // await loadProductList();
+
+    isLoading = false;
+  }
+
+  void parseUrl() {
     currentOrderBy = listOrderBy[0];
 
     try {
@@ -70,100 +89,139 @@ class PageShop implements OnInit {
     } catch (ex) {
       currentPerPage = 20;
     }
-    // Categories
+  }
 
-    var categorsMap = null;
-    List<WPCategory> categors = new List<WPCategory>();
-    if ((categorsMap = _storage.load<List<WPCategory>>('categories')) != null) {
-      categorsMap.forEach((x) => categors.add(new WPCategory()..fromJson(x)));
+  Future loadCategories() async {
+    var list = _storage.load('categories');
+    if (list != null) {
+      filter.categories = list.map((x) => new WPCategory()..fromJson(x)).toList();
     } else {
-      categors.add(new WPCategory()
-        ..id = -1
-        ..name = 'Усі');
-
-      categors.addAll(await _shop.getAllCategories());
-      _storage.save('categories', categors);
+      filter.categories = await _shop.getAllCategories();
+      filter.categories.insert(
+          0,
+          new WPCategory()
+            ..id = -1
+            ..name = 'Усі');
+      _storage.save('categories', filter.categories);
     }
 
-    filter.categories = categors;
+    filter.currentCategory = filter.categories.firstWhere((x) => x.id == currentCategory);
+  }
 
-    // Tags
-
-    List<WPTag> tags;
-    Map savedTags = _storage.load('tags');
-
-    if (savedTags != null) {
-      JsonPackage package = new JsonPackage<WPTag>(new List<WPTag>())..fromJson(savedTags);
-      tags = package.inner;
+  Future loadTags() async {
+    var tagsMap = _storage.load('tags');
+    if (tagsMap != null) {
+      filter.tags = tagsMap.map((x) => new WPTag()..fromJson(x)).toList();
     } else {
-      tags = await _shop.getAllTags();
-      JsonPackage pack = new JsonPackage<WPTag>(tags);
-      _storage.save('tags', pack);
+      filter.tags = await _shop.getAllTags();
+      _storage.save('tags', filter.tags);
     }
-
-    filter.tags = tags;
-
-    await loadProductList();
   }
 
   Future loadProductList() async {
-    isLoading = true;
     List<ApiParam> params = new List<ApiParam>();
 
     params.add(new ApiParam(param: 'status', value: 'publish'));
-    params.add(new ApiParam(param: 'orderby', value: currentOrderBy.id));
-    params.add(new ApiParam(param: 'order', value: 'desc'));
-
-    if (currentCategory != null && currentCategory != -1) {
-      filter.setCurrentCategory(currentCategory);
-      params.add(new ApiParam(param: 'category', value: currentCategory.toString()));
-    }
 
     String searchId = params.map((x) => x.param + '=' + x.value).join('&');
 
-    var productListMap = null;
-    if ((productListMap = _storage.load(searchId)) != null) {
-      allLoadedProducts = productListMap.map((x) => new WCProduct()..fromJson(x)).toList();
+    var cachedProducts = [];
+
+    if ((cachedProducts = _storage.load<List<WCProduct>>(searchId))?.toList() != null) {
+      allLoadedProducts = cachedProducts.map((x) => new WCProduct()..fromJson(x)).toList();
     } else {
       allLoadedProducts = await _shop.getProductsCustom(params);
       _storage.save(searchId, allLoadedProducts);
     }
 
-    if (allLoadedProducts.length > 20) {
-      currentProducts = allLoadedProducts.sublist(0, 20);
-      totalPages = (allLoadedProducts.length / 20).ceil();
+    // sort
+
+    if (currentCategory != null && currentCategory != -1) {
+      allLoadedProducts = allLoadedProducts.where((x) => x.categories.any((z) => z.id == currentCategory)).toList();
+    }
+
+    if (currentOrderBy.id == 'popular') {
+      allLoadedProducts.sort((a, b) => (a.variations.length > b.variations.length) ? 0 : 1);
+    } else if (currentOrderBy.id == 'price_max') {
+      allLoadedProducts.sort((a, b) => int.parse(a.price.toString()) < int.parse(b.price.toString()) ? 0 : 1);
+    } else if (currentOrderBy.id == 'price_min') {
+      window.console.log(allLoadedProducts[0].price);
+      allLoadedProducts.sort((a, b) => int.parse(a.price.toString()) < int.parse(b.price.toString()) ? 1 : 0);
+    } else {
+      allLoadedProducts.sort((a, b) => a.date_created.millisecondsSinceEpoch < b.date_created.millisecondsSinceEpoch ? 0 : 1);
+    }
+
+    // sort 2
+
+    if (filter.minPrice != -1) {
+      allLoadedProducts = allLoadedProducts.where((x) => int.parse(x.price.toString()) >= filter.minPrice).toList();
+    }
+
+    if (filter.maxPrice != -1) {
+      allLoadedProducts = allLoadedProducts.where((x) => int.parse(x.price.toString()) <= filter.maxPrice).toList();
+    }
+
+    if (filter.popular || filter.sales) {
+      var tmpList = [];
+
+      if (filter.popular) {
+        tmpList.addAll(allLoadedProducts.where((x) => x.featured));
+      }
+
+      if (filter.sales) {
+        tmpList.addAll(allLoadedProducts.where((x) => x.on_sale));
+      }
+
+      allLoadedProducts = [];
+
+      tmpList.forEach((x) {
+        if (!allLoadedProducts.any((z) => z == x)) allLoadedProducts.add(x);
+      });
+    }
+
+    if(filter.selectedTags.length != 0){
+      allLoadedProducts = allLoadedProducts.where((x) => x.tags.any((z) => filter.selectedTags.any((k) => k.id == z.id))).toList();
+    }
+
+    if (allLoadedProducts.length > 5) {
+      currentProducts = allLoadedProducts.sublist(0, 5);
+      totalPages = (allLoadedProducts.length / 5).ceil();
     } else {
       totalPages = 1;
       currentProducts = allLoadedProducts;
     }
 
     allLoadedProducts.forEach((x) => _productStorage.save(x.id.toString(), x));
+  }
+
+  Future search() async {
+    isLoading = true;
+
+    currentCategory = filter.currentCategory.id;
+    await loadProductList();
 
     isLoading = false;
   }
 
-  Future search() async {
-    currentCategory = filter.currentCategory.id;
-
-    await loadProductList();
-  }
-
   void onFilterChange($event) {
+    isLoading = true;
+
     currentOrderBy = $event;
     loadProductList();
+
+    isLoading = false;
   }
 
   void onPaginatorChange($event) {
-    window.console.log($event);
+    var list = allLoadedProducts.skip(($event - 1) * 5).take(5);
+    currentProducts = list;
   }
 
-  void onBarChange(FilterBarOptions options) {
-    window.console.log(options);
-  }
-
-  void selectProduct(WCProduct product){
-    if(product == null) return;
-
-    _router.navigate(['PageProduct', {'productId': product.id.toString()}]);
+  void selectProduct(WCProduct product) {
+    if (product == null) return;
+    _router.navigate([
+      'PageProduct',
+      {'productId': product.id.toString()}
+    ]);
   }
 }
