@@ -8,11 +8,7 @@ abstract class ISelectMaterialElement {
   String getId();
 }
 
-@Component(
-    selector: 'select-material',
-    templateUrl: 'select_material.html',
-    styleUrls: const ['select_material.css'],
-    directives: const [COMMON_DIRECTIVES])
+@Component(selector: 'select-material', templateUrl: 'select_material.html', styleUrls: const ['select_material.css'], directives: const [COMMON_DIRECTIVES])
 class SelectMaterial {
   @Input()
   String label = 'label';
@@ -26,6 +22,12 @@ class SelectMaterial {
   StreamController<ISelectMaterialElement> _onSelect = new StreamController<ISelectMaterialElement>();
   @Output()
   Stream get onSelect => _onSelect.stream;
+
+  String id;
+
+  SelectMaterial() {
+    id = this.hashCode.toString();
+  }
 
   void select(ISelectMaterialElement e, [bool isSilent = false]) {
     current = e;
@@ -52,7 +54,7 @@ class SelectMaterialElement extends ISelectMaterialElement {
   }
 
   @override
-  String getId(){
-	  return id;
+  String getId() {
+    return id;
   }
 }

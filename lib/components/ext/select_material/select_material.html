@@ -1,10 +1,10 @@
 <div class="mdl-textfield mdl-js-textfield select-material">
-    <input class="mdl-textfield__input" readonly [value]='current?.getLabel()' type="text" id='input'>
-    <label class="mdl-textfield__label" for='input'>
+    <input class="mdl-textfield__input" readonly [value]='current?.getLabel()' type="text" [attr.id]='id'>
+    <label class="mdl-textfield__label" [attr.for]='id'>
         {{current == null ? label : ""}}
     </label>
     <i class="material-icons">keyboard_arrow_down</i>
-    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" style='width: 100%;' for="input">
+    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" style='width: 100%;' [attr.for]="id">
         <li class="mdl-menu__item" style='width: 100%;'  *ngFor='let element of elements' (click)='select(element)' [hidden]='element == current'>{{element?.getLabel()}}</li>
     </ul>
 </div>

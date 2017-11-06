@@ -42,9 +42,18 @@ class PageShop implements OnInit {
     new SelectMaterialElement('price_min', 'Від дорожчих'),
   ];
   SelectMaterialElement currentOrderBy;
+
+  List<SelectMaterialElement> listPerPage = [
+    new SelectMaterialElement('5', "5"),
+    new SelectMaterialElement('10', "10"),
+    new SelectMaterialElement('20', "20"),
+    new SelectMaterialElement('50', "50"),
+  ];
+
+  SelectMaterialElement currentPerPage;
+
   int totalPages = 1;
   int currentPage = 1;
-  int currentPerPage = 20;
 
   bool isListView = false;
 
@@ -54,13 +63,13 @@ class PageShop implements OnInit {
   Future ngOnInit() async {
     isLoading = true;
 
+    currentPerPage = listPerPage[1];
+
     parseUrl();
 
-    await Future.wait([
-      loadCategories(),
-      loadTags(),
-      loadProductList()
-    ]);
+    windowSizeListener();
+
+    await Future.wait([loadCategories(), loadTags(), loadProductList()]);
 
     // await loadCategories();
     // await loadTags();
@@ -82,12 +91,6 @@ class PageShop implements OnInit {
       currentPage = int.parse(_routeParams.get('page'));
     } catch (ex) {
       currentPage = 1;
-    }
-
-    try {
-      currentPerPage = int.parse(_routeParams.get('per_page'));
-    } catch (ex) {
-      currentPerPage = 20;
     }
   }
 
@@ -179,13 +182,15 @@ class PageShop implements OnInit {
       });
     }
 
-    if(filter.selectedTags.length != 0){
+    if (filter.selectedTags.length != 0) {
       allLoadedProducts = allLoadedProducts.where((x) => x.tags.any((z) => filter.selectedTags.any((k) => k.id == z.id))).toList();
     }
 
-    if (allLoadedProducts.length > 5) {
-      currentProducts = allLoadedProducts.sublist(0, 5);
-      totalPages = (allLoadedProducts.length / 5).ceil();
+    int perPage = int.parse(currentPerPage.id);
+
+    if (allLoadedProducts.length > perPage) {
+      currentProducts = allLoadedProducts.sublist(0, perPage);
+      totalPages = (allLoadedProducts.length / perPage).ceil();
     } else {
       totalPages = 1;
       currentProducts = allLoadedProducts;
@@ -217,11 +222,50 @@ class PageShop implements OnInit {
     currentProducts = list;
   }
 
+  void onPerPageChange(SelectMaterialElement $event) {
+    currentPerPage = $event;
+    search();
+  }
+
   void selectProduct(WCProduct product) {
     if (product == null) return;
     _router.navigate([
       'PageProduct',
       {'productId': product.id.toString()}
     ]);
+  }
+
+  // filter bar actions
+
+  void windowSizeListener() {
+    var onResize = (Event event) {
+      if (window.innerWidth > 760) {
+        isFilterBarActive = false;
+      } else {
+        isListView = true;
+      }
+    };
+
+    window.onResize.listen(onResize);
+    onResize(null);
+
+    var onScroll = (Event event) {
+      if (window.pageYOffset < 80) {
+        isFilterBarOffset = true;
+      } else {
+        isFilterBarOffset = false;
+      }
+    };
+
+    window.onScroll.listen(onScroll);
+    onScroll(null);
+  }
+
+  bool isFilterBarActive = false;
+  bool isFilterBarOffset = false;
+  void toggleFilterBar() {
+    if (window.innerWidth >= 760) return;
+
+    isFilterBarActive = !isFilterBarActive;
   }
 }

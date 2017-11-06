@@ -12,11 +12,73 @@
     padding: 8px;
     height: 32px;
     overflow: visible;
-    display: flex;
   }
   
-  .filter-bar-holder>*{
-      display: flex;
-      flex: 1;
+
+
+  #select-perPage{
+    max-width: 80px;
   }
-  
+
+table{
+  width: 100%;
+}
+
+  table>tbody>tr>*{
+    display: table-cell ;
+    vertical-align: middle;
+    padding: 0 16px;
+  }
+
+  @media (max-width: 760px){
+    table>tbody>tr>*{
+      padding: 0 8px;
+    }
+  }
+
+  .view-buttons{
+    width: 15%;
+  }
+
+  #select-orderBy{
+    width: 35%;
+  }
+
+  #select-perPage{
+    width: 15%;
+  }
+
+  material-paginator{
+    width: 35%;
+  }
+
+@media screen and (max-width: 760px){
+  .view-buttons{
+    display: none !important;
+  }
+
+  #filter-cell{
+    position: fixed;
+    /* bottom: 32px; */
+    top: calc(100vh - 48px);
+    left: 0;
+    width: 100%;
+    margin: 0;
+    z-index: 10000;
+
+    transition: all ease .375s;
+  }
+
+  #filter-cell.active{
+    top:0px;
+
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100%;
+
+  }
+
+  #filter-cell.active.offset{
+    top:80px;
+  }
+}

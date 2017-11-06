@@ -5,9 +5,7 @@ button.mdl-button--primary{
 }
 
 :host{
-	display: inline-block ;
 }
 .material-paginator{
-	position: absolute;
-	right: 0;
+	float: right;
 }
