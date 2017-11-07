@@ -17,6 +17,10 @@ class MRMaterialCarousel{
     @Input()
     String host = '';
 
+    StreamController<String> _onClick = new StreamController<String>();
+    @Output()
+    Stream get onClick => _onClick.stream; 
+
     CarouselObject get current => objects == null || objects.length < index ? null : objects[index]; 
     int index = 0;
     bool isTriggered = false;
@@ -66,14 +70,20 @@ class MRMaterialCarousel{
 
         isTriggered = true;
     }
+
+    void entityClick(CarouselObject object){
+        if(object == null) return;
+        _onClick.add(object.id);
+    }
 }
 
 class CarouselObject{
+    String id;
     String src;
     String title;
     String description;
     num price;
 
-    CarouselObject({this.title, this.src, this.description, this.price});
+    CarouselObject({this.id, this.title, this.src, this.description, this.price});
     CarouselObject.empty();
 }

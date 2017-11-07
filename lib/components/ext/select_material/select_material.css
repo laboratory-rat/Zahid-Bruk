@@ -6,6 +6,10 @@
     height: 48px;
 }
 
+div.mdl-textfield{
+    width: 100%;
+}
+
 .select-material {
     padding: 0;
     height: 32px;

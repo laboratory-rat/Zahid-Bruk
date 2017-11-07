@@ -67,8 +67,6 @@ class PageProduct implements OnInit {
       _storage.save(currentProductId.toString(), currentProduct);
     }
 
-    window.console.log(currentProduct);
-
     // set all parameters
 
     gallery = currentProduct.images;
@@ -96,7 +94,6 @@ class PageProduct implements OnInit {
 
     currentProduct.related_ids.forEach((x) {
       var relativeMap = _storage.load(x.toString());
-      window.console.log(relativeMap);
 
       if (relativeMap == null) {
         toSeeToLoad.add(x.toString());
@@ -118,8 +115,6 @@ class PageProduct implements OnInit {
 
     if (toSeeToLoad.length > 0) {
       var loadedRelative = await _shopService.getProductsBatch(toSeeToLoad);
-
-      window.console.log(loadedRelative);
 
       loadedRelative.forEach((x) {
         _storage.save(x.id.toString(), x);

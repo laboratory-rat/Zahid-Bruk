@@ -2,7 +2,7 @@
 	<button class='mdl-button mdl-js-button mdl-button--icon' [disabled]='current == 1' (click)='add()'>
 		<i class="material-icons">keyboard_arrow_left</i>
 	</button>
-	<button class="mdl-button mdl-js-button mdl-button--primary" *ngFor='let i of list()' (click)='change(i)' [class.mdl-button--raised]='i == current'
+	<button class="mdl-button mdl-js-button mdl-button--primary" *ngFor='let i of list()' (click)='change(i)' [class.mdl-color-text--black]='i == current' [class.mdl-button--raised]='i == current'
 	    [class.mdl-color-text--grey-50]='i==current'>{{i}}</button>
 	<button class='mdl-button mdl-js-button mdl-button--icon' [disabled]='current == count' (click)='minus()'>
 		<i class="material-icons">keyboard_arrow_right</i>

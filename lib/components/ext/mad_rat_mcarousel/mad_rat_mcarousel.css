@@ -1,5 +1,5 @@
 div.mrmc-container{
-    width: 736px;
+    /* width: 736px; */
     height: 450px;
     display: flex;
     margin: 0 auto;
@@ -130,6 +130,12 @@ div.mrmc-container{
     height: 64px;
     top: calc(50% - 32px);
     left: calc(50% - 32px);
+}
+
+@media (max-width: 760px){
+    .arrow{
+        display: none;
+    }
 }
 
 @keyframes text-in{

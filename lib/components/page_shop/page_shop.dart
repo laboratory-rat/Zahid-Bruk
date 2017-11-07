@@ -148,7 +148,6 @@ class PageShop implements OnInit {
     } else if (currentOrderBy.id == 'price_max') {
       allLoadedProducts.sort((a, b) => int.parse(a.price.toString()) < int.parse(b.price.toString()) ? 0 : 1);
     } else if (currentOrderBy.id == 'price_min') {
-      window.console.log(allLoadedProducts[0].price);
       allLoadedProducts.sort((a, b) => int.parse(a.price.toString()) < int.parse(b.price.toString()) ? 1 : 0);
     } else {
       allLoadedProducts.sort((a, b) => a.date_created.millisecondsSinceEpoch < b.date_created.millisecondsSinceEpoch ? 0 : 1);

@@ -5,6 +5,22 @@ body {
     background-color: #eee;
 }
 
+@media (max-width: 720px){
+    .hide-tel{
+        display: none !important;
+    }
+}
+
+@media (min-width: 720px){
+    .show-tel{
+        display: none !important;
+    }
+}
+
+.mdl-layout__drawer-button{
+    outline: none;
+    outline-offset: none;
+}
 
 /* Overflow */
 
@@ -80,7 +96,7 @@ td>p {
 
 @media screen and (max-width: 960px) {
     .shop-product-grid {
-        width: auto !important;
+        width: 100% !important;
     }
 }
 
@@ -417,72 +433,73 @@ del>.woocommerce-Price-amount.amount {
 
 /* home */
 
+/* lead forms */
+
 #home-lead-form {
-    height: 125px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    display: block;
     min-height: 0px;
 }
 
-#home-lead-form>div.title{
+#home-lead-form:not(.active){
+    opacity: 0;
+    height: 0px;
+}
+
+#home-lead-form div.title{
     font-size: 20px;
     padding-top: 12px;
     font-weight: 400;
-
 }
 
-#home-lead-form>div.form {
-    margin: 24px auto 0 auto;
-    display: inline-block;
-    margin: 24px 16px 0 16px;
+#home-lead-form .mdl-textfield{
+    width: 100%;
 }
 
-#home-lead-form>div.form>div {
-    padding-right: 24px;
-    display: inline-block;
-}
-
-#home-lead-form>div.form>button{
-    padding-left: 24px;
-    display: inline-block;
-    margin-top: -10px;
-}
-
-#home-second-lead-form textarea{
-    height: 152px;
-    resize: none;
-    border: 1px solid rgba(0,0,0,.12);
-}
-
-#home-second-lead-form .title{
-    font-size: 24px;
-    padding-top: 16px;
-}
-
-#home-second-lead-form .mdl-cell{
-    margin-bottom: 0px;
-}
-
-#home-second-lead-form button{
-    max-height: 200px;
+#home-lead-form button{
     display: block;
-    margin: 0px auto 16px auto;
-}
-
-#home-second-lead-form .pad:after{
     width: calc(100% - 16px);
+    margin-left: 8px;
 }
 
-#home-second-lead-form .pad{
+
+#home-lead-form-2 .mdl-card{
+    min-height: 0px;
     padding: 8px;
-    padding-top: 4px;
 }
 
-#home-second-lead-form textarea{
-    padding: 8px;
-    width: calc(100% - 16px);
+
+#home-lead-form-2 table{
+    width: 100%;
 }
+
+#home-lead-form-2 table tr{
+    vertical-align: middle;
+}
+
+#home-lead-form-2 tr td{
+    padding: 8px;
+}
+
+#home-lead-form-2 button{
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#home-lead-form-2 .title{
+    text-align: center;
+    font-size: 24px;
+}
+
+#home-lead-form-2 .mdl-textfield{
+    width: 100%;
+    display: block;
+}
+
+#home-lead-form-2 textarea{
+    resize: none;
+}
+
+/* end lead forms */
 
 .product-cards-grid.vertical del{
     font-size: 16px;

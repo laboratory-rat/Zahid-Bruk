@@ -1,6 +1,5 @@
 .filter-bar-host {
     min-height: 48px !important;
-    height: 48px !important;
     overflow: visible !important;
     z-index: 1000 !important;
     display: block;
@@ -13,8 +12,6 @@
     height: 32px;
     overflow: visible;
   }
-  
-
 
   #select-perPage{
     max-width: 80px;
@@ -31,6 +28,10 @@ table{
   }
 
   @media (max-width: 760px){
+    /* #select-orederBy{
+      width: 100%;
+    } */
+
     table>tbody>tr>*{
       padding: 0 8px;
     }

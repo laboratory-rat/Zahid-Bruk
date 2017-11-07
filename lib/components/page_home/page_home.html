@@ -1,13 +1,12 @@
 <div class="mdl-grid mdl-container appear-page">
     <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--order-2-desktop mdl-cell--hide-phone">
-        <mr-material-carousel [host]='host' [objects]='carouselObjects'></mr-material-carousel>
+        <mr-material-carousel (onClick)='selectProductById($event)' [objects]='carouselObjects'></mr-material-carousel>
     </div>
     <div class="mdl-cell mdl-cell--top mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone 
      mdl-cell--order-1-desktop mdl-card" style='background-color: rgba(0,0,0,0);'>
         <div style='color: rgba(0,0,0,.87)' class="mdl-typography--headline mdl-typography--text-center">
             Бруківка, тротуарна плитка.
             <br> Бордюри, водостоки
-            <br> Допишу потом
         </div>
         <div style='padding-top: 24px;'>
             <p>
@@ -27,7 +26,7 @@
 
     <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
         Бруківка
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
+        <button [routerLink]='["PageShopCategory", {category: "15"}]' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
             БІЛЬШЕ
         </button>
     </div>
@@ -39,49 +38,72 @@
 
     <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
         Тротуарна плитка
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
+        <button [routerLink]='["PageShopCategory", {category: "23"}]' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
             БІЛЬШЕ
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <product-cards [list]='productsTP' [maxItems]='3'></product-cards>
+        <product-cards [list]='productsTP' (event)='selectProduct($event)' [maxItems]='3'></product-cards>
     </div>
 
-    <!-- Lead form -->
-    <div class="mdl-cell mdl-cell--hide-phone mdl-cell--6-col mdl-cell--3-offset-desktop mdl-card mdl-shadow--2dp" id='home-lead-form'>
-        <div class='mdl-typography--text-center mdl-color-text--black title'>Отримуйте найсвіжщі новини про знижки</div>
-        <div class='form'>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="home-lead-email">
-                <label class="mdl-textfield__label" for="home-lead-email">Email</label>
+    <!-- lead form 2 -->
+
+    <div class="mdl-cell--12-col" id='home-lead-form' active-on-view viewActiveClass='mrs-a__slide-left active' overflowHeight='300'>
+        <div class="mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--hide-phone mdl-card mdl-shadow--2dp" style='min-height: 0px;'>
+                <table style='width: 100%;'>
+                    <tbody>
+                        <tr style='vertical-align: middle;'>
+                            <td colspan='2'>
+                                <div class='mdl-typography--text-center mdl-color-text--black title'>Отримуйте найсвіжщі новини про знижки</div>
+                            </td>
+                        </tr>
+                        <tr style='vertical-align: middle;'>
+                            <td style='padding: 8px;'>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="email" id="home-lead-email">
+                                    <label class="mdl-textfield__label" for="home-lead-email">Email</label>
+                                </div>
+                            </td>
+                            <td style='padding: 8px;'>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">підписатися</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">повідомляти мене про новини</button>
+            <div class="mdl-layout-spacer"></div>
         </div>
     </div>
+
+    <!-- end lead form 2 -->
+
 
     <!-- best proppositions -->
     <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
         Кращі пропозиції
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
+        <button [routerLink]='["PageShop"]' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
             БІЛЬШЕ
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <product-cards [list]='verticalProducts' [prefix]='""' [maxItems]='6' [vertical]='true'></product-cards>
+        <product-cards [list]='verticalProducts' [prefix]='""' [maxItems]='6' (event)='selectProduct($event)' [vertical]='true'></product-cards>
     </div>
 
     <!-- News -->
     <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
         Новини
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
+        <button [routerLink]='["PageNews"]' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
             БІЛЬШЕ
         </button>
     </div>
+
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
         <div class="mdl-grid news" style="padding: 8px 0px;">
             <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
 
-                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <img src="http://www.signoffshore.com/wp-content/uploads/2015/03/news-placeholder-image2-270x230.jpg" alt="tmp">
                 <div class="text">
                     <div class="title">
                         Title
@@ -95,7 +117,7 @@
 
             <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
 
-                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <img src="http://www.signoffshore.com/wp-content/uploads/2015/03/news-placeholder-image2-270x230.jpg" alt="tmp">
                 <div class="text">
                     <div class="title">
                         Title
@@ -109,7 +131,7 @@
 
             <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
 
-                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <img src="http://www.signoffshore.com/wp-content/uploads/2015/03/news-placeholder-image2-270x230.jpg" alt="tmp">
                 <div class="text">
                     <div class="title">
                         Title
@@ -123,7 +145,7 @@
 
             <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
 
-                <img src="https://i.pinimg.com/originals/cf/e6/7c/cfe67cc0dcc0290f87a3e1b8c6b13bd7.gif" alt="tmp">
+                <img src="http://www.signoffshore.com/wp-content/uploads/2015/03/news-placeholder-image2-270x230.jpg" alt="tmp">
                 <div class="text">
                     <div class="title">
                         Title
@@ -138,33 +160,55 @@
     </div>
 
     <!-- second lead form -->
-    <div style='margin-top: 16px; margin-bottom: 16px;' class="mdl-cell mdl-cell--hide-phone mdl-cell--6-col mdl-cell--3-offset-desktop mdl-card mdl-shadow--2dp" id='home-second-lead-form'>
-        <div class='mdl-typography--text-center mdl-color-text--black title'>Консультація</div>
-        <div class='mdl-grid'>
-            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="home-second-lead-name">
-                    <label class="mdl-textfield__label" for="home-second-lead-name">Ім'я</label>
-                </div>
 
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="email" id="home-second-lead-email">
-                    <label class="mdl-textfield__label" for="home-second-lead-email">Email</label>
-                </div>
+    <div class="mdl-cell mdl-cell--12-col"  overflowHeight='150' id='home-lead-form-2' style='margin: 0;'>
+        <div class="mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--hide-phone mdl-card mdl-shadow--2dp">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class='mdl-typography--title title' colspan='2'>
+                                Консультація
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="home-second-lead-name">
+                                    <label class="mdl-textfield__label" for="home-second-lead-name">Ім'я</label>
+                                </div>
 
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="tel" id="home-second-lead-tel">
-                    <label class="mdl-textfield__label" for="home-second-lead-tel">Номер телефону</label>
-                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="email" id="home-second-lead-email">
+                                    <label class="mdl-textfield__label" for="home-second-lead-email">Email</label>
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="tel" id="home-second-lead-tel">
+                                    <label class="mdl-textfield__label" for="home-second-lead-tel">Номер телефону</label>
+                                </div>
+                            </td>
+                            <td style='vertical-align: bottom;'>
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <textarea rows="8" class="mdl-textfield__input" id="home-second-lead-text"></textarea>
+                                    <label class="mdl-textfield__label pad" for="home-second-lead-text">Ваше питання</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan='2'>
+                                <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect mdl-color-text--white">
+                                    Консультація
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone">
-                <div class="mdl-textfield mdl-js-textfield">
-                    <textarea class="mdl-textfield__input" id="home-second-lead-text"></textarea>
-                    <label class="mdl-textfield__label pad" for="home-second-lead-text">Повідомлення</label>
-                </div>
-            </div>
+            <div class="mdl-layout-spacer"></div>
         </div>
-
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">повідомляти мене про новини</button>
     </div>
+
+
 </div>

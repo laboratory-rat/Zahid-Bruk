@@ -1,6 +1,6 @@
 <div class="mdl-grid mdl-container appear-page">
 	<div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
-	<div id='filter-cell' [class.active]='isFilterBarActive' [class.offset]='isFilterBarOffset' (click)='toggleFilterBar()'  class="mdl-cell mdl-cell--12-col mdl-cell--3-col-desktop mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
+	<div id='filter-cell' [class.active]='isFilterBarActive' [class.offset]='isFilterBarOffset' (click)='toggleFilterBar()' class="mdl-cell mdl-cell--12-col mdl-cell--3-col-desktop mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
 		<product-filter class="product-filter" [filter]='filter' (onChange)='search()'>Filter</product-filter>
 	</div>
 	<div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top">
@@ -19,15 +19,13 @@
 						<select-material id='select-orderBy' (onSelect)='onFilterChange($event)' [elements]='listOrderBy' [current]='currentOrderBy'
 						 [label]='"Select"'></select-material>
 
-						<select-material id='select-perPage' (onSelect)='onPerPageChange($event)' [elements]='listPerPage' [current]='currentPerPage'
+						<select-material class='hide-tel' id='select-perPage' (onSelect)='onPerPageChange($event)' [elements]='listPerPage' [current]='currentPerPage'
 						 [label]='"Per page"'></select-material>
-						<material-paginator [class.hidden]='totalPages == 1' (onChange)='onPaginatorChange($event)' [count]='totalPages' [currentPage]='currentPage'></material-paginator>
+						<material-paginator class='hide-tel' [class.hidden]='totalPages == 1' (onChange)='onPaginatorChange($event)' [count]='totalPages'
+						 [currentPage]='currentPage'></material-paginator>
 					</tr>
 				</tbody>
 			</table>
-			<div class=" filter-bar-holder">
-
-			</div>
 		</div>
 
 		<!-- Card view -->
@@ -35,5 +33,8 @@
 			<product-cards [list]='currentProducts ?? []' [colsHorizontal]='6' [colsVertical]='4' [animationStyle]='"mrs-a__slide-top--long"'
 			 [prefix]='""' [maxItems]='6' (event)='selectProduct($event)' [vertical]='!isListView'></product-cards>
 		</div>
+
+		<material-paginator style='width: 100%;' class='mdl-cell mdl-cell--12-col show-tel' [class.hidden]='totalPages == 1'
+		 (onChange)='onPaginatorChange($event)' [count]='totalPages' [currentPage]='currentPage'></material-paginator>
 	</div>
 </div>

@@ -8,9 +8,9 @@
                 <!-- Navigation. We hide it in small screens. -->
                 <nav class="mdl-navigation mdl-layout--large-screen-only">
                     <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageShop"]'>ТОВАРИ</a>
-                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageHome"]'>ПРО НАС</a>
-                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageShop"]'>КОНТАКТИ</a>
-                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageAbout"]'>НОВИНИ</a>
+                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageNews"]'>НОВИНИ</a>
+                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageAbout"]'>ПРО НАС</a>
+                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageContacts"]'>КОНТАКТИ</a>
                 </nav>
 
                 <div class="mdl-layout-spacer"></div>
@@ -22,14 +22,14 @@
                     </button>
                 </div>
                 <div class="header-tel color-text--grey-900 mdl-cell--hide-phone">
-                    +38050-883-71-61
+                    <a href='tel:+380508837161' style='text-decoration: none; color: rgba(0,0,0,.87); vertical-align: sub;'>+38050-883-71-61</a>
                 </div>
                 <button id="header-tel-ico" class="mdl-button mdl-js-button mdl-button--icon header-tel-ico">
                     <i class="material-icons">phone</i>
                 </button>
 
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="header-tel-ico">
-                    <li class="mdl-menu__item">+38-050-883-71-61</li>
+                    <li class="mdl-menu__item" onclick="window.open('tel:+380508837161');">+38-050-883-71-61</li>
                 </ul>
 
             </div>
@@ -58,10 +58,26 @@
     </header>
     <div class="mdl-layout__drawer" id='drawer'>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageShop"]'>ТОВАРИ</a>
-            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageHome"]'>ПРО НАС</a>
-            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageShop"]'>КОНТАКТИ</a>
-            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageAbout"]'>НОВИНИ</a>
+            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageHome"]'>
+                <i class="material-icons">home</i>
+                <span>ГОЛОВНА</span>
+            </a>
+            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageShop"]'>
+                <i class="material-icons">shopping_cart</i>
+                <span>ТОВАРИ</span>
+            </a>
+            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageNews"]'>
+                <i class="material-icons">new_releases</i>
+                <span>НОВИНИ</span>
+            </a>
+            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageAbout"]'>
+                <i class="material-icons">person</i>
+                <span>ПРО НАС</span>
+            </a>
+            <a class="mdl-navigation__link mdl-typography--body-2" (click)='toggleDrawer()' [routerLink]='["PageContacts"]'>
+                <i class="material-icons">mail</i>
+                <span>КОНТАКТИ</span>
+            </a>
         </nav>
     </div>
     <main class="mdl-layout__content">
@@ -74,80 +90,37 @@
 
                 <div class="mdl-mega-footer__drop-down-section">
                     <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                    <h1 class="mdl-mega-footer__heading">Features</h1>
+                    <h1 class="mdl-mega-footer__heading">Сторінки</h1>
                     <ul class="mdl-mega-footer__link-list">
                         <li>
-                            <a href="#">About</a>
+                            <a [routerLink]='["PageHome"]'>Головна</a>
                         </li>
                         <li>
-                            <a href="#">Terms</a>
+                            <a [routerLink]='["PageShop"]'>Товари</a>
                         </li>
                         <li>
-                            <a href="#">Partners</a>
+                            <a [routerLink]='["PageNews"]'>Новини</a>
                         </li>
                         <li>
-                            <a href="#">Updates</a>
+                            <a [routerLink]='["PageAbout"]'>Про нас</a>
+                        </li>
+                        <li>
+                            <a [routerLink]='["PageContacts"]'>Контакти</a>
                         </li>
                     </ul>
                 </div>
-
                 <div class="mdl-mega-footer__drop-down-section">
                     <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                    <h1 class="mdl-mega-footer__heading">Details</h1>
+                    <h1 class="mdl-mega-footer__heading">Товари</h1>
                     <ul class="mdl-mega-footer__link-list">
                         <li>
-                            <a href="#">Specs</a>
+                            <a [routerLink]='["PageShopCategory", {category: "15"}]'>Бруківка</a>
                         </li>
                         <li>
-                            <a href="#">Tools</a>
-                        </li>
-                        <li>
-                            <a href="#">Resources</a>
+                            <a [routerLink]='["PageShopCategory", {category: "23"}]'>Тротуарна плитка</a>
                         </li>
                     </ul>
                 </div>
-
-                <div class="mdl-mega-footer__drop-down-section">
-                    <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                    <h1 class="mdl-mega-footer__heading">Technology</h1>
-                    <ul class="mdl-mega-footer__link-list">
-                        <li>
-                            <a href="#">How it works</a>
-                        </li>
-                        <li>
-                            <a href="#">Patterns</a>
-                        </li>
-                        <li>
-                            <a href="#">Usage</a>
-                        </li>
-                        <li>
-                            <a href="#">Products</a>
-                        </li>
-                        <li>
-                            <a href="#">Contracts</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mdl-mega-footer__drop-down-section">
-                    <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                    <h1 class="mdl-mega-footer__heading"></h1>
-                    <ul class="mdl-mega-footer__link-list">
-                        <li>
-                            <a target='_blank' href="https://goo.gl/maps/vCAjUBLnEZ62">Адреса</a>
-                        </li>
-                        <li>
-                            <a href="tel:+380508837161">Номер</a>
-                        </li>
-                        <li>
-                            <a href="tel:+380508837161">Номер 2</a>
-                        </li>
-                        <li>
-                            <a href="tel:+380508837161">Номер 3</a>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
 
             <div class="mdl-mega-footer__bottom-section">
@@ -168,6 +141,6 @@
 
 
 <!-- Colored FAB button with ripple -->
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--6dp call-fab">
+<button onclick="window.open('tel:+380508837161');" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--6dp call-fab">
     <i class="material-icons">phone</i>
 </button>

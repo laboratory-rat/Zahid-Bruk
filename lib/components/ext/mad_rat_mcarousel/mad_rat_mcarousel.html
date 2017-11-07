@@ -1,6 +1,6 @@
 <div class="mrmc-container" (mouseenter)='mouseenter()' (mouseleave)='mouseleave()'>
     <div class='arrow'>
-        <button class="mdl-button mdl-js-button mdl-js-riple-effect mdl-button--icon" (click)='back()'>
+        <button class="mdl-button mdl-js-button mdl-js-riple-effect arrow-button mdl-button--icon" (click)='back()'>
             <i class="material-icons">keyboard_arrow_left</i>
         </button>
     </div>
@@ -19,7 +19,7 @@
                     <div class="mdl-card__supporting-text" [innerHTML]='object.description'>
                     </div>
                     <div class="more">
-                        <button class="mdl-button mdl-button--primary">
+                        <button (click)='entityClick(object)' class="mdl-button mdl-button--primary">
                             дізнатися більше    
                         </button>
                     </div>
@@ -31,7 +31,7 @@
         </div>
     </ul>
     <div class="arrow">
-        <button class="mdl-button mdl-js-button mdl-js-riple-effect mdl-button--icon" (click)='front()'>
+        <button class="mdl-button mdl-js-button mdl-js-riple-effect arrow-button mdl-button--icon" (click)='front()'>
             <i class="material-icons">keyboard_arrow_right</i>
         </button>
     </div>
