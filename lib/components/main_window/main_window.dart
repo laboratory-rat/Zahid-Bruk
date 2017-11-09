@@ -37,6 +37,8 @@ class MainWindow implements OnInit {
   @override
   ngOnInit() {
     new Timer.periodic(new Duration(milliseconds: 50), (Timer t) => checkFixed());
+
+    
   }
 
   void checkFixed() {

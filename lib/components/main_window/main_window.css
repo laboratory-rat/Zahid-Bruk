@@ -1,0 +1,7 @@
+#drawer i.material-icons{
+    padding-right: 32px;
+}
+
+#drawer .mdl-navigation__link span{
+    vertical-align: text-top;
+}

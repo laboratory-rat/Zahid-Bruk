@@ -1,5 +1,6 @@
 import '../../configs/main_config.dart';
 import '../../services/shop_service.dart';
+import '../common/page_analytics.dart';
 import '../ext/material_paginator/material_paginator.dart';
 import '../ext/product_cards/product_cards.dart';
 import '../ext/product_filter/product_filter.dart';
@@ -18,7 +19,7 @@ import 'package:lr_storage/lr_storage.dart';
     directives: const [COMMON_DIRECTIVES, ProductFilter, SelectMaterial, MaterialPaginator, ProductCards],
     providers: const [ShopService],
     styleUrls: const ['page_shop.css'])
-class PageShop implements OnInit {
+class PageShop extends PageAnalytics implements OnInit {
   final RouteParams _routeParams;
   final ShopService _shop;
   final Router _router;
@@ -70,6 +71,10 @@ class PageShop implements OnInit {
     windowSizeListener();
 
     await Future.wait([loadCategories(), loadTags(), loadProductList()]);
+
+    if (currentCategory != -1) {
+      ga.sendCustom('Look category', category: 'search', label: filter.currentCategory.name, value: filter.currentCategory.id);
+    }
 
     // await loadCategories();
     // await loadTags();
@@ -203,6 +208,36 @@ class PageShop implements OnInit {
 
     currentCategory = filter.currentCategory.id;
     await loadProductList();
+
+    // #region alalytics
+
+    if(currentCategory != -1){
+      ga.sendCustom('Look category', category: 'search', label: filter.currentCategory.name, value: filter.currentCategory.id);
+    }
+
+    if(filter.selectedTags.length > 0){
+      filter.selectedTags.forEach((x){
+        ga.sendCustom('Look tag', category: 'search', label: x.name, value: x.id);
+      });
+    }
+
+    if(filter.maxPrice != -1){
+      ga.sendCustom('Max price', category: 'search', value: filter.maxPrice, label: filter.maxPrice.toString());
+    }
+
+    if(filter.minPrice != -1){
+      ga.sendCustom('Min price', category: 'search', value: filter.minPrice, label: filter.maxPrice.toString());
+    }
+
+    if(filter.popular){
+      ga.sendCustom('Look popular', category: 'search', label: 'Popular', value: 1);
+    }
+
+    if(filter.sales){
+      ga.sendCustom('Look sales', category: 'search', label: 'Sales', value: 1);
+    }
+
+    // #endregion analytics
 
     isLoading = false;
   }

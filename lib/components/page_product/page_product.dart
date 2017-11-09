@@ -1,5 +1,6 @@
 import '../../domain/ProductPackage.dart';
 import '../../services/shop_service.dart';
+import '../common/page_analytics.dart';
 import '../ext/calc/calc.dart';
 import '../ext/scroll_animation/scroll_animation.dart';
 import 'dart:async';
@@ -7,6 +8,7 @@ import 'dart:convert';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
+import 'package:gtag_analytics/src/gtag_analytics.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 import 'package:lr_storage/lr_storage.dart';
 import 'package:zahid_bruk_web/components/ext/product_cards/product_cards.dart';
@@ -18,7 +20,7 @@ import 'package:zahid_bruk_web/components/page_product/page_product.dart';
     templateUrl: 'page_product.html',
     styleUrls: const ['page_product.css'],
     providers: const [ShopService])
-class PageProduct implements OnInit {
+class PageProduct extends PageAnalytics implements OnInit {
   final ShopService _shopService;
   final RouteParams _routeParams;
   final Router _router;
@@ -66,6 +68,8 @@ class PageProduct implements OnInit {
       currentProduct = await _shopService.getProductById(currentProductId);
       _storage.save(currentProductId.toString(), currentProduct);
     }
+
+    ga.sendCustom('Product view', category: 'view', label: currentProduct.name, value: currentProduct.id);
 
     // set all parameters
 

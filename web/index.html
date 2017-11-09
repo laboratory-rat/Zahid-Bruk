@@ -2,15 +2,75 @@
 <html>
 
 <head>
-    <!--<script>
-    // WARNING: DO NOT set the <base href> like this in production!
-    // Details: https://webdev.dartlang.org/angular/guide/router
-    (function () {
-      var m = document.location.pathname.match(/^(\/[-\w]+)+\/web($|\/)/);
-      document.write('<base href="' + (m ? m[0] : '/') + '" />');
-    }());
-  </script>-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109381113-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109381113-1', { 'send_page_view': false });
+    </script>
+    <script async>
+        let lastWindow = '';
+        (function () {
+            setInterval(() => {
+                if (gtag === undefined) return;
+
+                if (lastWindow !== window.location.href) {
+                    lastWindow = window.location.href;
+
+                    let list = lastWindow.split('/#');
+
+                    if (list.length === 1) {
+                        gtag('event', 'page_view', {
+                            'page_location': lastWindow,
+                            'page_path': '/'
+                        });
+                    } else {
+                        list = list[1].split('/');
+                        gtag('event', 'page_view', {
+                            'page_location': lastWindow,
+                            'page_path': list[1]
+                        });
+                    }
+                }
+            }, 1000);
+        })(window, document);
+    </script>
+
     <base href='/'>
+
+    <!-- schemas -->
+
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "url": "http://www.zahid.madrat.studio.com",
+          "logo": "http://www.zahid.madrat.studio.com/content/img/logo.svg",
+          "contactPoint": [{
+            "@type": "ContactPoint",
+            "telephone": "+3-8050-883-70-60",
+            "contactType": "customer service"
+          }]
+        }
+        </script>
+
+    <!-- end schemas -->
+
+    <!-- tags -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-P2BHCHP');</script>
+    <!-- End Google Tag Manager -->
+    <!-- end tags -->
 
     <title>Zahid-Bruk</title>
     <meta charset="utf-8">
@@ -29,12 +89,12 @@
 
     <!--mdl dom updater-->
     <script>
-        setInterval("upgradeMDL();", 50);
+            setInterval("upgradeMDL();", 50);
 
-        function upgradeMDL() {
-            if (window.componentHandler && window.componentHandler != undefined)
-                componentHandler.upgradeDom();
-        }
+            function upgradeMDL() {
+                if (window.componentHandler && window.componentHandler != undefined)
+                    componentHandler.upgradeDom();
+            }
     </script>
 
     <script async type="application/dart" src="main.dart"></script>
@@ -42,7 +102,12 @@
 </head>
 
 <body>
-
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2BHCHP" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <main-window>
         <!-- MDL Spinner Component with Single Color -->
         <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style='position: absolute; width: 68px; height: 68px; top: calc(50% - 34px); left: calc(50% - 34px);'></div>

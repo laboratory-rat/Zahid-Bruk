@@ -1,6 +1,7 @@
 import '../../configs/main_config.dart';
 import '../../services/shop_service.dart';
 import '../active-on-view/active-on-view.dart';
+import '../common/page_analytics.dart';
 import '../ext/mad_rat_mcarousel/mad_rat_mcarousel.dart';
 import '../ext/product_cards/product_cards.dart';
 import 'dart:async';
@@ -16,7 +17,7 @@ import 'package:lr_storage/lr_storage.dart';
     directives: const [COMMON_DIRECTIVES, MRMaterialCarousel, ProductCards, ActiveOnView, ROUTER_DIRECTIVES],
     providers: const [ShopService],
     styleUrls: const ['page_home.css'])
-class PageHome implements OnInit {
+class PageHome extends PageAnalytics implements OnInit {
   final ShopService _service;
   final Router _router;
 
@@ -34,7 +35,6 @@ class PageHome implements OnInit {
   @override
   Future ngOnInit() async {
     // Load products
-
     await Future.wait([_loadCarousel(), _loadPaving(), _loadTp(), _loadBest()]);
   }
 
