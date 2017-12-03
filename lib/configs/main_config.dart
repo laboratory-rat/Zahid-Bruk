@@ -1,15 +1,15 @@
 Map mainConfig = {
     'site':{
-        'host': 'http://zadmin.madrat.studio'
+        'host': 'https://admin.zaxidbruk.in.ua'
     },
     'server':{
-        'host': 'https://zadmin.madrat.studio',
+        'host': 'https://admin.zaxidbruk.in.ua',
         'api': 'wp-json/wp/v2/'
     },
     'wp': {
-        'key': 'ck_09632eba43a5e6f5623179952e0078ba1446db11',
-        'secret': 'cs_b92da41ca70ce07bf642f0c0c978dbda54533a8c',
-        'host': 'zadmin.madrat.studio',
+        'key': 'ck_8903c50d9169ccab81c7259c53c60749675d99dc',
+        'secret': 'cs_74f36de1df9c1961cc7616b9f99a008d08bc9384',
+        'host': 'admin.zaxidbruk.in.ua',
         'categories': {
             'paving': 15
         }

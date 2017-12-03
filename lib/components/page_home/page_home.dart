@@ -10,6 +10,7 @@ import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 import 'package:lr_storage/lr_storage.dart';
+import 'package:zahid_bruk_web/services/head_service.dart';
 
 @Component(
     selector: 'page-home',
@@ -20,6 +21,7 @@ import 'package:lr_storage/lr_storage.dart';
 class PageHome extends PageAnalytics implements OnInit {
   final ShopService _service;
   final Router _router;
+  final HeadService _head;
 
   final LRStorage _storage = new LRStorage(type: LRStorageType.Session, prefix: 'carousel');
 
@@ -30,10 +32,13 @@ class PageHome extends PageAnalytics implements OnInit {
   List<WCProduct> productsTP = [];
   List<WCProduct> verticalProducts = [];
 
-  PageHome(this._service, this._router) {}
+  PageHome(this._service, this._router, this._head) {}
 
   @override
   Future ngOnInit() async {
+    _head.title = 'головна сторінка';
+    _head.update();
+
     // Load products
     await Future.wait([_loadCarousel(), _loadPaving(), _loadTp(), _loadBest()]);
   }
@@ -65,7 +70,7 @@ class PageHome extends PageAnalytics implements OnInit {
   Future _loadTp() async {
     var savedTp = _storage.load('tp');
     if (savedTp == null) {
-      productsTP = await _service.getProductsByCategory(23, [new ApiParam(param: 'per_page', value: '3')]);
+      productsTP = await _service.getProductsByCategory(16, [new ApiParam(param: 'per_page', value: '3')]);
       _storage.save('tp', productsTP);
     } else {
       productsTP = savedTp.map((x) => new WCProduct()..fromJson(x)).toList();

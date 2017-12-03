@@ -29,6 +29,7 @@ class MainWindow implements OnInit {
   Element get drawerObfuscatorElement => querySelector('.mdl-layout__obfuscator');
   Element get secondNav => querySelector('#second-menu');
 
+
   void toggleDrawer() {
     drawerElement.classes.toggle('is-visible');
     drawerObfuscatorElement.classes.toggle('is-visible');
@@ -36,9 +37,7 @@ class MainWindow implements OnInit {
 
   @override
   ngOnInit() {
-    new Timer.periodic(new Duration(milliseconds: 50), (Timer t) => checkFixed());
-
-    
+    window.onScroll.listen((_) => checkFixed());
   }
 
   void checkFixed() {

@@ -7,7 +7,7 @@
         <span>></span>
         <span>{{currentProduct?.name}}</span>
     </div>
-    <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-grid--no-spacing mdl-card mdl-shadow--2dp mrs-a__fade" style='padding: 0px;' [class.hidden]='currentProduct == null'>
+    <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-grid--no-spacing mdl-cell--top mdl-card mdl-shadow--2dp mrs-a__fade" style='padding: 0px;' [class.hidden]='currentProduct == null'>
         <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone" style='margin: 0;' id='product-variations'>
             <ul>
                 <li *ngFor='let i of gallery'>
@@ -73,7 +73,7 @@
                     <a href="#panel-info" class="mdl-tabs__tab is-active">Опис</a>
                     <a href="#panel-extra" class="mdl-tabs__tab">Детально</a>
                 </div>
-              
+
                 <div class="mdl-tabs__panel is-active" [innerHtml]='shortDescription' id="panel-info">
 
                 </div>
@@ -81,13 +81,13 @@
 
                 </div>
 
-              </div>
+            </div>
         </div>
     </div>
     <div class="mdl-cell mdl-cell--4-col" id='relative' [class.hidden]='toSeeProducts.length == 0'>
         <div class="mdl-typography--headline mrs-a__fade" style='padding: 0 8px;'>
             Цікаві пропозиції
         </div>
-        <product-cards [list]='toSeeProducts' (event)='changeProduct($event)' [prefix]='""' [maxItems]='6' [vertical]='false' [isFullWidth]='true'></product-cards>
+        <product-cards [hCSm]="'4'" [hCMd]='"6"' [vCLg]='"12"' [hCLg]='"12"' [list]='toSeeProducts' (event)='changeProduct($event)' [prefix]='""' [maxItems]='6' [vertical]='false'></product-cards>
     </div>
 </div>

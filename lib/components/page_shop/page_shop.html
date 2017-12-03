@@ -1,40 +1,35 @@
 <div class="mdl-grid mdl-container appear-page">
-	<div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
-	<div id='filter-cell' [class.active]='isFilterBarActive' [class.offset]='isFilterBarOffset' (click)='toggleFilterBar()' class="mdl-cell mdl-cell--12-col mdl-cell--3-col-desktop mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
-		<product-filter class="product-filter" [filter]='filter' (onChange)='search()'>Filter</product-filter>
-	</div>
-	<div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top">
-		<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp filter-bar-host">
-			<table>
-				<tbody>
-					<tr>
-						<div class="view-buttons">
-							<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [disabled]='isListView' (click)='isListView = !isListView'>
+    <div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
+    <div id='filter-cell' [class.active]='isFilterBarActive' [class.offset]='isFilterBarOffset' (click)='toggleFilterBar()' class="mdl-cell mdl-cell--12-col mdl-cell--3-col-desktop mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
+        <product-filter class="product-filter" [filter]='filter' (onChange)='search()'>Filter</product-filter>
+    </div>
+    <div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp filter-bar-host">
+            <table>
+                <tbody>
+                    <tr>
+                        <div class="view-buttons">
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [disabled]='isListView' (click)='isListView = !isListView'>
 								<i class="material-icons">view_list</i>
 							</button>
-							<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [disabled]='!isListView' (click)='isListView = !isListView'>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" [disabled]='!isListView' (click)='isListView = !isListView'>
 								<i class="material-icons">view_module</i>
 							</button>
-						</div>
-						<select-material id='select-orderBy' (onSelect)='onFilterChange($event)' [elements]='listOrderBy' [current]='currentOrderBy'
-						 [label]='"Select"'></select-material>
+                        </div>
+                        <select-material id='select-orderBy' (onSelect)='onFilterChange($event)' [elements]='listOrderBy' [current]='currentOrderBy' [label]='"Select"'></select-material>
 
-						<select-material class='hide-tel' id='select-perPage' (onSelect)='onPerPageChange($event)' [elements]='listPerPage' [current]='currentPerPage'
-						 [label]='"Per page"'></select-material>
-						<material-paginator class='hide-tel' [class.hidden]='totalPages == 1' (onChange)='onPaginatorChange($event)' [count]='totalPages'
-						 [currentPage]='currentPage'></material-paginator>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+                        <select-material class='hide-tel' id='select-perPage' (onSelect)='onPerPageChange($event)' [elements]='listPerPage' [current]='currentPerPage' [label]='"Per page"'></select-material>
+                        <material-paginator class='hide-tel' [class.hidden]='totalPages == 1' (onChange)='onPaginatorChange($event)' [count]='totalPages' [currentPage]='currentPage'></material-paginator>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-		<!-- Card view -->
-		<div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-			<product-cards [list]='currentProducts ?? []' [colsHorizontal]='6' [colsVertical]='4' [animationStyle]='"mrs-a__slide-top--long"'
-			 [prefix]='""' [maxItems]='6' (event)='selectProduct($event)' [vertical]='!isListView'></product-cards>
-		</div>
+        <!-- Card view -->
+        <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
+            <product-cards [list]='currentProducts ?? []' [hCSm]='"4"' [hCMd]='"4"' [hCLg]='"6"' [vCSm]='"4"' [vCMd]='"2"' [vCLg]='"3"' [animationStyle]='"mrs-a__slide-top--long"' [prefix]='""' [maxItems]='6' (event)='selectProduct($event)' [vertical]='!isListView'></product-cards>
+        </div>
 
-		<material-paginator style='width: 100%;' class='mdl-cell mdl-cell--12-col show-tel' [class.hidden]='totalPages == 1'
-		 (onChange)='onPaginatorChange($event)' [count]='totalPages' [currentPage]='currentPage'></material-paginator>
-	</div>
+        <material-paginator style='width: 100%;' class='mdl-cell mdl-cell--12-col show-tel' [class.hidden]='totalPages == 1' (onChange)='onPaginatorChange($event)' [count]='totalPages' [currentPage]='currentPage'></material-paginator>
+    </div>
 </div>

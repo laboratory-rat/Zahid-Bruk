@@ -22,10 +22,17 @@ transformers:
 - angular2:
     entry_points: web/main.dart
 - angular2/transform/reflection_remover:
-    $include: test/**_test.dart
+    $include: 
+    - test/**_test.dart
+    - web/main.dart
+    - package:*
 - test/pub_serve:
     $include: test/**_test.dart
 - dart_to_js_script_rewriter
+- $dart2js:
+    commandLineOptions: [--trust-type-annotations]
+    # commandLineOptions: [--trust-type-annotations, --trust-primitives]
+
 
 web:
   compiler:

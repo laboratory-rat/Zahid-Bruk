@@ -15,7 +15,7 @@ class ShopService {
 
     List<WPCategory> result = [];
     JSON.decode(response).forEach((c) {
-      result.add(new WPCategory()..fromJson(c));
+      result.add(new WPCategory()..fromMap(JSON.decode(c)));
     });
 
     return result;
@@ -24,14 +24,14 @@ class ShopService {
   Future<WCProduct> getProductById(int id) async {
     var response = await client.getWC('products/$id');
     if (response == null) return null;
-    return new WCProduct()..fromJsonString(response);
+    return new WCProduct()..fromMap(JSON.decode(response));
   }
 
   Future<List<WCProduct>> getProductVariations(int id) async {
     var response = await client.getWC('products/$id/variations');
     if (response == null) return new List<WCProduct>();
 
-    return JSON.decode(response).map((x) => new WCProduct()..fromJson(x)).toList();
+    return JSON.decode(response).map((x) => new WCProduct()..fromMap(JSON.decode(x))).toList();
   }
 
   Future<List<WCProduct>> getProductsByParams(String orderBy, bool isDesc,
@@ -70,7 +70,7 @@ class ShopService {
 
     List<WCProduct> result = [];
     JSON.decode(response).forEach((r) {
-      result.add(new WCProduct()..fromJson(r));
+      result.add(new WCProduct()..fromMap(JSON.decode(r)));
     });
 
     return result;
@@ -100,9 +100,13 @@ class ShopService {
     var response = await client.getWC('products', params);
 
     List<WCProduct> result = [];
-    JSON.decode(response).forEach((r) {
-      result.add(new WCProduct()..fromJson(r));
-    });
+    var target = JSON.decode(response);
+    for(var x in target){
+      window.console.log(x);
+
+      result.add(new WCProduct()..fromMap(x));
+    }
+
 
     return result;
   }
@@ -111,7 +115,7 @@ class ShopService {
     if (params == null || params.length < 1) return new List<WCProduct>();
 
     var response = await client.getWC('products', params);
-    return JSON.decode(response).map((x) => new WCProduct()..fromJson(x)).toList();
+    return JSON.decode(response).map((x) => new WCProduct()..fromMap(JSON.decode(x))).toList();
   }
 
   Future<List<WCProduct>> getProducts(int page, [int perPage = 20]) async {
@@ -122,7 +126,7 @@ class ShopService {
 
     List<WCProduct> result = [];
     JSON.decode(response).forEach((p) {
-      result.add(new WCProduct()..fromJson(p));
+      result.add(new WCProduct()..fromMap(JSON.decode(p)));
     });
 
     return result;
@@ -141,7 +145,7 @@ class ShopService {
     var response = await client.getWC('products', [new ApiParam(param: 'include', value: value)]);
 
     if (response == null) return new List<WCProduct>();
-    return JSON.decode(response).map((x) => new WCProduct()..fromJson(x));
+    return JSON.decode(response).map((x) => new WCProduct()..fromMap(JSON.decode(x)));
   }
 
   Future<List<WPTag>> getAllTags() async {
@@ -151,7 +155,7 @@ class ShopService {
     if (response == null) return result;
 
     JSON.decode(response).forEach((t) {
-      result.add(new WPTag()..fromJson(t));
+      result.add(new WPTag()..fromMap(JSON.decode(t)));
     });
 
     return result;
@@ -166,5 +170,10 @@ class ApiOrderBy extends ISelectMaterialElement {
   @override
   String getLabel() {
     return title;
+  }
+
+  @override
+  String getId() {
+    return '-1';
   }
 }

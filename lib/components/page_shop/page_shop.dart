@@ -12,6 +12,7 @@ import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
 import 'package:lab_rat_wp_api/lab_rat_wp_api.dart';
 import 'package:lr_storage/lr_storage.dart';
+import 'package:zahid_bruk_web/services/head_service.dart';
 
 @Component(
     selector: 'page-shop',
@@ -23,6 +24,7 @@ class PageShop extends PageAnalytics implements OnInit {
   final RouteParams _routeParams;
   final ShopService _shop;
   final Router _router;
+  final HeadService _head;
 
   final LRStorage _productStorage = new LRStorage(prefix: 'product', type: LRStorageType.Session);
   final LRStorage _storage = new LRStorage(prefix: 'shop', type: LRStorageType.Session);
@@ -33,7 +35,7 @@ class PageShop extends PageAnalytics implements OnInit {
   List<WCProduct> allLoadedProducts = [];
   List<WCProduct> currentProducts = [];
 
-  PageShop(this._shop, this._routeParams, this._router);
+  PageShop(this._shop, this._routeParams, this._router, this._head);
 
   FilterObject filter = new FilterObject();
 
@@ -62,6 +64,9 @@ class PageShop extends PageAnalytics implements OnInit {
 
   @override
   Future ngOnInit() async {
+    _head.title = 'магазин';
+    _head.update();
+
     isLoading = true;
 
     currentPerPage = listPerPage[1];

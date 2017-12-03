@@ -6,14 +6,20 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109381113-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
-        gtag('config', 'UA-109381113-1', { 'send_page_view': false });
+        gtag('config', 'UA-109381113-1', {
+            'send_page_view': false
+        });
     </script>
     <script async>
+        'use strict';
         let lastWindow = '';
-        (function () {
+        ((window, document) => {
             setInterval(() => {
                 if (gtag === undefined) return;
 
@@ -45,34 +51,44 @@
 
     <script type="application/ld+json">
         {
-          "@context": "http://schema.org",
-          "@type": "Organization",
-          "url": "http://www.zahid.madrat.studio.com",
-          "logo": "http://www.zahid.madrat.studio.com/content/img/logo.svg",
-          "contactPoint": [{
-            "@type": "ContactPoint",
-            "telephone": "+3-8050-883-70-60",
-            "contactType": "customer service"
-          }]
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "url": "http://www.zahid.madrat.studio.com",
+            "logo": "http://www.zahid.madrat.studio.com/content/img/logo.svg",
+            "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "+3-8050-883-70-60",
+                "contactType": "customer service"
+            }]
         }
-        </script>
+    </script>
 
     <!-- end schemas -->
 
     <!-- tags -->
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-P2BHCHP');</script>
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-P2BHCHP');
+    </script>
     <!-- End Google Tag Manager -->
     <!-- end tags -->
 
-    <title>Zahid-Bruk</title>
+    <title>Захід брук</title>
+    <meta name='description' content='Великій вибір бруківки'>
+    <meta name='keywords' content='Бруківка,Плитка,Залізобетонні вироби,Бетонні огорожі,Тротуарна плитка,Водостоки,Римський камінь,Трапеція'>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -85,20 +101,26 @@
 
     <link rel="icon" type="image/png" href="favicon.png">
 
+    <!-- bar color -->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#304FFE">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#304FFE">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#304FFE">
 
 
     <!--mdl dom updater-->
     <script>
-            setInterval("upgradeMDL();", 50);
+        setInterval("upgradeMDL();", 50);
 
-            function upgradeMDL() {
-                if (window.componentHandler && window.componentHandler != undefined)
-                    componentHandler.upgradeDom();
-            }
+        function upgradeMDL() {
+            if (window.componentHandler && window.componentHandler != undefined)
+                componentHandler.upgradeDom();
+        }
     </script>
 
-    <script async type="application/dart" src="main.dart"></script>
-    <!-- <script async src="packages/browser/dart.js"></script> -->
+
 </head>
 
 <body>
@@ -107,14 +129,20 @@
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2BHCHP" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    
+
     <main-window>
         <!-- MDL Spinner Component with Single Color -->
-        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style='position: absolute; width: 68px; height: 68px; top: calc(50% - 34px); left: calc(50% - 34px);'></div>
+        <div class='app-loader'>
+            <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+            <div class='text'>
+                Завантаження. Зачекайте секунду.
+            </div>
+        </div>
     </main-window>
 
 
-
+    <script type="application/dart" src="main.dart"></script>
+    <script src="packages/browser/dart.js"></script>
 </body>
 
 </html>

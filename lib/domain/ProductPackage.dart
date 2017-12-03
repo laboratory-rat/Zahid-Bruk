@@ -26,9 +26,9 @@ class ProductPackage extends JsonObject {
       result.variations.forEach((x) => x.images = [x.image]);
     }
 
-    if (result.product.relatedIds.length > 0) {
+    if (result.product.related_ids.length > 0) {
       result.toSee = (await _shopService.getProductsBatch(
-              result.product.relatedIds.map((x) => x.toString()).toList()))
+              result.product.related_ids.map((x) => x.toString()).toList()))
           .toList();
     } else {
       result.toSee = (await _shopService.getProducts(0, toSeeCount)).toList();
@@ -38,7 +38,7 @@ class ProductPackage extends JsonObject {
   }
 
   @override
-  void fromJson(Map target) {
+  void fromMap(Map target) {
     if (target.containsKey('product')) {
       product = new WCProduct()..fromJson(target['product']);
     }
@@ -52,5 +52,17 @@ class ProductPackage extends JsonObject {
     if (target.containsKey('toSee')) {
       toSee = target['toSee'].map((x) => new WCProduct()..fromJson(x)).toList();
     }
+  }
+
+
+  @override
+  Map toMap() {
+    var m = new Map();
+
+    m['product'] = product.toMap();
+    m['variations'] = variations.map((x) => x.toMap()).toList();
+    m['toSee'] = toSee.map((x) => x.toMap()).toList();
+
+    return m;
   }
 }

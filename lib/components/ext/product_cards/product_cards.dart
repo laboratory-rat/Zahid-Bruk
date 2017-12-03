@@ -24,10 +24,24 @@ class ProductCards implements OnInit {
   String prefix = 'Бруківка';
 
   @Input()
-  int colsVertical = 2;
+  String vCSm = '4';
 
   @Input()
-  int colsHorizontal = 4;
+  String vCMd = '4';
+
+  @Input()
+  String vCLg = '3';
+
+  @Input()
+  String hCSm = '4';
+
+  @Input()
+  String hCMd = '4';
+
+  @Input() 
+  String hCLg = '6';
+
+  @Input()
 
   @Input()
   String animationStyle = 'mrs-a__slide-top';
