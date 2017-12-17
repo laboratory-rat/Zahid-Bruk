@@ -45,8 +45,8 @@
 }
 
 .product-cards-grid.horizontal .product-card .text .title {
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: normal;
+    font-size: 18px;
     /* text-align: center; */
 }
 
@@ -112,7 +112,7 @@
 }
 
 .product-cards-grid.vertical .product-card .text .title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: normal;
 }
 

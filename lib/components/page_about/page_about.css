@@ -1,0 +1,126 @@
+.top-header-grid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.top-header {
+    height: 250px;
+    background: url('content/img/about/header_top.png');
+    margin: 0;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+.about-block{
+    background: #fff;
+}
+
+/* new interpretation */
+
+.about-holder{
+    display: flex;
+    height: 460px;
+    margin: 0;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+.about-holder-toolbar{
+    width: 100%;
+    height: 129px;
+    position: absolute;
+    top: 0;
+}
+
+.about-holder-toolbar.left{
+    left: 0;
+}
+
+.about-holder-toolbar.right{
+    right: 0;
+}
+
+
+.about-holder-image{
+    display: flex;
+    flex: 6;
+    position: relative;
+}
+
+.about-holder-image.left{
+    padding-right: 8px;
+}
+.about-holder-image.right{
+    padding-left: 8px;
+}
+
+.about-holder-image>img{
+    width: 100%;
+}
+
+.about-holder-text{
+    flex: 4;
+    z-index: 1000;    
+}
+
+.about-holder-text.right{
+    padding-left: 8px;
+}
+
+.about-holder-text.left{
+    padding-right: 8px;
+    padding-left: 16px;
+}
+
+.about-holder-text .title{
+    height: calc(129px - 16px);
+    display: block;
+    font-weight: bolder;
+    color: white;
+    padding-top: 16px;
+    margin: 0;
+    line-height: 1.75;
+}
+
+.about-holder-text .content{
+    display: block;
+    font-weight: bolder;
+    padding-top: 32px;
+    color: rgba(0,0,0,.87);
+}
+
+.free-space{
+    flex: 2;
+}
+
+.about-cards .mdl-cell {
+    padding: 0;
+}
+
+.about-cards .header{
+    background: url('/content/img/about/about_cell_header.png');
+    padding: 16px 8px 16px 32px;
+    margin: 0;
+    height: calc(112px - 32px);
+    background-repeat: no-repeat;  
+}
+
+.about-cards .header .icon{
+    width: 52px;
+    display: block;
+    float: left;
+}
+
+.about-cards .header p{
+    padding-left: 32px;
+    height: 52px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.about-cards .content{
+    padding: 16px 32px;
+}
+/* endnew interpretation */

@@ -198,7 +198,7 @@ packages:
       name: io
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.3.1"
   isolate:
     description:
       name: isolate
@@ -222,7 +222,7 @@ packages:
       name: lab_rat_wp_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.28"
+    version: "1.1.29"
   logging:
     description:
       name: logging
@@ -253,6 +253,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.4"
+  multi_server_socket:
+    description:
+      name: multi_server_socket
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   node_preamble:
     description:
       name: node_preamble
@@ -390,7 +396,7 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.28"
+    version: "0.12.29"
   typed_data:
     description:
       name: typed_data

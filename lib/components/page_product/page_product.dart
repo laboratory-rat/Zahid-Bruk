@@ -63,10 +63,10 @@ class PageProduct extends PageAnalytics implements OnInit {
 
     var savedProductMap = null;
     if ((savedProductMap = _storage.load<WCProduct>(currentProductId.toString())) != null) {
-      currentProduct = new WCProduct()..fromJson(savedProductMap);
+      currentProduct = new WCProduct()..fromMap(savedProductMap);
     } else {
       currentProduct = await _shopService.getProductById(currentProductId);
-      _storage.save(currentProductId.toString(), currentProduct);
+      _storage.save(currentProductId.toString(), currentProduct.toMap());
     }
 
     ga.sendCustom('Product view', category: 'view', label: currentProduct.name, value: currentProduct.id);
@@ -88,7 +88,7 @@ class PageProduct extends PageAnalytics implements OnInit {
     currentProduct.variations.forEach((x) {
       var variationMap = null;
       if ((variationMap = _storage.load(x)) != null) {
-        variations.add(new WCProduct()..fromJson(variationMap));
+        variations.add(new WCProduct()..fromMap(variationMap));
       } else {
         variationsToLoad.add(x.toString());
       }
@@ -102,7 +102,7 @@ class PageProduct extends PageAnalytics implements OnInit {
       if (relativeMap == null) {
         toSeeToLoad.add(x.toString());
       } else {
-        toSeeProducts.add(new WCProduct()..fromJson(relativeMap));
+        toSeeProducts.add(new WCProduct()..fromMap(relativeMap));
       }
     });
 
@@ -111,7 +111,7 @@ class PageProduct extends PageAnalytics implements OnInit {
 
       loadedVariations.forEach((x) {
         x.images = [x.image];
-        _storage.save(x.id.toString(), x);
+        _storage.save(x.id.toString(), x.toMap());
       });
 
       variations.addAll(loadedVariations);

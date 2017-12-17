@@ -31,7 +31,7 @@
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <product-cards [list]='productsPaving' [maxItems]='3' (event)='selectProduct($event)'></product-cards>
+        <product-cards [hCMd]='"4"' [hCSm]='"4"' [hCLg]='"4"' [list]='productsPaving' [maxItems]='3' (event)='selectProduct($event)'></product-cards>
     </div>
 
     <!-- TP -->
@@ -43,7 +43,7 @@
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <product-cards [list]='productsTP' (event)='selectProduct($event)' [maxItems]='3'></product-cards>
+        <product-cards [hCMd]='"4"' [hCSm]='"4"' [hCLg]='"4"' [list]='productsTP' (event)='selectProduct($event)' [maxItems]='3'></product-cards>
     </div>
 
     <!-- lead form 2 -->
@@ -88,7 +88,7 @@
         </button>
     </div>
     <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
-        <product-cards [vCMd]='"2"' [vCSm]='"2"' [list]='verticalProducts' [prefix]='""' [maxItems]='6' (event)='selectProduct($event)' [vertical]='true'></product-cards>
+        <product-cards [vCMd]='"2"' [vCSm]='"2"' [vCLg]='"2"' [list]='verticalProducts' [prefix]='""' [maxItems]='6' (event)='selectProduct($event)' [vertical]='true'></product-cards>
     </div>
 
     <!-- News -->

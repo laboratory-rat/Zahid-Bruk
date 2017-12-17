@@ -39,17 +39,25 @@ class PageHome extends PageAnalytics implements OnInit {
     _head.title = 'головна сторінка';
     _head.update();
 
+    // await _loadPaving(); // test 04.12
+
     // Load products
+
+    _loadCarousel();
+    _loadPaving();
+    _loadTp();
+    _loadBest();
+
     await Future.wait([_loadCarousel(), _loadPaving(), _loadTp(), _loadBest()]);
   }
 
   Future _loadCarousel() async {
     var storeCarousel = null;
     if ((storeCarousel = _storage.load('carousel')) != null) {
-      products = storeCarousel.map((x) => new WCProduct()..fromJson(x)).toList();
+      products = storeCarousel.map((x) => new WCProduct()..fromMap(x)).toList();
     } else {
       products = await _service.getProducts(1, 6);
-      _storage.save('carousel', products);
+      _storage.save('carousel', products.map((x) => x.toMap()).toList());
     }
 
     carouselObjects = products
@@ -61,9 +69,9 @@ class PageHome extends PageAnalytics implements OnInit {
     var savedPavings = _storage.load('pavings');
     if (savedPavings == null) {
       productsPaving = await _service.getProductsByCategory(15, [new ApiParam(param: 'per_page', value: '3')]);
-      _storage.save('pavings', productsPaving);
+      _storage.save('pavings', productsPaving.map((x) => x.toMap()).toList());
     } else {
-      productsPaving = savedPavings.map((x) => new WCProduct()..fromJson(x)).toList();
+      productsPaving = savedPavings.map((x) => new WCProduct()..fromMap(x)).toList();
     }
   }
 
@@ -71,9 +79,9 @@ class PageHome extends PageAnalytics implements OnInit {
     var savedTp = _storage.load('tp');
     if (savedTp == null) {
       productsTP = await _service.getProductsByCategory(16, [new ApiParam(param: 'per_page', value: '3')]);
-      _storage.save('tp', productsTP);
+      _storage.save('tp', productsTP.map((x) => x.toMap()).toList());
     } else {
-      productsTP = savedTp.map((x) => new WCProduct()..fromJson(x)).toList();
+      productsTP = savedTp.map((x) => new WCProduct()..fromMap(x)).toList();
     }
   }
 
@@ -81,9 +89,9 @@ class PageHome extends PageAnalytics implements OnInit {
     var savedBest = _storage.load('best');
     if (savedBest == null) {
       verticalProducts = await _service.getProductsCustom([new ApiParam(param: 'page', value: '1'), new ApiParam(param: 'per_page', value: '6')]);
-      _storage.save('best', verticalProducts);
+      _storage.save('best', verticalProducts.map((x) => x.toMap()).toList());
     } else {
-      verticalProducts = savedBest.map((x) => new WCProduct()..fromJson(x)).toList();
+      verticalProducts = savedBest.map((x) => new WCProduct()..fromMap(x)).toList();
     }
   }
 

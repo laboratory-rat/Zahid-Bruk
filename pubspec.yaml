@@ -30,7 +30,8 @@ transformers:
     $include: test/**_test.dart
 - dart_to_js_script_rewriter
 - $dart2js:
-    commandLineOptions: [--trust-type-annotations]
+    # commandLineOptions: [--trust-type-annotations]
+    commandLineOptions: [--minify, --fast-startup, --trust-type-annotations]
     # commandLineOptions: [--trust-type-annotations, --trust-primitives]
 
 

@@ -15,7 +15,7 @@ class ShopService {
 
     List<WPCategory> result = [];
     JSON.decode(response).forEach((c) {
-      result.add(new WPCategory()..fromMap(JSON.decode(c)));
+      result.add(new WPCategory()..fromMap(c));
     });
 
     return result;
@@ -31,14 +31,13 @@ class ShopService {
     var response = await client.getWC('products/$id/variations');
     if (response == null) return new List<WCProduct>();
 
-    return JSON.decode(response).map((x) => new WCProduct()..fromMap(JSON.decode(x))).toList();
+    return JSON.decode(response).map((x) => new WCProduct()..fromMap(x)).toList();
   }
 
-  Future<List<WCProduct>> getProductsByParams(String orderBy, bool isDesc,
-      [int category, int minPrice, int maxPrice, bool featured, bool onSale]) async {
+  Future<List<WCProduct>> getProductsByParams(String orderBy, bool isDesc, [int category, int minPrice, int maxPrice, bool featured, bool onSale]) async {
     List<ApiParam> params = new List<ApiParam>();
 
-	params.add(new ApiParam(param: 'orderby', value: orderBy));
+    params.add(new ApiParam(param: 'orderby', value: orderBy));
 
     if (isDesc) {
       params.add(new ApiParam(param: 'order', value: 'desc'));
@@ -50,27 +49,27 @@ class ShopService {
       params.add(new ApiParam(param: 'category', value: category.toString()));
     }
 
-	if(minPrice != null){
-		params.add(new ApiParam(param: 'min_price', value: minPrice.toString()));
-	}
+    if (minPrice != null) {
+      params.add(new ApiParam(param: 'min_price', value: minPrice.toString()));
+    }
 
-	if(maxPrice != null){
-		params.add(new ApiParam(param: 'max_price', value: maxPrice.toString()));
-	}
+    if (maxPrice != null) {
+      params.add(new ApiParam(param: 'max_price', value: maxPrice.toString()));
+    }
 
     if (featured) {
-		params.add(new ApiParam(param: 'featured', value: 'true'));
-	}
+      params.add(new ApiParam(param: 'featured', value: 'true'));
+    }
 
-	if(onSale){
-		params.add(new ApiParam(param: 'on_sale', value: 'true'));
-	}
+    if (onSale) {
+      params.add(new ApiParam(param: 'on_sale', value: 'true'));
+    }
 
     var response = await client.getWC('products', params);
 
     List<WCProduct> result = [];
     JSON.decode(response).forEach((r) {
-      result.add(new WCProduct()..fromMap(JSON.decode(r)));
+      result.add(new WCProduct()..fromMap(r));
     });
 
     return result;
@@ -100,13 +99,10 @@ class ShopService {
     var response = await client.getWC('products', params);
 
     List<WCProduct> result = [];
-    var target = JSON.decode(response);
-    for(var x in target){
-      window.console.log(x);
-
+    var target = JSON.decode(response).toList();
+    for (var x in target) {
       result.add(new WCProduct()..fromMap(x));
     }
-
 
     return result;
   }
@@ -115,18 +111,18 @@ class ShopService {
     if (params == null || params.length < 1) return new List<WCProduct>();
 
     var response = await client.getWC('products', params);
-    return JSON.decode(response).map((x) => new WCProduct()..fromMap(JSON.decode(x))).toList();
+
+    return JSON.decode(response).map((x) => new WCProduct()..fromMap(x)).toList();
   }
 
   Future<List<WCProduct>> getProducts(int page, [int perPage = 20]) async {
-    var response = await client
-        .getWC('products', [new ApiParam(param: 'page', value: page.toString()), new ApiParam(param: 'status', value: 'publish')]);
+    var response = await client.getWC('products', [new ApiParam(param: 'page', value: page.toString()), new ApiParam(param: 'status', value: 'publish')]);
 
     if (response == null) return null;
 
     List<WCProduct> result = [];
     JSON.decode(response).forEach((p) {
-      result.add(new WCProduct()..fromMap(JSON.decode(p)));
+      result.add(new WCProduct()..fromMap(p));
     });
 
     return result;
@@ -145,7 +141,7 @@ class ShopService {
     var response = await client.getWC('products', [new ApiParam(param: 'include', value: value)]);
 
     if (response == null) return new List<WCProduct>();
-    return JSON.decode(response).map((x) => new WCProduct()..fromMap(JSON.decode(x)));
+    return JSON.decode(response).map((x) => new WCProduct()..fromMap(x));
   }
 
   Future<List<WPTag>> getAllTags() async {
@@ -155,7 +151,7 @@ class ShopService {
     if (response == null) return result;
 
     JSON.decode(response).forEach((t) {
-      result.add(new WPTag()..fromMap(JSON.decode(t)));
+      result.add(new WPTag()..fromMap(t));
     });
 
     return result;

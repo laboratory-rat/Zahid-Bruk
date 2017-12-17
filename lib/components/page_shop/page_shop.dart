@@ -107,7 +107,7 @@ class PageShop extends PageAnalytics implements OnInit {
   Future loadCategories() async {
     var list = _storage.load('categories');
     if (list != null) {
-      filter.categories = list.map((x) => new WPCategory()..fromJson(x)).toList();
+      filter.categories = list.map((x) => new WPCategory()..fromMap(x)).toList();
     } else {
       filter.categories = await _shop.getAllCategories();
       filter.categories.insert(
@@ -115,7 +115,7 @@ class PageShop extends PageAnalytics implements OnInit {
           new WPCategory()
             ..id = -1
             ..name = 'Усі');
-      _storage.save('categories', filter.categories);
+      _storage.save('categories', filter.categories.map((x) => x.toMap()).toList());
     }
 
     filter.currentCategory = filter.categories.firstWhere((x) => x.id == currentCategory);
@@ -124,10 +124,10 @@ class PageShop extends PageAnalytics implements OnInit {
   Future loadTags() async {
     var tagsMap = _storage.load('tags');
     if (tagsMap != null) {
-      filter.tags = tagsMap.map((x) => new WPTag()..fromJson(x)).toList();
+      filter.tags = tagsMap.map((x) => new WPTag()..fromMap(x)).toList();
     } else {
       filter.tags = await _shop.getAllTags();
-      _storage.save('tags', filter.tags);
+      _storage.save('tags', filter.tags.map((x) => x.toMap()).toList());
     }
   }
 
@@ -141,10 +141,10 @@ class PageShop extends PageAnalytics implements OnInit {
     var cachedProducts = [];
 
     if ((cachedProducts = _storage.load<List<WCProduct>>(searchId))?.toList() != null) {
-      allLoadedProducts = cachedProducts.map((x) => new WCProduct()..fromJson(x)).toList();
+      allLoadedProducts = cachedProducts.map((x) => new WCProduct()..fromMap(x)).toList();
     } else {
       allLoadedProducts = await _shop.getProductsCustom(params);
-      _storage.save(searchId, allLoadedProducts);
+      _storage.save(searchId, allLoadedProducts.map((x) => x.toMap()).toList());
     }
 
     // sort
@@ -205,7 +205,7 @@ class PageShop extends PageAnalytics implements OnInit {
       currentProducts = allLoadedProducts;
     }
 
-    allLoadedProducts.forEach((x) => _productStorage.save(x.id.toString(), x));
+    allLoadedProducts.forEach((x) => _productStorage.save(x.id.toString(), x.toMap()));
   }
 
   Future search() async {
