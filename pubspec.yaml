@@ -9,6 +9,7 @@ dependencies:
   angular2: ^3.0.0
   lab_rat_wp_api: "^1.0.0"
   gtag_analytics: "^0.1.5"
+  google_maps: ">=3.0.0 <4.0.0"
 
   
 

@@ -150,13 +150,19 @@ packages:
       name: func
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "0.1.1"
   glob:
     description:
       name: glob
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.5"
+  google_maps:
+    description:
+      name: google_maps
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.2"
   gtag_analytics:
     description:
       name: gtag_analytics
@@ -211,6 +217,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1"
+  js_wrapping:
+    description:
+      name: js_wrapping
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.2"
   kernel:
     description:
       name: kernel

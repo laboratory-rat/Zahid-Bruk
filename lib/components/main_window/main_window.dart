@@ -21,6 +21,7 @@ import 'package:angular2/router.dart';
   const Route(name: 'PageShopCategory', component: PageShop, path: '/shop/:category'),
   const Route(name: 'PageProduct', component: PageProduct, path: '/product/:productId'),
   const Route(name: 'PageAbout', component: PageAbout, path: '/about'),
+  const Route(name: 'PageAboutSection', component: PageAbout, path: '/about/:section'),
   const Route(name: 'PageNews', component: PageNews, path: '/news'),
   const Route(name: 'PageContacts', component: PageContacts, path: '/contacts')
 ])
@@ -46,5 +47,9 @@ class MainWindow implements OnInit {
     } else if (window.scrollY < 80 && secondNav.classes.contains('fixed')) {
       secondNav.classes.remove('fixed');
     }
+  }
+
+  void onDialogCall(){
+    var dialog = querySelector('#dialog-call');
   }
 }

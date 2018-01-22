@@ -124,3 +124,10 @@
     padding: 16px 32px;
 }
 /* endnew interpretation */
+
+
+/* about slider */
+
+.about-slider{
+    min-height: 600px;
+}

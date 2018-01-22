@@ -10,7 +10,7 @@
                     <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageShop"]'>ТОВАРИ</a>
                     <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageNews"]'>НОВИНИ</a>
                     <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageAbout"]'>ПРО НАС</a>
-                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageContacts"]'>КОНТАКТИ</a>
+                    <a class="mdl-navigation__link mdl-typography--body-2 mdl-js-button mdl-js-ripple-effect" [routerLink]='["PageAboutSection", {section: "contacts"}]'>КОНТАКТИ</a>
                 </nav>
 
                 <div class="mdl-layout-spacer"></div>
@@ -49,8 +49,8 @@
                     <li class="mdl-js-button mdl-js-ripple-effect">
                         <img src="content/img/icons/concreet_icon.svg" alt=""> З/Б ВИРОБИ
                     </li>
-                    <li class="mdl-js-button mdl-js-ripple-effect">
-                        <img src="content/img/icons/our_services_icon.svg" alt=""> НАШІ ПОСЛУГИ
+                    <li [routerLink]='["PageAboutSection", {section: "assistent"}]' class="mdl-js-button mdl-js-ripple-effect">
+                        <img  src="content/img/icons/our_services_icon.svg" alt=""> НАШІ ПОСЛУГИ
                     </li>
                 </ul>
             </div>
@@ -141,6 +141,24 @@
 
 
 <!-- Colored FAB button with ripple -->
-<button onclick="window.open('tel:+380503711033');" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--6dp call-fab">
+<!-- <button onclick="window.open('tel:+380503711033');" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--6dp call-fab">
+    <i class="material-icons">phone</i>
+</button> -->
+
+<button (click)='onDialogCall()' class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--6dp call-fab">
     <i class="material-icons">phone</i>
 </button>
+
+<!-- dialogs -->
+<dialog class="mdl-dialog" id='dialog-call'>
+    <h4 class="mdl-dialog__title">Allow data collection?</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Allowing us to collect data will let us get you the information you want faster.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button">Agree</button>
+        <button type="button" class="mdl-button close">Disagree</button>
+    </div>
+</dialog>
