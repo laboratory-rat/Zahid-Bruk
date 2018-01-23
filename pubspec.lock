@@ -231,10 +231,11 @@ packages:
     version: "0.3.0-alpha.1.1"
   lab_rat_wp_api:
     description:
-      name: lab_rat_wp_api
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.29"
+      ref: HEAD
+      resolved-ref: "456def88ec984057a98169f4aad9bd71e1dc8e51"
+      url: "https://github.com/laboratory-rat/lr_wp_api"
+    source: git
+    version: "1.1.28"
   logging:
     description:
       name: logging

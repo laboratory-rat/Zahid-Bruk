@@ -121,7 +121,7 @@ class PageProduct extends PageAnalytics implements OnInit {
       var loadedRelative = await _shopService.getProductsBatch(toSeeToLoad);
 
       loadedRelative.forEach((x) {
-        _storage.save(x.id.toString(), x);
+        _storage.save(x.id.toString(), x.toMap());
       });
 
       toSeeProducts.addAll(loadedRelative);
@@ -132,6 +132,8 @@ class PageProduct extends PageAnalytics implements OnInit {
 
   String getSize() {
     if (currentProduct == null || currentProduct.dimensions == null) return '';
+
+    window.console.log(currentProduct.dimensions.length);
 
     return 'Д ' + currentProduct.dimensions.length + ' x Ш ' + currentProduct.dimensions.width + ' x В ' + currentProduct.dimensions.height;
   }

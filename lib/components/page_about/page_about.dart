@@ -1,5 +1,6 @@
 import '../../services/head_service.dart';
 import '../common/page_analytics.dart';
+import '../ext/about_file_slider/about_file_slider.dart';
 import '../ext/scroll_animation/scroll_animation.dart';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
@@ -9,7 +10,7 @@ import 'package:google_maps/google_maps.dart';
 @Component(
     selector: 'page-about',
     templateUrl: 'page_about.html',
-    directives: const [COMMON_DIRECTIVES],
+    directives: const [COMMON_DIRECTIVES, AboutFileSlider],
     styleUrls: const ['page_about.css'])
 class PageAbout extends PageAnalytics implements OnInit {
   final HeadService _head;
@@ -63,4 +64,12 @@ class PageAbout extends PageAnalytics implements OnInit {
 
     new Marker(markerOptions);
   }
+
+  final List<AboutFileSliderElement> sliderElements = [
+    new AboutFileSliderElement(title: 'One', description: 'asdsadsad', imageUrl: 'http://www.falsof.com/images/Document_Mutual_Release.gif'),
+    new AboutFileSliderElement(title: 'One', description: 'asdsadsad', imageUrl: 'http://www.falsof.com/images/Document_Mutual_Release.gif'),
+    new AboutFileSliderElement(title: 'One', description: 'asdsadsad', imageUrl: 'http://www.falsof.com/images/Document_Mutual_Release.gif'),
+    new AboutFileSliderElement(title: 'One', description: 'asdsadsad', imageUrl: 'http://www.falsof.com/images/Document_Mutual_Release.gif'),
+    new AboutFileSliderElement(title: 'One', description: 'asdsadsad', imageUrl: 'http://www.falsof.com/images/Document_Mutual_Release.gif')
+  ];
 }

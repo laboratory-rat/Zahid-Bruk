@@ -1,0 +1,18 @@
+<div class="file-container">
+    <div class="arrow">
+        <button class="mdl-button mdl-button--icon" [disabled]='!isArrowActive(false)' [hidden]='isArrowsHidden()' (click)='changeCursor(false)'>
+            <i class="material-icons">keyboard_arrow_left</i>
+        </button>
+    </div>
+    <div class="slider-container" >
+        <div class="element" *ngFor='let e of elements; let i = index;' [style.left]='getElementX(i)' [style.transform]='getElementTranslateX(i)'>
+            <p class='mdl-typography--text-center'>{{e.title}}</p>
+            <img [src]="e.imageUrl" [alt]="e.title" (click)='openFile(e)'>
+        </div>
+    </div>
+    <div class="arrow">
+        <button class="mdl-button mdl-button--icon" [disabled]='!isArrowActive(true)' [hidden]='isArrowsHidden()' (click)='changeCursor(true)'>
+            <i class="material-icons">keyboard_arrow_right</i>
+        </button>
+    </div>
+</div>
