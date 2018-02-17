@@ -44,13 +44,13 @@
                         <img src="content/img/icons/tile_icon_24x24.svg" alt=""> ТРОТУАРНА ПЛИТКА
                     </li>
                     <li class="mdl-js-button mdl-js-ripple-effect">
-                        <img src="content/img/icons/fence_icon.svg" alt=""> БЕТОНІ ОГОРОЖІ
+                        <img src="content/img/icons/fence_icon.svg" alt=""> БЕТОННІ ОГОРОЖІ
                     </li>
                     <li class="mdl-js-button mdl-js-ripple-effect">
                         <img src="content/img/icons/concreet_icon.svg" alt=""> З/Б ВИРОБИ
                     </li>
                     <li [routerLink]='["PageAboutSection", {section: "assistent"}]' class="mdl-js-button mdl-js-ripple-effect">
-                        <img  src="content/img/icons/our_services_icon.svg" alt=""> НАШІ ПОСЛУГИ
+                        <img src="content/img/icons/our_services_icon.svg" alt=""> НАШІ ПОСЛУГИ
                     </li>
                 </ul>
             </div>
@@ -85,10 +85,10 @@
             <router-outlet></router-outlet>
 
         </div>
-        <footer class="mdl-mega-footer" style='margin-top: 16px;'>
-            <div class="mdl-mega-footer__middle-section">
+        <footer class="mdl-mega-footer mr-footer">
+            <div class="mdl-mega-footer__middle-section" >
 
-                <div class="mdl-mega-footer__drop-down-section">
+                <div class="mdl-mega-footer__drop-down-section" >
                     <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
                     <h1 class="mdl-mega-footer__heading">Сторінки</h1>
                     <ul class="mdl-mega-footer__link-list">
@@ -105,11 +105,11 @@
                             <a [routerLink]='["PageAbout"]'>Про нас</a>
                         </li>
                         <li>
-                            <a [routerLink]='["PageContacts"]'>Контакти</a>
+                            <a [routerLink]='["PageAboutSection", {section: "contacts"}]'>Контакти</a>
                         </li>
                     </ul>
                 </div>
-                <div class="mdl-mega-footer__drop-down-section">
+                <div class="mdl-mega-footer__drop-down-section" >
                     <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
                     <h1 class="mdl-mega-footer__heading">Товари</h1>
                     <ul class="mdl-mega-footer__link-list">
@@ -118,6 +118,36 @@
                         </li>
                         <li>
                             <a [routerLink]='["PageShopCategory", {category: "16"}]'>Тротуарна плитка</a>
+                        </li>
+                        <li>
+                            <a [routerLink]='["PageShopCategory", {category: "16"}]'>Бетонні огорожі</a>
+                        </li>
+                        <li>
+                            <a [routerLink]='["PageShopCategory", {category: "16"}]'>З/Б вироби</a>
+                        </li>
+                        <li>
+                            <a [routerLink]='["PageAboutSection", {section: "assistent"}]'>Наші послуги</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mdl-mega-footer__drop-down-section">
+                    <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                    <h1 class="mdl-mega-footer__heading" style='padding-right: 0px;'>Контакти</h1>
+                    <ul class="mdl-mega-footer__link-list">
+                        <li>
+                            +38-050-371-10-33
+                        </li>
+                        <li>
+                            +38-050-371-10-33
+                        </li>
+                        <li>
+                            email 1
+                        </li>
+                        <li>
+                            email 2
+                        </li>
+                        <li>
+                            Адреса
                         </li>
                     </ul>
                 </div>

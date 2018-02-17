@@ -25,6 +25,7 @@ Future main() async {
 
     // services
     ShopService,
-    HeadService
+    HeadService,
+    OrderService
   ]);
 }

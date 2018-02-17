@@ -1,4 +1,5 @@
 import '../../configs/main_config.dart';
+import '../../services/order_service.dart';
 import '../../services/shop_service.dart';
 import '../active-on-view/active-on-view.dart';
 import '../common/page_analytics.dart';
@@ -22,6 +23,7 @@ class PageHome extends PageAnalytics implements OnInit {
   final ShopService _service;
   final Router _router;
   final HeadService _head;
+  final OrderService _order;
 
   final LRStorage _storage = new LRStorage(type: LRStorageType.Session, prefix: 'carousel');
 
@@ -32,7 +34,7 @@ class PageHome extends PageAnalytics implements OnInit {
   List<WCProduct> productsTP = [];
   List<WCProduct> verticalProducts = [];
 
-  PageHome(this._service, this._router, this._head) {}
+  PageHome(this._service, this._router, this._head, this._order) {}
 
   @override
   Future ngOnInit() async {
@@ -94,6 +96,27 @@ class PageHome extends PageAnalytics implements OnInit {
       verticalProducts = savedBest.map((x) => new WCProduct()..fromMap(x)).toList();
     }
   }
+
+  String customerEmail;
+  Future subscribe() async{
+    if(customerEmail.isNotEmpty){
+      // var r  = await _order.subscribe(customerEmail);
+
+      // window.console.log(r);
+    }
+  }
+
+  String tel;
+  String name;
+  String q;
+  bool get isQOk => tel?.isNotEmpty && customerEmail?.isNotEmpty && name?.isNotEmpty && q?.isNotEmpty;
+  Future callConsultation() async{
+    if(!isQOk) return;
+
+    var r = await _order.needConsultation(name, customerEmail, tel, q);
+    window.console.log(r);
+  }
+
 
   selectProduct(WCProduct product) {
     if (product == null) return;

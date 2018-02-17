@@ -62,12 +62,12 @@
                         <tr style='vertical-align: middle;'>
                             <td style='padding: 8px;'>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="email" id="home-lead-email">
+                                    <input class="mdl-textfield__input" [(ngModel)]='customerEmail' type="email" id="home-lead-email">
                                     <label class="mdl-textfield__label" for="home-lead-email">Email</label>
                                 </div>
                             </td>
                             <td style='padding: 8px;'>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-color-text--white mdl-js-ripple-effect">підписатися</button>
+                                <button (click)='subscribe()' class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">підписатися</button>
                             </td>
                         </tr>
                     </tbody>
@@ -171,30 +171,30 @@
                         <tr>
                             <td>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="home-second-lead-name">
+                                    <input class="mdl-textfield__input"  [(ngModel)]='name' type="text" id="home-second-lead-name">
                                     <label class="mdl-textfield__label" for="home-second-lead-name">Ім'я</label>
                                 </div>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="email" id="home-second-lead-email">
+                                    <input class="mdl-textfield__input"  [(ngModel)]='customerEmail' type="email" id="home-second-lead-email">
                                     <label class="mdl-textfield__label" for="home-second-lead-email">Email</label>
                                 </div>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="tel" id="home-second-lead-tel">
+                                    <input class="mdl-textfield__input"  [(ngModel)]='tel' type="tel" id="home-second-lead-tel">
                                     <label class="mdl-textfield__label" for="home-second-lead-tel">Номер телефону</label>
                                 </div>
                             </td>
                             <td style='vertical-align: bottom;'>
                                 <div class="mdl-textfield mdl-js-textfield">
-                                    <textarea rows="8" class="mdl-textfield__input" id="home-second-lead-text"></textarea>
+                                    <textarea rows="8" class="mdl-textfield__input"  [(ngModel)]='q' id="home-second-lead-text"></textarea>
                                     <label class="mdl-textfield__label pad" for="home-second-lead-text">Ваше питання</label>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan='2'>
-                                <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect mdl-color-text--white">
+                                <button [disabled]='!isQOk' (click)='callConsultation()' class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect">
                                     Консультація
                                 </button>
                             </td>
