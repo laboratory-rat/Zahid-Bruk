@@ -1,3 +1,4 @@
+<div [hidden]='!orderData.operationProgress' class="mdl-progress mdl-js-progress mdl-progress__indeterminate loading-bar-top"></div>
 <div class="mdl-grid mdl-container">
     <div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
     <div class="mdl-cell mdl-cell--12-col breadcrumbs">
@@ -7,7 +8,8 @@
         <span>></span>
         <span>{{currentProduct?.name}}</span>
     </div>
-    <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-grid--no-spacing mdl-cell--top mdl-card mdl-shadow--2dp mrs-a__fade" style='padding: 0px;' [class.hidden]='currentProduct == null'>
+    <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-grid--no-spacing mdl-cell--top mdl-card mdl-shadow--2dp mrs-a__fade" style='padding: 0px;'
+        [class.hidden]='currentProduct == null'>
         <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone" style='margin: 0;' id='product-variations'>
             <ul>
                 <li *ngFor='let i of gallery'>
@@ -37,34 +39,89 @@
                 <ul class='mrs-a__fade colors' [class.hidden]='variations.length === 0'>
                     <li class="color" *ngFor='let color of variations' (click)='changeColor(color)' [class]='getColor(color)'></li>
                 </ul>
-                <calc class='calc' [price]='currentPrice'></calc>
+                <calc class='calc' (countChanged)='orderData.onCountChanged($event)' [price]='currentPrice ?? 1'></calc>
                 <ul class="options">
                     <li>
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-delivery">
-                            <input type="checkbox" id="checkbox-1" [(ngModel)]='options.delivery' id='checkbox-delivery' class="mdl-checkbox__input" >
+                            <input type="checkbox" id="checkbox-1" [(ngModel)]='orderData.delivery' id='checkbox-delivery' class="mdl-checkbox__input">
                             <span class="mdl-checkbox__label">Доставка</span>
                         </label>
                     </li>
                     <li>
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sidewalk">
-                            <input type="checkbox" [(ngModel)]='options.sidewalk' id="checkbox-sidewalk" class="mdl-checkbox__input" >
+                            <input type="checkbox" [(ngModel)]='orderData.sidewalk' id="checkbox-sidewalk" class="mdl-checkbox__input">
                             <span class="mdl-checkbox__label">Укладка для тротуару</span>
                         </label>
                     </li>
                     <li>
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-car">
-                            <input type="checkbox" [(ngModel)]='options.car' id="checkbox-car" class="mdl-checkbox__input" >
+                            <input type="checkbox" [(ngModel)]='orderData.car' id="checkbox-car" class="mdl-checkbox__input">
                             <span class="mdl-checkbox__label">Укладка для автомобіля</span>
                         </label>
                     </li>
                 </ul>
-                <div class="block-order">
-                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect pull-right">Консультація</button>
-                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect pull-right">Замовити</button>
+                <div class="block-order" [hidden]='orderData.dialogEnabled && !orderData.operationSuccess && !orderData.operationFailed'>
+                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect pull-right" (click)='showOrderDialog(true)'>Консультація</button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect pull-right" (click)='showOrderDialog(false)'>Замовити</button>
                 </div>
+
             </div>
         </div>
 
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="mdl-grid mdl-cell--12-col block-order-fields" [hidden]='!orderData.dialogEnabled'>
+
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--fullwidth mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]='orderData.name' type="text" id="dialog-name">
+                        <label class="mdl-textfield__label" for="dialog-name">Ім'я*</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--fullwidth mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]='orderData.email' type="email" id="dialog-tel">
+                        <label class="mdl-textfield__label" for="dialog-tel">Email</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--fullwidth mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]='orderData.tel' type="tel" id="dialog-tel">
+                        <label class="mdl-textfield__label" for="dialog-tel">Мобільний телефон*</label>
+                    </div>
+                </div>
+
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--fullwidth mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]='orderData.city' type="text" id="dialog-tel">
+                        <label class="mdl-textfield__label" for="dialog-tel">Місто доставки</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--fullwidth mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]='orderData.address' type="text" id="dialog-tel">
+                        <label class="mdl-textfield__label" for="dialog-tel">Адреса доставки</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+
+                    <div>
+                        <button class='mdl-button mdl-button--primary mdl-js--ripple-effect' [disabled]='orderData.operationProgress' (click)='orderData.dialogEnabled = false'>Назад</button>
+                        <button class="mdl-button mdl-button--primary mdl-button--raised" (click)='order()' [disabled]='!orderData.isValid || orderData.operationProgress'
+                            style='float:right'>{{orderData.operationType == 'consultation' ? 'Замовити консультацію' : 'Замовити'}}</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class='mdl-cell mdl-cell--12-col mdl-typography--text-center' [hidden]='!orderData.operationSuccess'>
+                <span>Дякуємо за замовлення! Ми передзвонимо Вам ({{orderData.tel}}) у найближчій час.</span>
+            </div>
+
+            <div class='mdl-cell mdl-cell--12-col mdl-typography--text-center mdl-color-text--red' [hidden]='!orderData.operationFailed'>
+                <span>Помилка. Нажаль ми не можемо записати Вше замовлення. Будь-ласка, зробіть його за номером у розділі "Про
+                    нас".</span>
+            </div>
+        </div>
 
         <!-- product data area -->
         <div class="mdl-cell mdl-cell--12-col data-information">
@@ -88,6 +145,28 @@
         <div class="mdl-typography--headline mrs-a__fade" style='padding: 0 8px;'>
             Цікаві пропозиції
         </div>
-        <product-cards [hCSm]="'4'" [hCMd]='"6"' [vCLg]='"12"' [hCLg]='"12"' [list]='toSeeProducts' (event)='changeProduct($event)' [prefix]='""' [maxItems]='6' [vertical]='false'></product-cards>
+        <product-cards [hCSm]="'4'" [hCMd]='"6"' [vCLg]='"12"' [hCLg]='"12"' [list]='toSeeProducts' (event)='changeProduct($event)'
+            [prefix]='""' [maxItems]='6' [vertical]='false'></product-cards>
     </div>
 </div>
+<!-- 
+<div [hidden]='!dialogEnabled' class="mrs-dialog">
+    <div  class=" dialog">
+        <h4 class="mdl-dialog__title">Замовлення</h4>
+        <div class="mdl-dialog__content">
+
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" [(ngModel)]='dialogData.name' type="text" id="dialog-name">
+                <label class="mdl-textfield__label" for="dialog-name">Ім'я</label>
+              </div>
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" [(ngModel)]='dialogData.tel' type="text" id="dialog-tel">
+                <label class="mdl-textfield__label" for="dialog-tel">Мобільний телефон</label>
+              </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button close" (click)='dialogEnabled = false'>Закрити</button>
+            <button type="button" dialog-accept [disabled]='!dialogData.isEnabled' (click)='orderAction()' class="mdl-button">Замовити</button>
+        </div>
+    </div>
+</div> -->

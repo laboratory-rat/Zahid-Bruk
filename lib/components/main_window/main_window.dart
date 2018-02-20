@@ -29,6 +29,7 @@ class MainWindow implements OnInit {
   Element get drawerElement => querySelector('#drawer');
   Element get drawerObfuscatorElement => querySelector('.mdl-layout__obfuscator');
   Element get secondNav => querySelector('#second-menu');
+  Element get layout => querySelector('.mdl-layout');
 
 
   void toggleDrawer() {
@@ -44,8 +45,10 @@ class MainWindow implements OnInit {
   void checkFixed() {
     if (window.scrollY >= 80 && !secondNav.classes.contains('fixed')) {
       secondNav.classes.add('fixed');
+      layout.classes.add('nav-fixed');
     } else if (window.scrollY < 80 && secondNav.classes.contains('fixed')) {
       secondNav.classes.remove('fixed');
+      layout.classes.remove('nav-fixed');
     }
   }
 

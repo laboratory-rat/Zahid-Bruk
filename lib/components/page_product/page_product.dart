@@ -1,4 +1,5 @@
 import '../../domain/ProductPackage.dart';
+import '../../services/order_service.dart';
 import '../../services/shop_service.dart';
 import '../common/page_analytics.dart';
 import '../ext/calc/calc.dart';
@@ -24,14 +25,18 @@ class PageProduct extends PageAnalytics implements OnInit {
   final ShopService _shopService;
   final RouteParams _routeParams;
   final Router _router;
+  final OrderService _orderService;
 
-  final LRStorage _storage = new LRStorage(prefix: 'product', type: LRStorageType.Session);
+  final LRStorage _storage =
+      new LRStorage(prefix: 'product', type: LRStorageType.Session);
 
-  PageProduct(this._shopService, this._routeParams, this._router);
+  PageProduct(
+      this._shopService, this._routeParams, this._router, this._orderService);
 
   bool isLoading = true;
 
   int currentProductId;
+  int currentVariationId;
   WCProduct currentProduct = null;
   List<WCProduct> variations = [];
   List<WCProduct> toSeeProducts = [];
@@ -41,11 +46,10 @@ class PageProduct extends PageAnalytics implements OnInit {
   int basePrice = 0;
   int currentPrice = 0;
   WPImage currentImage = null;
+  num counter;
 
   String shortDescription = '';
   String description = '';
-
-  ProductOptions options = new ProductOptions();
 
   @override
   Future ngOnInit() async {
@@ -62,14 +66,19 @@ class PageProduct extends PageAnalytics implements OnInit {
     // load main product
 
     var savedProductMap = null;
-    if ((savedProductMap = _storage.load<WCProduct>(currentProductId.toString())) != null) {
+    if ((savedProductMap =
+            _storage.load<WCProduct>(currentProductId.toString())) !=
+        null) {
       currentProduct = new WCProduct()..fromMap(savedProductMap);
+      currentProductId = currentProduct.id;
     } else {
       currentProduct = await _shopService.getProductById(currentProductId);
+      currentProductId = currentProduct.id;
       _storage.save(currentProductId.toString(), currentProduct.toMap());
     }
 
-    ga.sendCustom('Product view', category: 'view', label: currentProduct.name, value: currentProduct.id);
+    ga.sendCustom('Product view',
+        category: 'view', label: currentProduct.name, value: currentProduct.id);
 
     // set all parameters
 
@@ -107,7 +116,8 @@ class PageProduct extends PageAnalytics implements OnInit {
     });
 
     if (variationsToLoad.length > 0) {
-      var loadedVariations = await _shopService.getProductVariations(currentProductId);
+      var loadedVariations =
+          await _shopService.getProductVariations(currentProductId);
 
       loadedVariations.forEach((x) {
         x.images = [x.image];
@@ -132,10 +142,12 @@ class PageProduct extends PageAnalytics implements OnInit {
 
   String getSize() {
     if (currentProduct == null || currentProduct.dimensions == null) return '';
-
-    window.console.log(currentProduct.dimensions.length);
-
-    return 'Д ' + currentProduct.dimensions.length + ' x Ш ' + currentProduct.dimensions.width + ' x В ' + currentProduct.dimensions.height;
+    return 'Д ' +
+        currentProduct.dimensions.length +
+        ' x Ш ' +
+        currentProduct.dimensions.width +
+        ' x В ' +
+        currentProduct.dimensions.height;
   }
 
   String getColor(WCProduct p) {
@@ -143,7 +155,7 @@ class PageProduct extends PageAnalytics implements OnInit {
   }
 
   void changeColor(WCProduct color) {
-    currentProduct = color;
+    currentVariationId = color.id;
     currentImage = color.image;
     if (color.price.toString().trim() != '')
       currentPrice = color.price;
@@ -152,16 +164,62 @@ class PageProduct extends PageAnalytics implements OnInit {
   }
 
   void changeProduct(WCProduct product) {
-    print(product.id);
     _router.navigate([
       'PageProduct',
       {'productId': product.id.toString()}
     ]);
   }
+
+  OrderData orderData = new OrderData();
+
+  void showOrderDialog(bool isConsultation) {
+    if (isConsultation) {
+      orderData.operationType = 'consultation';
+    } else {
+      orderData.operationType = 'order';
+    }
+
+    orderData.dialogEnabled = true;
+  }
+
+  Future order() async {
+    if (orderData.operationProgress) return;
+    orderData.operationProgress = true;
+
+    try {
+      await _orderService.order(orderData, currentProductId.toString(), currentVariationId.toString());
+      orderData.operationSuccess = true;
+    } catch (_) {
+      orderData.operationFailed = true;
+    } finally {
+      orderData.operationProgress = false;
+      orderData.dialogEnabled = false;
+    }
+  }
 }
 
-class ProductOptions {
+class OrderData {
+  bool dialogEnabled = false;
+  bool operationSuccess = false;
+  bool operationFailed = false;
+  bool operationProgress = false;
+
+  String operationType = 'order';
+
   bool delivery = true;
-  bool sidewalk = false;
+  bool sidewalk = true;
   bool car = false;
+
+  num count = 1;
+  void onCountChanged(num newCount) {
+    count = newCount;
+  }
+
+  String name;
+  String tel;
+  String email;
+  String city;
+  String address;
+
+  bool get isValid => name?.isNotEmpty && tel?.isNotEmpty;
 }

@@ -47,7 +47,6 @@ class PageShop extends PageAnalytics implements OnInit {
   SelectMaterialElement currentOrderBy;
 
   List<SelectMaterialElement> listPerPage = [
-    new SelectMaterialElement('5', "5"),
     new SelectMaterialElement('10', "10"),
     new SelectMaterialElement('20', "20"),
     new SelectMaterialElement('50', "50"),
@@ -156,9 +155,9 @@ class PageShop extends PageAnalytics implements OnInit {
     if (currentOrderBy.id == 'popular') {
       allLoadedProducts.sort((a, b) => (a.variations.length > b.variations.length) ? 0 : 1);
     } else if (currentOrderBy.id == 'price_max') {
-      allLoadedProducts.sort((a, b) => int.parse(a.price.toString()) < int.parse(b.price.toString()) ? 0 : 1);
+      allLoadedProducts.sort((a, b) => int.parse(a.price.toString(), onError: (_) => 0) < int.parse(b.price.toString(), onError: (_) => 0) ? 0 : 1);
     } else if (currentOrderBy.id == 'price_min') {
-      allLoadedProducts.sort((a, b) => int.parse(a.price.toString()) < int.parse(b.price.toString()) ? 1 : 0);
+      allLoadedProducts.sort((a, b) => int.parse(a.price.toString(), onError: (_) => 0) < int.parse(b.price.toString(), onError: (_) => 0) ? 1 : 0);
     } else {
       allLoadedProducts.sort((a, b) => a.date_created.millisecondsSinceEpoch < b.date_created.millisecondsSinceEpoch ? 0 : 1);
     }
@@ -166,11 +165,11 @@ class PageShop extends PageAnalytics implements OnInit {
     // sort 2
 
     if (filter.minPrice != -1) {
-      allLoadedProducts = allLoadedProducts.where((x) => int.parse(x.price.toString()) >= filter.minPrice).toList();
+      allLoadedProducts = allLoadedProducts.where((x) => num.parse(x.price.toString(), (_) => 9999) >= filter.minPrice).toList();
     }
 
     if (filter.maxPrice != -1) {
-      allLoadedProducts = allLoadedProducts.where((x) => int.parse(x.price.toString()) <= filter.maxPrice).toList();
+      allLoadedProducts = allLoadedProducts.where((x) => num.parse(x.price.toString(), (_) => 9999) <= filter.maxPrice).toList();
     }
 
     if (filter.popular || filter.sales) {

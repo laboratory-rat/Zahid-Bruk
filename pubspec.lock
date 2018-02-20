@@ -232,7 +232,7 @@ packages:
   lab_rat_wp_api:
     description:
       ref: HEAD
-      resolved-ref: "8c5cbdd44b6e31cb50209a320b1c971ca65203b9"
+      resolved-ref: d56e3893fc9433d41de42e22c5669b3d6a864b6f
       url: "https://github.com/laboratory-rat/lr_wp_api"
     source: git
     version: "1.1.28"

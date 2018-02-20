@@ -36,6 +36,8 @@ class PageHome extends PageAnalytics implements OnInit {
 
   PageHome(this._service, this._router, this._head, this._order) {}
 
+  bool loadingInProgress = true;
+
   @override
   Future ngOnInit() async {
     _head.title = 'головна сторінка';
@@ -51,6 +53,7 @@ class PageHome extends PageAnalytics implements OnInit {
     _loadBest();
 
     await Future.wait([_loadCarousel(), _loadPaving(), _loadTp(), _loadBest()]);
+    loadingInProgress = false;
   }
 
   Future _loadCarousel() async {

@@ -1,6 +1,6 @@
 <div class="mdl-grid mdl-container appear-page">
-    <div id="loading" [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading"></div>
-    <div id='filter-cell' [class.active]='isFilterBarActive' [class.offset]='isFilterBarOffset' (click)='toggleFilterBar()' class="mdl-cell mdl-cell--12-col mdl-cell--3-col-desktop mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
+        <div [class.hidden]='!isLoading' class="mdl-progress mdl-js-progress mdl-progress__indeterminate top-loading loading-bar-top"></div>
+        <div id='filter-cell' [class.active]='isFilterBarActive' [class.offset]='isFilterBarOffset' (click)='toggleFilterBar()' class="mdl-cell mdl-cell--12-col mdl-cell--3-col-desktop mdl-card mdl-cell--top mdl-shadow--2dp overflow-visible">
         <product-filter class="product-filter" [filter]='filter' (onChange)='search()'>Filter</product-filter>
     </div>
     <div class="mdl-cell mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-grid shop-product-grid mdl-cell--top">

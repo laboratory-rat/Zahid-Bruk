@@ -65,6 +65,8 @@ class ShopService {
       params.add(new ApiParam(param: 'on_sale', value: 'true'));
     }
 
+    params.add(new ApiParam(param: 'status', value: 'publish'));
+
     var response = await client.getWC('products', params);
 
     List<WCProduct> result = [];
@@ -85,6 +87,9 @@ class ShopService {
     if (tag != null) {
       parameters.add(new ApiParam(param: 'tag', value: tag.toString()));
     }
+
+    parameters.add(new ApiParam(param: 'status', value: 'publish'));
+    
 
     var response = await client.getWC('products/count', parameters);
     return JSON.decode(response).count;
@@ -109,6 +114,8 @@ class ShopService {
 
   Future<List<WCProduct>> getProductsCustom(List<ApiParam> params) async {
     if (params == null || params.length < 1) return new List<WCProduct>();
+
+    params.add(new ApiParam(param: 'status', value: 'publish'));
 
     var response = await client.getWC('products', params);
 

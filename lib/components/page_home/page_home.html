@@ -1,3 +1,4 @@
+<div  [hidden]='!loadingInProgress' class="mdl-progress mdl-js-progress mdl-progress__indeterminate loading-bar-top"></div>
 <div class="mdl-grid mdl-container appear-page">
     <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--order-2-desktop mdl-cell--hide-phone">
         <mr-material-carousel (onClick)='selectProductById($event)' [objects]='carouselObjects'></mr-material-carousel>
@@ -92,14 +93,14 @@
     </div>
 
     <!-- News -->
-    <div class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+    <div class="mdl-cell mdl-cell--12-col mdl-typography--headline hidden">
         Новини
         <button [routerLink]='["PageNews"]' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--primary mdl-color-text--black mdl-pull--right">
             БІЛЬШЕ
         </button>
     </div>
 
-    <div class="mdl-cell mdl-cell--12-col" style="margin: 0px; width: 100%;">
+    <div class="mdl-cell mdl-cell--12-col hidden" style="margin: 0px; width: 100%;" >
         <div class="mdl-grid news" style="padding: 8px 0px;">
             <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-card mdl-shadow--2dp">
 
