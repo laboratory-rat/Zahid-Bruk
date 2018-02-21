@@ -4,6 +4,7 @@
 
 .calc-input{
   padding: 16px 0;
+  padding-bottom: 0px;
 }
 
 .calc-input button:first-child, .calc-input button:first-child i{

@@ -38,6 +38,7 @@ class PageProduct extends PageAnalytics implements OnInit {
   int currentProductId;
   int currentVariationId;
   WCProduct currentProduct = null;
+  WCProduct currentVariation = null;
   List<WCProduct> variations = [];
   List<WCProduct> toSeeProducts = [];
   List<WPImage> gallery = [];
@@ -50,6 +51,8 @@ class PageProduct extends PageAnalytics implements OnInit {
 
   String shortDescription = '';
   String description = '';
+
+  String get currentCategory => currentProduct?.categories?.first?.name ?? "Без категорії"; 
 
   @override
   Future ngOnInit() async {
@@ -70,10 +73,10 @@ class PageProduct extends PageAnalytics implements OnInit {
             _storage.load<WCProduct>(currentProductId.toString())) !=
         null) {
       currentProduct = new WCProduct()..fromMap(savedProductMap);
-      currentProductId = currentProduct.id;
+      currentProductId = currentVariationId = currentProduct.id;
     } else {
       currentProduct = await _shopService.getProductById(currentProductId);
-      currentProductId = currentProduct.id;
+      currentProductId = currentVariationId = currentProduct.id;
       _storage.save(currentProductId.toString(), currentProduct.toMap());
     }
 
@@ -127,6 +130,10 @@ class PageProduct extends PageAnalytics implements OnInit {
       variations.addAll(loadedVariations);
     }
 
+    if (variations.length > 0) {
+      changeColor(variations.first);
+    }
+
     if (toSeeToLoad.length > 0) {
       var loadedRelative = await _shopService.getProductsBatch(toSeeToLoad);
 
@@ -144,19 +151,29 @@ class PageProduct extends PageAnalytics implements OnInit {
     if (currentProduct == null || currentProduct.dimensions == null) return '';
     return 'Д ' +
         currentProduct.dimensions.length +
-        ' x Ш ' +
+        'см x Ш ' +
         currentProduct.dimensions.width +
-        ' x В ' +
-        currentProduct.dimensions.height;
+        'см x В ' +
+        currentProduct.dimensions.height +
+        'см';
   }
 
   String getColor(WCProduct p) {
+    if (p == currentVariation) {
+      return p.attributes.first.option + ' active';
+    }
+
     return p.attributes.first.option;
   }
 
   void changeColor(WCProduct color) {
     currentVariationId = color.id;
-    currentImage = color.image;
+    currentVariation = color;
+
+    if (color.image != null) {
+      currentImage = color.image;
+    }
+
     if (color.price.toString().trim() != '')
       currentPrice = color.price;
     else
@@ -187,7 +204,8 @@ class PageProduct extends PageAnalytics implements OnInit {
     orderData.operationProgress = true;
 
     try {
-      await _orderService.order(orderData, currentProductId.toString(), currentVariationId.toString());
+      await _orderService.order(orderData, currentProductId.toString(),
+          currentVariationId.toString());
       orderData.operationSuccess = true;
     } catch (_) {
       orderData.operationFailed = true;

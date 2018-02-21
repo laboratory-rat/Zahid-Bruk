@@ -1,13 +1,3 @@
-.loading-bar-top{
-    width: 100%;
-    top: 0;
-    position: absolute;
-}
-
-.nav-fixed .loading-bar-top{
-    top: 48px !important;
-}
-
 .product {
     display: flex;
     flex-direction: row;
@@ -102,6 +92,11 @@
     display: table-cell;
 }
 
+.data .current-variation{
+    color: rgba(0, 0, 0, .54);
+    padding-bottom: 8px;
+}
+
 .data .calc {
     margin-top: 16px;
 }
@@ -165,6 +160,14 @@
     }
 }
 
+.colors li{
+    border: 2px solid rgba(0, 0, 0, .54);
+}
+
+.colors li.active{
+    border: 2px solid rgb(255,193,7);
+}
+
 li.Білий {
     color: #eee;
     background: #eee;
@@ -198,6 +201,11 @@ li.Сірий {
 li.Чорний {
     color: #000000;
     background: #000000;
+}
+
+li.Жовтий{
+    color: #000;
+    background: yellow;
 }
 
 ul.options {

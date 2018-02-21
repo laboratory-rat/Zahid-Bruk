@@ -4,7 +4,7 @@
     <div class="mdl-cell mdl-cell--12-col breadcrumbs">
         <span>Товари</span>
         <span>></span>
-        <span>Бруківка</span>
+        <span>{{currentCategory}}</span>
         <span>></span>
         <span>{{currentProduct?.name}}</span>
     </div>
@@ -37,8 +37,11 @@
                     </span>
                 </div>
                 <ul class='mrs-a__fade colors' [class.hidden]='variations.length === 0'>
-                    <li class="color" *ngFor='let color of variations' (click)='changeColor(color)' [class]='getColor(color)'></li>
+                    <li class="color" *ngFor='let color of variations' (click)='changeColor(color)'  [class]='getColor(color)'></li>
                 </ul>
+                <div [hidden]='currentVariation == null' class='current-variation'>
+                    Поточна варіація: {{currentVariation?.attributes?.first?.option}}
+                </div>
                 <calc class='calc' (countChanged)='orderData.onCountChanged($event)' [price]='currentPrice ?? 1'></calc>
                 <ul class="options">
                     <li>
